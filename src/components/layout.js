@@ -5,6 +5,7 @@ import PropTypes from "prop-types";
 import { Link } from "gatsby";
 import { StaticQuery, graphql } from "gatsby";
 import { HelmetDatoCms } from "gatsby-source-datocms";
+import { StaticImage } from "gatsby-plugin-image";
 
 import "../styles/index.sass";
 
@@ -51,6 +52,7 @@ const TemplateWrapper = ({ children }) => {
           />
           <div className="container__sidebar">
             <div className="sidebar">
+              <StaticImage src="../images/danilonobre-ui-designer.png" alt="" />
               <h6 className="sidebar__title">
                 <Link to="/">{data.datoCmsSite.globalSeo.siteName}</Link>
               </h6>
