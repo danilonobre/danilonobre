@@ -8,6 +8,7 @@ import { HelmetDatoCms } from "gatsby-source-datocms";
 import { StaticImage } from "gatsby-plugin-image";
 
 import "../styles/index.sass";
+import "../styles/styles.scss";
 
 const TemplateWrapper = ({ children }) => {
   const [showMenu, setShowMenu] = useState(false);
@@ -32,7 +33,6 @@ const TemplateWrapper = ({ children }) => {
                 html
               }
             }
-            copyright
           }
           allDatoCmsSocialProfile(sort: { fields: [position], order: ASC }) {
             edges {
@@ -45,49 +45,47 @@ const TemplateWrapper = ({ children }) => {
         }
       `}
       render={data => (
+
         <div className={`container ${showMenu ? "is-open" : ""}`}>
+          
           <HelmetDatoCms
             favicon={data.datoCmsSite.faviconMetaTags}
             seo={data.datoCmsHome.seoMetaTags}
           />
-          <div className="container__sidebar">
-            <div className="sidebar">
-              <StaticImage src="../images/danilonobre-ui-designer.png" alt="" />
-              <h6 className="sidebar__title">
-                <Link to="/">{data.datoCmsSite.globalSeo.siteName}</Link>
-              </h6>
-              <div
-                className="sidebar__intro"
-                dangerouslySetInnerHTML={{
-                  __html:
-                    data.datoCmsHome.introTextNode.childMarkdownRemark.html
-                }}
-              />
-              <ul className="sidebar__menu">
-                <li>
-                  <Link to="/">Home</Link>
-                </li>
-                <li>
-                  <Link to="/about">About</Link>
-                </li>
-              </ul>
-              <p className="sidebar__social">
-                {data.allDatoCmsSocialProfile.edges.map(({ node: profile }) => (
-                  <a
-                    key={profile.profileType}
-                    href={profile.url}
-                    target="blank"
-                    className={`social social--${profile.profileType.toLowerCase()}`}
-                  >
-                    {" "}
-                  </a>
-                ))}
-              </p>
-              <div className="sidebar__copyright">
-                {data.datoCmsHome.copyright}
+
+          <div className="page-intro" id="about">
+
+            <header className="page-header">
+
+              <div className="page-logo">
+                <StaticImage src="../images/danilonobre-ui-designer.png" alt="" />
               </div>
-            </div>
+
+              <nav className="sidebar__menu">
+                <ul>
+                  <li>
+                    <Link to="#about">About</Link>
+                  </li>
+                  <li>
+                    <Link to="#work">Work</Link>
+                  </li>
+                  <li>
+                    <Link to="#contact">Contact</Link>
+                  </li>
+                </ul>
+              </nav>
+
+            </header>
+
+            <div className="intro-text"
+              dangerouslySetInnerHTML={{
+                __html:
+                  data.datoCmsHome.introTextNode.childMarkdownRemark.html
+              }}
+            />
+
           </div>
+        
           <div className="container__body">
             <div className="container__mobile-header">
               <div className="mobile-header">
@@ -106,6 +104,24 @@ const TemplateWrapper = ({ children }) => {
             </div>
             {children}
           </div>
+
+          <footer className="page-footer" id="contact">
+
+            <p className="sidebar__social">
+              {data.allDatoCmsSocialProfile.edges.map(({ node: profile }) => (
+                <a
+                  key={profile.profileType}
+                  href={profile.url}
+                  target="blank"
+                  className={`social social--${profile.profileType.toLowerCase()}`}
+                >
+                  {" "}
+                </a>
+              ))}
+            </p>
+
+          </footer>
+
         </div>
       )}
     />
