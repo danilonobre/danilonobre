@@ -1,0 +1,29 @@
+$path-image: "../images";
+
+$font-family: 'Circular DN', sans-serif;
+$font-size: 16px !default;
+$font-weight: 400;
+$line-height: 1.5 !default;
+$letter-spacing: -.025em !default;
+
+$primary: #FFEC00;
+$roxo: #6D00AB;
+$roxazul: #6F00F8;
+$azul: #326FF9;
+$amarelo: #FDC23E;
+$verde: #04D77E;
+$black: #0c0c0c;
+
+@import
+	"core/reset",
+	"core/mixins",
+	"core/grid";
+
+@import
+	"fonts",
+    "general",
+	"layout",
+	"works";
+
+@import
+    "vendor/slick";

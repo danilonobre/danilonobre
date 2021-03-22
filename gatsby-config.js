@@ -1,0 +1,77 @@
+module.exports = {
+  siteMetadata: {
+    siteUrl: "https://danilonobre.com.br",
+    title: "Danilo Nobre | UI Designer and Frontend developer",
+    description: `Hi, i'm <span>Danilo Nobre</span>, an interface designer focused on bringing results from user-centered experiences.`,
+    email: "a",
+    linkedin: "b",
+    behance: "c",
+    dribbble: "d",
+  },
+  plugins: [
+    "gatsby-plugin-sass",
+    "gatsby-plugin-gatsby-cloud",
+    "gatsby-plugin-image",
+    {
+      resolve: "gatsby-plugin-google-analytics",
+      options: {
+        trackingId: "UA-11048518-1",
+      },
+    },
+    "gatsby-plugin-react-helmet",
+    "gatsby-plugin-sitemap",
+    {
+      resolve: "gatsby-plugin-manifest",
+      options: {
+        icon: "src/images/icon.png",
+      },
+    },
+    "gatsby-transformer-remark",
+    "gatsby-plugin-sharp",
+    "gatsby-transformer-sharp",
+    `gatsby-remark-images`,
+    {
+      resolve: "gatsby-source-filesystem",
+      options: {
+        name: "images",
+        path: "./src/images/",
+      },
+      __key: "images",
+    },
+    {
+      resolve: "gatsby-source-filesystem",
+      options: {
+        name: "pages",
+        path: "./src/pages/",
+      },
+      __key: "pages",
+    },
+    {
+      resolve: "gatsby-source-filesystem",
+      options: {
+        name: "works",
+        path: "./src/works/",
+      },
+      __key: "works",
+    },
+    {
+      resolve: `gatsby-plugin-mdx`,
+      options: {
+        extensions: [`.mdx`, `.md`],
+        defaultLayouts: {
+          default: require.resolve("./src/pages/index.js"),
+        },
+        plugins: [`gatsby-remark-images`],
+        gatsbyRemarkPlugins: [
+          {
+            resolve: `gatsby-remark-images`,
+            options: {
+              maxWidth: 1000,
+              linkImagesToOriginal: false,
+            },
+          },
+        ],
+      },
+    },
+  ],
+};

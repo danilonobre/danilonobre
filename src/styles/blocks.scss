@@ -1,0 +1,426 @@
+@import "variables";
+
+@import
+	"core/mixins",
+	"core/grid";
+
+@import
+	"module/gui",
+	"module/structure";
+
+@import
+	"vendor/slick";
+
+
+  .acf-relationship .list {
+      display: block;
+      //grid-gap: 0;
+  }
+
+.editor-styles-wrapper{
+
+  .acf-block-preview{
+
+    h1,h2,h3,h4,h5,ul,p{
+      margin: 0;
+      padding: 0;
+    }
+
+    ul{
+      list-style: none;
+    }
+
+  }
+
+  .btn{
+    background-color: $outline;
+    width: 100%;
+    @include border-radius(5px);
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+}
+
+.wp-block{
+  max-width: 800px;
+}
+
+.block-editor-block-list__layout{
+  padding: 0;
+}
+
+.acf-block-preview{
+
+  font-size: 11px;
+
+	a{
+		pointer-events: none !important;
+	}
+
+  section{
+
+    padding: 20px;
+  	display: flex;
+  	flex-direction: column;
+  	background: url(images/degrade-sections.png) no-repeat left bottom;
+  	//grid-gap: 20px;
+		overflow: hidden;
+
+  }
+
+  .section-header{
+		display: flex;
+		flex-direction: column;
+		//grid-gap: 15px;
+
+		@include display(phone) {
+			width: auto;
+		}
+
+
+    h2{
+      color: $roxo;
+    }
+
+	}
+
+  figure{
+    margin: 0;
+  }
+
+  .list{
+    //grid-gap: 20px;
+
+    > .item{
+      display: flex;
+  		flex-direction: column;
+  		//grid-gap: 10px;
+    }
+
+  }
+
+  .illustration{
+    width: 200px;
+    height: 200px;
+  }
+
+
+}
+
+.section-cases{
+
+	.cases-list{
+		display: flex;
+		flex-wrap: wrap;
+		//grid-gap: 40px;
+
+		&.slick-slider{
+			display: block;
+		}
+
+	}
+
+	.case{
+
+		flex: 1;
+
+		.description{
+			display: none;
+		}
+
+	}
+
+}
+
+.section-cases-feature{
+
+	.case{
+
+		&:not(:first-child) {
+
+			flex: 1;
+
+		}
+
+		&:first-child{
+
+			flex: auto;
+
+			a{
+
+				display: flex;
+				height: 100%;
+
+				@include display(phone) {
+					display: block;
+				}
+
+				&:hover{
+
+					text-decoration: none;
+
+				}
+
+				> figure{
+					width: 50%;
+					flex: 1;
+					height: 100%;
+					margin-bottom: 0;
+
+					@include display(phone) {
+						width: 100%;
+						height: 245px;
+						margin-bottom: 90px;
+					}
+				}
+
+			}
+
+			.text{
+				width: 50%;
+				padding: 40px 40px 40px 210px;
+				display: flex;
+				align-items: flex-start;
+				flex-direction: column;
+				justify-content: center;
+
+				@include display(phone) {
+					width: 100%;
+					display: block;
+					padding: 0;
+				}
+			}
+
+			.description{
+
+				display: block;
+
+				@include display(phone) {
+					display: none;
+				}
+
+			}
+
+		}
+
+	}
+
+}
+
+.cases-list{
+
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	grid-column-gap: 40px;
+
+	.case{
+
+			&.departments-hidden,
+			&.plans-hidden{
+				display: none;
+			}
+
+			&.slick-slide{
+				margin-bottom: 0;
+			}
+
+			height: 300px;
+			background-color: #F4F7F7;
+			@include border-radius(20px);
+			background: linear-gradient(180deg, #F4F7F7 75%, rgba(255,255,255,0) 100%)	;
+			position: relative;
+			z-index: 1;
+			overflow: hidden;
+
+			@include display(phone) {
+				margin-bottom: 40px;
+			}
+
+			&:last-child{
+
+				@include display(phone) {
+					margin-bottom: 0;
+				}
+
+			}
+
+	}
+
+	.case-plan{
+		position: absolute;
+		right: 10px;
+		top: 10px;
+		z-index: 2;
+
+	}
+
+	a{
+		color: $black;
+
+		> figure{
+
+			height: 245px;
+			@include border-radius(20px 20px 0 0);
+			overflow: hidden;
+			margin-bottom: 90px;
+			background-color: $outline;
+
+			img{
+				width: 100%;
+				height: 100%;
+				object-fit: cover;
+			}
+
+		}
+
+	}
+
+	h3{
+		color: $black;
+		font-size: 24px;
+		text-align: center;
+	}
+
+	.preview{
+		width: 340px;
+		position: absolute;
+		top: 45px;
+		left: 50%;
+		margin-left: -170px;
+		display: flex;
+    flex-direction: column;
+    align-items: center;
+
+		.iphone,
+		.macbook{
+
+			position: relative;
+
+			> img{
+					position: absolute;
+					top: 0;
+					left: 0;
+			}
+
+			figure{
+				overflow: hidden;
+				background-color: #fff;
+			}
+
+		}
+
+		.macbook{
+			width: 100%;
+			height: 185px;
+			padding: 9px 0px 0 47px;
+
+
+			figure{
+				width: 247px;
+				height: 154px;
+			}
+
+		}
+
+		.iphone{
+
+			width: 103px;
+			height: 157px;
+			padding: 9px 0 0 19px;
+			margin-top: -110px;
+
+			figure{
+				width: 65px;
+				height: 142px;
+				@include border-radius(5px);
+			}
+
+		}
+
+	}
+
+}
+
+.section-parceiros{
+
+	.list{
+
+		.item{
+			flex-basis: 25%;
+		}
+
+	}
+
+	.item{
+
+		ul{
+
+			width: 100%;
+			display: grid;
+			grid-template-columns: repeat(3, 1fr);
+			grid-gap: 20px;
+			grid-row-gap: 10px;
+
+			li{
+				width: 80px;
+				height: 80px;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+
+			}
+
+		}
+
+	}
+
+}
+
+.section-illustration{
+
+	position: relative;
+
+	@include display(phone) {
+		height: auto;
+		padding-bottom: 270px;
+	}
+
+	.section-header{
+		z-index: 2;
+		margin-left: 260px;
+		margin-bottom: 0;
+
+		@include display(phone) {
+			margin-left: 0;
+		}
+	}
+
+	img{
+		position: absolute;
+		left: 0;
+		top: 0;
+		height: 100%;
+		width: auto;
+		z-index: 1;
+
+		@include display(phone) {
+			height: auto;
+			width: 100%;
+			top: auto;
+			bottom: 0;
+
+		}
+	}
+
+}
+
+.section-videos{
+
+	.buttons-mute{
+		display: none;
+	}
+
+}

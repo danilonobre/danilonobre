@@ -1,0 +1,19 @@
+.page-wrapper,
+main,
+section{
+    display: flex;
+    flex-direction: column;
+}
+
+.page-header{
+    display: flex;
+    justify-content: space-between;
+}
+
+.page-nav{
+
+    ul{
+        display: flex;
+    }
+    
+}

@@ -1,0 +1,335 @@
+$break-small: 600px;
+$break-large: 1200px;
+
+@mixin respond-to($media) {
+
+	@if $media == handhelds {
+
+		@media only screen and (max-width: $break-small) { @content; }
+
+	}
+
+	@else if $media == medium-screens {
+
+		@media only screen and (min-width: $break-small + 1) and (max-width: $break-large - 1) { @content; }
+
+	}
+
+	@else if $media == wide-screens {
+
+		@media only screen and (min-width: $break-large) { @content; }
+
+	}
+
+}
+
+@mixin display($range) {
+
+	$phone: 600px;
+	$laptop: 980px;
+	$desktop: 1200px;
+	$huge: 1420px;
+
+	@if $range == phone {
+
+		@media (max-width: #{$phone - 1}) { @content; }
+
+	} @else if $range == tablet {
+
+		@media (min-width: $phone ) and ( max-width: #{$laptop - 1} ) { @content; }
+
+	} @else if $range == laptop {
+
+		@media (min-width: $laptop ) and ( max-width: #{$desktop - 1}) { @content; }
+
+	} @else if $range == desktop {
+
+		@media (min-width: $desktop) and ( max-width: #{$huge - 1}) { @content; }
+
+	} @else if $range == huge {
+
+		@media (min-width: $huge) { @content; }
+
+	}
+
+}
+
+body{
+	//max-width: 1440px;
+	//margin: 0 auto;
+}
+
+.wrapper{
+
+	margin: 0 auto;
+	padding: 0 80px;
+
+	@include display(huge) {
+
+		width: 100%;
+
+	}
+
+	@include display(desktop) {
+
+		max-width: 1400px;
+		//padding: 0 40px;
+
+	}
+
+	@include display(laptop) {
+
+		max-width: 940px;
+		padding: 0;
+
+	}
+
+	@include display(tablet) {
+
+		max-width: 840px;
+		padding: 0;
+
+	}
+
+	@include display(phone) {
+
+		max-width: none;
+		width: auto;
+		padding: 0 25px;
+
+		@include display(phone) {
+			max-width: 100%;
+			min-width: 0px;
+		}
+
+	}
+
+}
+
+.columns{
+
+	width: 100%;
+	display: flex;
+	flex-direction: row;
+	//grid-gap: 40px;
+
+	@include grid(20px, horizontal);
+
+	@include display(phone) {
+
+		grid-auto-flow: row;
+
+	}
+
+}
+
+.column-half{
+
+	width: 50%;
+
+	@include display(phone) {
+		width: 100%;
+	}
+
+}
+
+.column-two-thirds{
+
+	width: 66.66%;
+
+	@include display(phone) {
+		width: 100%;
+	}
+
+}
+
+.columns-equal{
+
+	.column{
+
+		flex: 1;
+
+	}
+
+}
+
+.column-auto{
+
+	flex: 1;
+
+}
+
+.column-narrow{
+
+	padding: 0 20%;
+
+	@include display(phone) {
+		padding: 0;
+	}
+
+}
+
+$column: 60px;
+$gutter: 40px;
+
+@for $i from 1 through 12{
+
+	.size-#{$i}{
+
+		width: ( $column * $i )+( ($i - 1) * $gutter );
+
+		@include respond-to(handhelds) {
+			width: auto;
+		}
+
+	}
+
+}
+
+.size-auto{
+	flex: 1;
+}
+
+.only-mobile{
+
+	display: none !important;
+
+	@include respond-to(handhelds) {
+		display: block !important;
+	}
+
+}
+
+.only-desktop{
+
+	display: none !important;
+
+	@include respond-to(medium-screens){
+		display: block !important;
+	}
+
+	@include respond-to(wide-screens) {
+		display: block !important;
+	}
+
+}
+
+
+.list{
+	
+	> *{
+		margin-left: 20px;
+		margin-right: 20px;
+		margin-bottom: 40px;
+
+		@include display(phone) {
+			margin: 0 0 30px 0;
+		}
+
+
+		&:first-child{
+			
+		}
+
+		&:last-child{
+			margin-bottom: 0;
+		}
+
+	}
+
+	.text{
+		flex: 1;
+	}
+	
+}
+
+.list-vertical{
+	width: 100%;
+	flex-direction: column;
+}
+
+@for $i from 1 through 4{
+
+	.column-#{$i}{
+
+		flex-basis: 100/$i  * 1%;
+		width: 100/$i  * 1%;
+
+		@include respond-to(handhelds) {
+			flex-basis: 100%;
+		}
+
+	}
+
+	.cols-#{$i}{
+
+		.list{
+
+			.column{
+
+				flex-basis: 100/$i  * 1%;
+				width: 100/$i  * 1%;
+				//flex-basis: percentage($value);
+
+				@include respond-to(handhelds) {
+					flex-basis: 100%;
+				}
+
+			}
+
+		}
+
+
+	}
+
+}
+
+.layout{
+
+	display: flex;
+	flex-direction: column;
+
+	/*
+	& > * {
+
+		margin-left: 20px;
+		margin-right: 20px;
+
+		@include respond-to(handhelds) {
+			margin-left: 0;
+			margin-right: 0;
+		}
+
+		&:first-child{
+			margin-left: 0;
+		}
+
+		&:last-child{
+			margin-right: 0;
+		}
+
+	}*/
+
+}
+
+.centered{
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+@mixin flex(){
+
+	display: flex;
+
+	@include display(phone) {
+		flex-direction: column;
+	}
+
+}
+
+.flex{
+
+	@include flex();
+
+}
