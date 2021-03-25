@@ -35,9 +35,7 @@ export const query = graphql
               video
               gallery {
                 childImageSharp {
-                  fluid(maxWidth: 2000, quality: 100) {
-                    ...GatsbyImageSharpFluid
-                  }
+                  gatsbyImageData(layout: FIXED)
                 }
                 relativePath
               }
@@ -121,14 +119,15 @@ const IndexPage = ({ data }) => {
                       
                       <>
                         
-                        {item.childImageSharp.fluid.src.includes('mobile')
+                        {item.childImageSharp.gatsbyImageData.images.fallback.src.includes('mobile')
                         
                           ?
                           
                             <div className="work-image work-image-mobile" key={index}>
                           
                               <img
-                                src={item.childImageSharp.fluid.src}
+                                src={item.childImageSharp.gatsbyImageData.images.fallback.src}
+                                alt={frontmatter.title}
                               />
                               
                             </div>
@@ -138,7 +137,8 @@ const IndexPage = ({ data }) => {
                             <div className="work-image" key={index}>
                           
                               <img
-                                src={item.childImageSharp.fluid.src}
+                                src={item.childImageSharp.gatsbyImageData.images.fallback.src}
+                                alt={frontmatter.title}
                               />
                               
                             </div>
