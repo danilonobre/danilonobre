@@ -1,19 +1,218 @@
-.page-wrapper,
-main,
-section{
+.page-wrapper{
+
     display: flex;
     flex-direction: column;
+
+    > *{
+        display: flex;
+        flex-direction: column;
+    }
+
+}
+
+.page-intro{
+    
+    padding: 80px;
+    position: relative;
+    overflow: hidden;
+    z-index: 2;
+
+    @include display(phone) {
+        padding: 20px;
+    }
+
+    h1{
+        font-size: 48px;
+        color: #444;
+        font-weight: 300;
+        line-height: 1.5;
+
+        @include display(phone) {
+            text-align: center;
+            font-size: 28px;
+        }
+
+        span{
+            color: #0c0c0c;
+            border-bottom: 4px solid #0c0c0c;
+
+            @include display(phone) {
+                border-width: 2px;
+            }
+        }
+    }
+
+    &:before{
+
+        width: calc(100vw - 160px);
+        height: calc(100% + 2px);
+        content: " ";
+        border: 1px solid #efefef;
+        position: absolute;
+        left: 80px;
+        top: -1px;
+        pointer-events: none;
+
+        @include display(phone) {
+            content: none;
+        }
+
+    }
+
+    &:after{
+
+        width: calc(100vw + 2px);
+        height: calc(100% - 160px);
+        content: " ";
+        border: 1px solid #efefef;
+        position: absolute;
+        left: -1px;
+        top: 80px;
+        pointer-events: none;
+        z-index: 1;
+
+        @include display(phone) {
+            content: none;
+        }
+
+    }
+
 }
 
 .page-header{
+
     display: flex;
     justify-content: space-between;
+    margin-bottom: 200px;
+
+    @include display(phone) {
+        flex-direction: column;
+        align-items: center;
+        margin-bottom: 40px;
+    }
+
+    &:hover{
+
+        a{
+            border: 1px solid #efefef;
+        }
+
+    }
+
+    .page-logo{
+
+        @include display(phone) {
+            margin-bottom: 20px;
+        }
+    }
+
 }
 
 .page-nav{
 
+    position: relative;
+    z-index: 3;
+
     ul{
         display: flex;
+
+        
+
+        li{
+            margin-left: 10px;
+        }
+
+        a{
+            display: flex;
+            width: 80px;
+            height: 80px;
+            justify-content: center;
+            align-items: center;
+
+            &:hover{
+                border: 1px solid #ccc;
+            }
+        }
+
+        i{
+            line-height: 1;
+        }
+
     }
     
+}
+
+.page-footer{
+    
+    text-align: center;
+    padding: 60px 0;
+
+    @include display(phone) {
+        padding: 30px 0;
+    }
+
+    h2{
+        margin-bottom: 20px;
+
+        @include display(phone) {
+            margin-bottom: 10px;
+        }
+    }
+
+    .intro-text{
+        margin-bottom: 30px;
+    }
+
+    ul{
+        display: flex;
+        justify-content: center;
+
+        @include display(phone) {
+            flex-direction: column;
+            padding: 0 10px;
+        }
+
+        li{
+            
+            min-width: 260px;
+            margin: 0 10px;
+
+            @include display(phone) {
+                width: 100%;
+                min-width: unset;
+                margin: 0 0 10px 0;
+            }
+
+            a{
+                display: flex;
+                height: 80px;
+                background: #fff;
+                border: 1px solid #E6E6E6;
+                border-radius: 40px;
+                align-items: center;
+                padding: 0 20px 0 0;
+
+                i{
+                    width: 80px;
+                    height: 80px;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                }
+
+                span{
+                    flex: 1;
+                    text-align: left;
+                }
+
+            }
+
+        }
+
+        i{
+            line-height: 1;
+        }
+
+    }
+
 }

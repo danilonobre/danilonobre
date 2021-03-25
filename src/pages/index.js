@@ -4,6 +4,7 @@ import React from 'react'
 import { StaticImage } from "gatsby-plugin-image"
 import { Helmet } from "react-helmet"
 import Video from "../components/video"
+import Contacts from "../components/contacts"
 import Slider from "react-slick";
 
 
@@ -30,6 +31,7 @@ export const query = graphql
               project
               colorone
               colortwo
+              theme
               video
               gallery {
                 childImageSharp {
@@ -46,11 +48,12 @@ export const query = graphql
     }
 `
 const SliderSettings = {
-  dots: true,
-  infinite: true,
+  dots: false,
+  infinite: false,
+  variableWidth: true,
   speed: 500,
-  slidesToShow: 1,
-  slidesToScroll: 1
+  slidesToScroll: 1,
+  centerMode: true,
 };
 
 const IndexPage = ({ data }) => {
@@ -79,11 +82,10 @@ const IndexPage = ({ data }) => {
         
           <nav className="page-nav">
 
-            <ul>
-              <li><a href="#about">About</a></li>
-              <li><a href="#works">Works</a></li>
-              <li><a href="#contact">Contact</a></li>
-            </ul>
+            <Contacts
+              data={data.site.siteMetadata}
+              showLabel={false}
+            />
 
           </nav>
 
@@ -97,15 +99,15 @@ const IndexPage = ({ data }) => {
 
         <section className="block-works">
             
-          {data.allMdx.nodes.map(({ body, frontmatter }) => (
+          {data.allMdx.nodes.map(({ body, frontmatter },index) => (
 
-              <article className="work" style={{backgroundImage: "linear-gradient(120deg, "+frontmatter.colorone+", "+frontmatter.colortwo+" 72.55%)"}}>
+              <article className={"work "+ frontmatter.theme} style={{backgroundImage: "linear-gradient(120deg, "+frontmatter.colorone+", "+frontmatter.colortwo+" 72.55%)"}} key={index}>
 
                   <h2 className="work-title">{frontmatter.title}</h2>
-
-                  <div>
-                    <p>{frontmatter.aboutcompany}</p>
-                    <p>{frontmatter.project}</p>
+                
+                  <div className="work-description">
+                    {frontmatter.aboutcompany && <p>{frontmatter.aboutcompany}</p> }
+                    {frontmatter.project && <p>{frontmatter.project}</p> }
                   </div>
 
                   <Video
@@ -117,16 +119,34 @@ const IndexPage = ({ data }) => {
 
                   <Slider {...SliderSettings}>
                     
-                    {frontmatter.gallery.map(item =>
+                    {frontmatter.gallery.map((item,index) =>
                       
                       <>
                         
-                        <img
-                          title="Header image"
-                          alt="Greek food laid out on table"
-                          src={item.childImageSharp.fluid.src}
-                        />
+                        {item.childImageSharp.fluid.src.includes('mobile')
                         
+                          ?
+                          
+                            <div className="work-image work-image-mobile" key={index}>
+                          
+                              <img
+                                src={item.childImageSharp.fluid.src}
+                              />
+                              
+                            </div>
+                        
+                          :
+                          
+                            <div className="work-image" key={index}>
+                          
+                              <img
+                                src={item.childImageSharp.fluid.src}
+                              />
+                              
+                            </div>
+                        
+                        }
+
                       </>
                       
                     )}
@@ -145,12 +165,10 @@ const IndexPage = ({ data }) => {
         <h2 className="title">Get in touch</h2>
         <p className="intro-text">Want to discuss a project, collaborate or say hello?</p>
 
-        <ul>
-          <li><a href={data.site.siteMetadata.email}>Email</a></li>
-          <li><a href={data.site.siteMetadata.linkedin}>linkedin</a></li>
-          <li><a href={data.site.siteMetadata.behance}>behance</a></li>
-          <li><a href={data.site.siteMetadata.dribbble}>dribbble</a></li>
-        </ul>
+        <Contacts
+          data={data.site.siteMetadata}
+          showLabel={true}
+        />
 
       </footer>
 
