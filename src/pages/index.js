@@ -3,6 +3,9 @@ import { MDXRenderer } from 'gatsby-plugin-mdx'
 import React from 'react'
 import { StaticImage } from "gatsby-plugin-image"
 import { Helmet } from "react-helmet"
+import Video from "../components/video"
+import Slider from "react-slick";
+
 
 import "../styles/styles.scss";
 
@@ -27,13 +30,29 @@ export const query = graphql
               project
               colorone
               colortwo
+              video
+              gallery {
+                childImageSharp {
+                  fluid(maxWidth: 2000, quality: 100) {
+                    ...GatsbyImageSharpFluid
+                  }
+                }
+                relativePath
+              }
             }
             body
           }
         }
     }
 `
-// markup
+const SliderSettings = {
+  dots: true,
+  infinite: true,
+  speed: 500,
+  slidesToShow: 1,
+  slidesToScroll: 1
+};
+
 const IndexPage = ({ data }) => {
   return (
     <div className="page-wrapper">
@@ -43,7 +62,7 @@ const IndexPage = ({ data }) => {
         <title>{data.site.siteMetadata.title}</title>
         <link rel="canonical" href={data.site.siteMetadata.siteUrl} />
       </Helmet>
-
+      
       <section className="page-intro">
 
         <header className="page-header">
@@ -83,11 +102,36 @@ const IndexPage = ({ data }) => {
               <article className="work" style={{backgroundImage: "linear-gradient(120deg, "+frontmatter.colorone+", "+frontmatter.colortwo+" 72.55%)"}}>
 
                   <h2 className="work-title">{frontmatter.title}</h2>
+
                   <div>
                     <p>{frontmatter.aboutcompany}</p>
                     <p>{frontmatter.project}</p>
                   </div>
+
+                  <Video
+                    videoSrcURL={frontmatter.video}
+                    videoTitle={frontmatter.title}
+                  />
+
                   <MDXRenderer>{body}</MDXRenderer>
+
+                  <Slider {...SliderSettings}>
+                    
+                    {frontmatter.gallery.map(item =>
+                      
+                      <>
+                        
+                        <img
+                          title="Header image"
+                          alt="Greek food laid out on table"
+                          src={item.childImageSharp.fluid.src}
+                        />
+                        
+                      </>
+                      
+                    )}
+
+                  </Slider>
 
               </article>
           ))}
