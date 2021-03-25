@@ -1,28 +1,16 @@
 import { graphql } from 'gatsby'
 import { MDXRenderer } from 'gatsby-plugin-mdx'
 import React from 'react'
-import { StaticImage } from "gatsby-plugin-image"
-import { Helmet } from "react-helmet"
+import Layout from "../components/layout"
 import Video from "../components/video"
-import Contacts from "../components/contacts"
 import Slider from "react-slick";
-
+import SEO from "../components/seo"
 
 import "../styles/styles.scss";
 
 export const query = graphql
 `
     query SITE_INDEX_QUERY {
-        site {
-          siteMetadata {
-            title
-            description
-            email
-            linkedin
-            behance
-            dribbble
-          }
-        }
         allMdx(sort: {order: ASC, fields: frontmatter___order}) {
           nodes {
             frontmatter {
@@ -56,123 +44,76 @@ const SliderSettings = {
 
 const IndexPage = ({ data }) => {
   return (
-    <div className="page-wrapper">
+    
+    <Layout>
 
-      <Helmet>
-        <meta charSet="utf-8" />
-        <title>{data.site.siteMetadata.title}</title>
-        <link rel="canonical" href={data.site.siteMetadata.siteUrl} />
-      </Helmet>
-      
-      <section className="page-intro">
+      <SEO title="Danilo Nobre" />
 
-        <header className="page-header">
-        
-          <StaticImage
-            src="../images/danilonobre-ui-designer.png"
-            alt={data.site.siteMetadata.title}
-            placeholder="blurred"
-            layout="fixed"
-            width={160}
-            height={160}
-            className="page-logo"
-          />
-        
-          <nav className="page-nav">
+      <section className="block-works">
+          
+        {data.allMdx.nodes.map(({ body, frontmatter },index) => (
 
-            <Contacts
-              data={data.site.siteMetadata}
-              showLabel={false}
-            />
+            <article className={"work "+ frontmatter.theme} style={{backgroundImage: "linear-gradient(120deg, "+frontmatter.colorone+", "+frontmatter.colortwo+" 72.55%)"}} key={index}>
 
-          </nav>
+                <h2 className="work-title">{frontmatter.title}</h2>
+              
+                <div className="work-description">
+                  {frontmatter.aboutcompany && <p>{frontmatter.aboutcompany}</p> }
+                  {frontmatter.project && <p>{frontmatter.project}</p> }
+                </div>
 
-        </header>
+                <Video
+                  videoSrcURL={frontmatter.video}
+                  videoTitle={frontmatter.title}
+                />
 
-        <h1 dangerouslySetInnerHTML={{ __html: data.site.siteMetadata.description }}></h1>
+                <Slider {...SliderSettings}>
+                  
+                  {frontmatter.gallery.map((item,index) =>
+                    
+                    <>
+                      
+                      {item.childImageSharp.gatsbyImageData.images.fallback.src.includes('mobile')
+                      
+                        ?
+                        
+                          <div className="work-image work-image-mobile" key={index}>
+                        
+                            <img
+                              src={item.childImageSharp.gatsbyImageData.images.fallback.src}
+                              alt={frontmatter.title}
+                            />
+                            
+                          </div>
+                      
+                        :
+                        
+                          <div className="work-image" key={index}>
+                        
+                            <img
+                              src={item.childImageSharp.gatsbyImageData.images.fallback.src}
+                              alt={frontmatter.title}
+                            />
+                            
+                          </div>
+                      
+                      }
+
+                    </>
+                    
+                  )}
+
+                </Slider>
+
+                <MDXRenderer>{body}</MDXRenderer>
+
+            </article>
+        ))}
 
       </section>
 
-      <main className="page-main">
+    </Layout>
 
-        <section className="block-works">
-            
-          {data.allMdx.nodes.map(({ body, frontmatter },index) => (
-
-              <article className={"work "+ frontmatter.theme} style={{backgroundImage: "linear-gradient(120deg, "+frontmatter.colorone+", "+frontmatter.colortwo+" 72.55%)"}} key={index}>
-
-                  <h2 className="work-title">{frontmatter.title}</h2>
-                
-                  <div className="work-description">
-                    {frontmatter.aboutcompany && <p>{frontmatter.aboutcompany}</p> }
-                    {frontmatter.project && <p>{frontmatter.project}</p> }
-                  </div>
-
-                  <Video
-                    videoSrcURL={frontmatter.video}
-                    videoTitle={frontmatter.title}
-                  />
-
-                  <Slider {...SliderSettings}>
-                    
-                    {frontmatter.gallery.map((item,index) =>
-                      
-                      <>
-                        
-                        {item.childImageSharp.gatsbyImageData.images.fallback.src.includes('mobile')
-                        
-                          ?
-                          
-                            <div className="work-image work-image-mobile" key={index}>
-                          
-                              <img
-                                src={item.childImageSharp.gatsbyImageData.images.fallback.src}
-                                alt={frontmatter.title}
-                              />
-                              
-                            </div>
-                        
-                          :
-                          
-                            <div className="work-image" key={index}>
-                          
-                              <img
-                                src={item.childImageSharp.gatsbyImageData.images.fallback.src}
-                                alt={frontmatter.title}
-                              />
-                              
-                            </div>
-                        
-                        }
-
-                      </>
-                      
-                    )}
-
-                  </Slider>
-
-                  <MDXRenderer>{body}</MDXRenderer>
-
-              </article>
-          ))}
-
-        </section>
-
-      </main>
-
-      <footer className="page-footer">
-
-        <h2 className="title">Get in touch</h2>
-        <p className="intro-text">Want to discuss a project, collaborate or say hello?</p>
-
-        <Contacts
-          data={data.site.siteMetadata}
-          showLabel={true}
-        />
-
-      </footer>
-
-    </div>
   )
 }
 
