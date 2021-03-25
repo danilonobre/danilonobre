@@ -21,10 +21,6 @@ export const query = graphql
             colorone
             colortwo
             theme
-            video {
-              relativePath
-              publicURL
-            }
             gallery {
               childImageSharp {
                 gatsbyImageData(layout: FIXED)
@@ -65,16 +61,6 @@ const IndexPage = ({ data }) => {
                   {frontmatter.aboutcompany && <p>{frontmatter.aboutcompany}</p> }
                   {frontmatter.project && <p>{frontmatter.project}</p> }
                 </div>
-
-                {frontmatter.video &&
-
-                  <Video
-                    videoSrcURL={frontmatter.video}
-                    videoTitle={frontmatter.title}
-                    divClass="work-video"
-                  />
-
-                }
 
                 {frontmatter.youtube &&
 
