@@ -161,3 +161,15 @@
     }
 
 }
+
+.work-body{
+
+    .gatsby-resp-image-background-image{
+        display: none !important;
+    }
+
+    .gatsby-resp-image-image{
+        position: static !important;
+    }
+
+}

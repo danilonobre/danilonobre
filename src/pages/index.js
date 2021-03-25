@@ -25,7 +25,6 @@ export const query = graphql
               relativePath
               publicURL
             }
-            youtube
             gallery {
               childImageSharp {
                 gatsbyImageData(layout: FIXED)
@@ -67,17 +66,25 @@ const IndexPage = ({ data }) => {
                   {frontmatter.project && <p>{frontmatter.project}</p> }
                 </div>
 
-                <Video
-                  videoSrcURL={frontmatter.video}
-                  videoTitle={frontmatter.title}
-                  divClass="work-video"
-                />
+                {frontmatter.video &&
 
-                <Youtube
-                  videoSrcURL={frontmatter.youtube}
-                  videoTitle={frontmatter.title}
-                  divClass="work-video"
-                />
+                  <Video
+                    videoSrcURL={frontmatter.video}
+                    videoTitle={frontmatter.title}
+                    divClass="work-video"
+                  />
+
+                }
+
+                {frontmatter.youtube &&
+
+                  <Youtube
+                    videoSrcURL={frontmatter.youtube}
+                    videoTitle={frontmatter.title}
+                    divClass="work-video"
+                  />
+
+                }
 
                 <Slider {...SliderSettings}>
                   
@@ -117,7 +124,7 @@ const IndexPage = ({ data }) => {
 
                 </Slider>
 
-                <MDXRenderer>{body}</MDXRenderer>
+                <div className="work-body"><MDXRenderer>{body}</MDXRenderer></div>
 
             </article>
         ))}
