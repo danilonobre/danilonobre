@@ -2,6 +2,7 @@ import { graphql } from 'gatsby'
 import { MDXRenderer } from 'gatsby-plugin-mdx'
 import React from 'react'
 import Layout from "../components/layout"
+import Youtube from "../components/youtube"
 import Video from "../components/video"
 import Slider from "react-slick";
 import SEO from "../components/seo"
@@ -11,26 +12,30 @@ import "../styles/styles.scss";
 export const query = graphql
 `
     query SITE_INDEX_QUERY {
-        allMdx(sort: {order: ASC, fields: frontmatter___order}) {
-          nodes {
-            frontmatter {
-              title
-              aboutcompany
-              project
-              colorone
-              colortwo
-              theme
-              video
-              gallery {
-                childImageSharp {
-                  gatsbyImageData(layout: FIXED)
-                }
-                relativePath
-              }
+      allMdx(sort: {order: ASC, fields: frontmatter___order}) {
+        nodes {
+          frontmatter {
+            title
+            aboutcompany
+            project
+            colorone
+            colortwo
+            theme
+            video {
+              relativePath
+              publicURL
             }
-            body
+            youtube
+            gallery {
+              childImageSharp {
+                gatsbyImageData(layout: FIXED)
+              }
+              relativePath
+            }
           }
+          body
         }
+      }
     }
 `
 const SliderSettings = {
@@ -65,6 +70,13 @@ const IndexPage = ({ data }) => {
                 <Video
                   videoSrcURL={frontmatter.video}
                   videoTitle={frontmatter.title}
+                  divClass="work-video"
+                />
+
+                <Youtube
+                  videoSrcURL={frontmatter.youtube}
+                  videoTitle={frontmatter.title}
+                  divClass="work-video"
                 />
 
                 <Slider {...SliderSettings}>
