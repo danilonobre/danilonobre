@@ -115,8 +115,6 @@ const IndexPage = ({ data }) => {
                     videoTitle={frontmatter.title}
                   />
 
-                  <MDXRenderer>{body}</MDXRenderer>
-
                   <Slider {...SliderSettings}>
                     
                     {frontmatter.gallery.map((item,index) =>
@@ -152,6 +150,8 @@ const IndexPage = ({ data }) => {
                     )}
 
                   </Slider>
+
+                  <MDXRenderer>{body}</MDXRenderer>
 
               </article>
           ))}

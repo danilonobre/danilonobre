@@ -96,7 +96,7 @@
         @include display(phone) {
             display: flex;
         }
-        
+
     }
 
     .slick-slide{
@@ -117,10 +117,12 @@
             overflow: auto;
             border-radius: 10px;
             box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.4);
+            background-color: #fff;
         }
 
         .work-image{
             width: 620px;
+            
 
             @include display(phone) {
                 width: 320px;
