@@ -12,7 +12,10 @@ import "../styles/styles.scss";
 export const query = graphql
 `
     query SITE_INDEX_QUERY {
-      allMdx(sort: {order: ASC, fields: frontmatter___order}) {
+      allMdx(
+        sort: {order: ASC, fields: frontmatter___order}
+        filter: {frontmatter: {published: {eq: true}}}
+      ) {
         nodes {
           frontmatter {
             title
