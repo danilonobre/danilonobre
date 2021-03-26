@@ -95,52 +95,56 @@
     .slick-list{
 
         @include display(phone) {
-            padding: 0 20px !important;
+            //padding: 0 20px !important;
         }
+
     }
 
     .slick-track{
 
         @include display(phone) {
-            display: flex;
+            //display: flex;
         }
 
     }
 
     .slick-slide{
-        height: 640px;
-        overflow: hidden;
-        margin: 0 10px;
-        border: 1px solid rgba(255,255,255, .2);
-        border-radius: 20px;
-        padding: 9px;
+        height: 626px;
+        padding: 0 10px;
 
         @include display(phone) {
-            margin: 0 5px;
-            height: 320px;
+            max-width: calc(100vw - 40px);
+            padding: 0 5px;
+            height: 765px;
         }
 
         > div{
+            height: 100%;
+
+            overflow: auto;
+            //margin: 0 10px;
+            border: 1px solid rgba(255,255,255, .2);
+            border-radius: 20px;
+            padding: 9px;
+        }
+
+        .work-image{
+            width: 620px;
             height: 100%;
             overflow: auto;
             border-radius: 10px;
             box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.4);
             background-color: #fff;
-        }
-
-        .work-image{
-            width: 620px;
-            
 
             @include display(phone) {
-                width: 320px;
+                width: 100%;
             }
 
             &.work-image-mobile{
                 width: 280px;
 
                 @include display(phone) {
-                    width: 200px;
+                    width: 100%;
                 }
 
             }

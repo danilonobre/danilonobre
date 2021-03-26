@@ -43,6 +43,15 @@ const SliderSettings = {
   speed: 500,
   slidesToScroll: 1,
   centerMode: true,
+  responsive: [
+    {
+      breakpoint: 600,
+      settings: {
+        variableWidth: false,
+        centerPadding: '20px'
+      }
+    }
+  ],
 };
 
 const IndexPage = ({ data }) => {
