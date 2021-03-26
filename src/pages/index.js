@@ -3,7 +3,7 @@ import { MDXRenderer } from 'gatsby-plugin-mdx'
 import React from 'react'
 import Layout from "../components/layout"
 import Youtube from "../components/youtube"
-import Video from "../components/video"
+//import Video from "../components/video"
 import Slider from "react-slick";
 import SEO from "../components/seo"
 

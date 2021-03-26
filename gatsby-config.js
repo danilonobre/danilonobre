@@ -24,7 +24,13 @@ module.exports = {
     {
       resolve: "gatsby-plugin-manifest",
       options: {
-        icon: "src/images/icon.png",
+        icon: "src/images/danilonobre-ui-designer-full.png",
+        name: `Danilo Nobre`,
+        short_name: `Danilo Nobre`,
+        start_url: `/`,
+        background_color: `#ffffff`,
+        theme_color: `#0c0c0c`,
+        display: `standalone`,
       },
     },
     "gatsby-transformer-remark",
