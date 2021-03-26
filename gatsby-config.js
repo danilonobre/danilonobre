@@ -29,7 +29,7 @@ module.exports = {
         short_name: `Danilo Nobre`,
         start_url: `/`,
         background_color: `#ffffff`,
-        theme_color: `#0c0c0c`,
+        theme_color: `#ffffff`,
         display: `standalone`,
       },
     },
