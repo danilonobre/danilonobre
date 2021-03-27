@@ -1,7 +1,3 @@
-.block-works{
-
-}
-
 .work{
 
     //background: url(.png), linear-gradient(121.19deg, #326FF9 0%, #8238F4 72.55%);
@@ -32,6 +28,22 @@
         &:last-child{
             margin-bottom: 0;
         }
+    }
+
+    &:hover{
+        
+        .slick-arrow{
+
+            display: block !important;
+    
+        }
+
+    }
+
+    .slick-arrow{
+
+        display: none !important;
+
     }
 
 }

@@ -1,4 +1,4 @@
-import { graphql } from 'gatsby'
+import { graphql, Link } from 'gatsby'
 import { MDXRenderer } from 'gatsby-plugin-mdx'
 import React from 'react'
 import Layout from "../components/layout"
@@ -24,6 +24,7 @@ export const query = graphql
             colorone
             colortwo
             theme
+            slug
             gallery {
               childImageSharp {
                 gatsbyImageData(layout: FIXED)
@@ -61,11 +62,15 @@ const IndexPage = ({ data }) => {
 
       <SEO title="Danilo Nobre" />
 
+      <h1 className="page-intro">Hi, i'm <span>Danilo Nobre</span>, an interface designer focused on bringing results from user-centered experiences.</h1>
+
       <section className="block-works">
           
         {data.allMdx.nodes.map(({ body, frontmatter },index) => (
 
             <article className={"work "+ frontmatter.theme} style={{backgroundImage: "linear-gradient(120deg, "+frontmatter.colorone+", "+frontmatter.colortwo+" 72.55%)"}} key={index}>
+
+                <Link to={frontmatter.slug}>{frontmatter.title}</Link>
 
                 <h2 className="work-title">{frontmatter.title}</h2>
               

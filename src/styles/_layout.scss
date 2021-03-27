@@ -6,16 +6,36 @@
     > *{
         display: flex;
         flex-direction: column;
+        position: relative;
+        z-index: 2;
     }
 
 }
 
-.page-intro{
+.page-header{
     
     padding: 80px;
     position: relative;
     overflow: hidden;
     z-index: 2;
+
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    //margin-bottom: 200px;
+
+    @include display(phone) {
+        flex-direction: column;
+        align-items: center;
+        margin-bottom: 40px;
+    }
+
+    .page-logo{
+
+        @include display(phone) {
+            margin-bottom: 20px;
+        }
+    }
 
     @include display(phone) {
         padding: 20px;
@@ -45,13 +65,14 @@
     &:before{
 
         width: calc(100vw - 160px);
-        height: calc(100% + 2px);
+        height: 100vh;
         content: " ";
         border: 1px solid #efefef;
-        position: absolute;
+        position: fixed;
         left: 80px;
         top: -1px;
         pointer-events: none;
+        z-index: 1;
 
         @include display(phone) {
             content: none;
@@ -64,7 +85,7 @@
         width: calc(100vw + 2px);
         height: calc(100% - 160px);
         content: " ";
-        border: 1px solid #efefef;
+        border-top: 1px solid #efefef;
         position: absolute;
         left: -1px;
         top: 80px;
@@ -75,27 +96,6 @@
             content: none;
         }
 
-    }
-
-}
-
-.page-header{
-
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 200px;
-
-    @include display(phone) {
-        flex-direction: column;
-        align-items: center;
-        margin-bottom: 40px;
-    }
-
-    .page-logo{
-
-        @include display(phone) {
-            margin-bottom: 20px;
-        }
     }
 
 }
@@ -120,7 +120,7 @@
             height: 80px;
             justify-content: center;
             align-items: center;
-            border: 1px solid #efefef;
+            border: 1px solid #ddd;
 
             &:hover{
                 border-color: #ccc;
@@ -135,13 +135,36 @@
     
 }
 
+.page-intro{
+    padding: 80px;
+    margin: 0;
+}
+
 .page-footer{
     
     text-align: center;
-    padding: 60px 0;
+    padding: 80px 0;
 
     @include display(phone) {
         padding: 30px 0;
+    }
+
+    &:after{
+
+        width: calc(100vw + 2px);
+        height: calc(100% - 160px);
+        content: " ";
+        border-bottom: 1px solid #efefef;
+        position: absolute;
+        left: -1px;
+        bottom: 80px;
+        pointer-events: none;
+        z-index: 1;
+
+        @include display(phone) {
+            content: none;
+        }
+
     }
 
     h2{
@@ -159,6 +182,8 @@
     ul{
         display: flex;
         justify-content: center;
+        position: relative;
+        z-index: 2;
 
         @include display(phone) {
             flex-direction: column;
@@ -180,7 +205,7 @@
                 display: flex;
                 height: 80px;
                 background: #fff;
-                border: 1px solid #E6E6E6;
+                border: 1px solid #ddd;
                 border-radius: 40px;
                 align-items: center;
                 padding: 0 20px 0 0;
