@@ -119,6 +119,8 @@
 
             @include display(phone) {
                 margin-left: auto;
+                height: 320px;
+                object-fit: cover;
             }
         }
     }
