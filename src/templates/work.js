@@ -43,7 +43,7 @@ export default function Template({
 
       <section className="block-works block-works-full">
 
-        <article className={"work "+ frontmatter.theme} style={{backgroundImage: "linear-gradient(120deg, "+frontmatter.colorone+", "+frontmatter.colortwo+" 72.55%)"}}>
+        <article className="work" style={{backgroundImage: "linear-gradient(120deg, "+frontmatter.colorone+", "+frontmatter.colortwo+" 72.55%)"}}>
 
           <h1>{frontmatter.title}</h1>
 
@@ -120,7 +120,6 @@ export const pageQuery = graphql`
         project
         colorone
         colortwo
-        theme
         slug
         gallery {
           childImageSharp {

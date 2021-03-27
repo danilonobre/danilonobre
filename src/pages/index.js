@@ -20,7 +20,6 @@ export const query = graphql
             project
             colorone
             colortwo
-            theme
             slug
             gallery {
               childImageSharp {

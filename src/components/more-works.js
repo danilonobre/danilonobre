@@ -17,7 +17,6 @@ const Moreworks = ({ exclude, ...props }) => {
                         project
                         colorone
                         colortwo
-                        theme
                         tags
                         slug
                         mock {
@@ -50,7 +49,7 @@ const Moreworks = ({ exclude, ...props }) => {
 
                         return (
 
-                            <article className={"work "+ frontmatter.theme} style={{backgroundImage: "linear-gradient(120deg, "+frontmatter.colorone+", "+frontmatter.colortwo+" 72.55%)"}} key={index}>
+                            <article className="work" style={{backgroundImage: "linear-gradient(120deg, "+frontmatter.colorone+", "+frontmatter.colortwo+" 72.55%)"}} key={index}>
                             
                                 <Link to={"/"+frontmatter.slug+"/"}>
 
