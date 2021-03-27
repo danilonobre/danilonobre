@@ -1,38 +1,37 @@
 import * as React from "react"
+import {  Link } from 'gatsby'
 import PropTypes from "prop-types"
 import Contacts from "../components/contacts"
 import { StaticImage } from "gatsby-plugin-image"
 
 const Header = ({ siteTitle,siteNav,siteDescription }) => (
 
-  <section className="page-intro">
-
-    <header className="page-header">
+  <header className="page-header">
     
-      <StaticImage
-        src="../images/danilonobre-ui-designer.png"
-        alt={siteTitle}
-        placeholder="blurred"
-        layout="fixed"
-        width={160}
-        height={160}
-        className="page-logo"
-      />
-    
-      <nav className="page-nav">
+    <Link to="/">
 
-        <Contacts
-          data={siteNav}
-          showLabel={false}
+        <StaticImage
+          src="../images/danilonobre-ui-designer.png"
+          alt={siteTitle}
+          placeholder="blurred"
+          layout="fixed"
+          width={160}
+          height={160}
+          className="page-logo"
         />
 
-      </nav>
+    </Link>
+  
+    <nav className="page-nav">
 
-    </header>
+      <Contacts
+        data={siteNav}
+        showLabel={false}
+      />
 
-    <h1 dangerouslySetInnerHTML={{ __html: siteDescription }}></h1>
+    </nav>
 
-  </section>
+  </header>
 )
 
 Header.propTypes = {

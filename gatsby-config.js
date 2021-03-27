@@ -33,7 +33,6 @@ module.exports = {
         display: `standalone`,
       },
     },
-    "gatsby-transformer-remark",
     "gatsby-plugin-sharp",
     "gatsby-transformer-sharp",
     `gatsby-remark-images`,
@@ -61,6 +60,7 @@ module.exports = {
       },
       __key: "works",
     },
+    "gatsby-transformer-remark",
     {
       resolve: `gatsby-plugin-mdx`,
       options: {

@@ -64,6 +64,7 @@ h1{
 	font-size: rem(50px);
 	font-weight: 900;
 	line-height: 1.2;
+	color: inherit;
 	
 	@include display(phone) {
 		font-size: rem(40px);
