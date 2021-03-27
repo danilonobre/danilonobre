@@ -7,6 +7,7 @@ import SEO from "../components/seo"
 import Youtube from "../components/youtube"
 //import Video from "../components/video"
 import Slider from "react-slick";
+import Moreworks from "../components/more-works"
 
 
 import "../styles/styles.scss";
@@ -40,65 +41,70 @@ export default function Template({
 
       <SEO title={frontmatter.title} />
 
-      <article className={"work "+ frontmatter.theme} style={{backgroundImage: "linear-gradient(120deg, "+frontmatter.colorone+", "+frontmatter.colortwo+" 72.55%)"}}>
+      <section className="block-works block-works-full">
 
-        <h1>{frontmatter.title}</h1>
+        <article className={"work "+ frontmatter.theme} style={{backgroundImage: "linear-gradient(120deg, "+frontmatter.colorone+", "+frontmatter.colortwo+" 72.55%)"}}>
 
-        {frontmatter.aboutcompany && <p>{frontmatter.aboutcompany}</p> }
-        {frontmatter.project && <p>{frontmatter.project}</p> }
+          <h1>{frontmatter.title}</h1>
 
-        {frontmatter.youtube &&
+          <div className="work-description">
+            {frontmatter.aboutcompany && <p>{frontmatter.aboutcompany}</p> }
+            {frontmatter.project && <p>{frontmatter.project}</p> }
+          </div>
 
-        <Youtube
-          videoSrcURL={frontmatter.youtube}
-          videoTitle={frontmatter.title}
-          divClass="work-video"
-        />
+          {frontmatter.youtube &&
+            <Youtube
+              videoSrcURL={frontmatter.youtube}
+              videoTitle={frontmatter.title}
+              divClass="work-video"
+            />
+          }
 
-        }
+          <Slider {...SliderSettings}>
 
-        <Slider {...SliderSettings}>
-
-        {frontmatter.gallery.map((item,index) =>
-          
-          <>
+          {frontmatter.gallery.map((item,index) =>
             
-            {item.childImageSharp.gatsbyImageData.images.fallback.src.includes('mobile')
+            <>
+              
+              {item.childImageSharp.gatsbyImageData.images.fallback.src.includes('mobile')
+              
+                ?
+                
+                  <div className="work-image work-image-mobile" key={index}>
+                
+                    <img
+                      src={item.childImageSharp.gatsbyImageData.images.fallback.src}
+                      alt={frontmatter.title}
+                    />
+                    
+                  </div>
+              
+                :
+                
+                  <div className="work-image" key={index}>
+                
+                    <img
+                      src={item.childImageSharp.gatsbyImageData.images.fallback.src}
+                      alt={frontmatter.title}
+                    />
+                    
+                  </div>
+              
+              }
+
+            </>
             
-              ?
-              
-                <div className="work-image work-image-mobile" key={index}>
-              
-                  <img
-                    src={item.childImageSharp.gatsbyImageData.images.fallback.src}
-                    alt={frontmatter.title}
-                  />
-                  
-                </div>
-            
-              :
-              
-                <div className="work-image" key={index}>
-              
-                  <img
-                    src={item.childImageSharp.gatsbyImageData.images.fallback.src}
-                    alt={frontmatter.title}
-                  />
-                  
-                </div>
-            
-            }
+          )}
 
-          </>
-          
-        )}
+          </Slider>
 
-        </Slider>
+          <div className="work-body"><MDXRenderer>{body}</MDXRenderer></div>
 
-        <div className="work-body"><MDXRenderer>{body}</MDXRenderer></div>
+        </article>
 
-      </article>
+      </section>
 
+      <Moreworks exclude={frontmatter.slug}></Moreworks>
 
     </Layout>
 

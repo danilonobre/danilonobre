@@ -1,3 +1,51 @@
+html{
+    overflow-x: hidden;
+}
+
+body{
+    
+    &:before{
+
+        width: calc(100vw - 160px);
+        height: 100vh;
+        content: " ";
+        border-left: 1px solid #efefef;
+        border-right: 1px solid #efefef;
+        position: fixed;
+        left: 80px;
+        top: -1px;
+        pointer-events: none;
+        z-index: 1;
+
+        @include display(phone) {
+            width: calc(100vw - 40px);
+            left: 20px;
+        }
+
+    }
+
+    &:after{
+
+        width: calc(100vw + 2px);
+        height: calc(100% - 160px);
+        content: " ";
+        border-top: 1px solid #efefef;
+        border-bottom: 1px solid #efefef;
+        position: absolute;
+        left: -1px;
+        top: 80px;
+        pointer-events: none;
+        z-index: 1;
+
+        @include display(phone) {
+            height: calc(100% - 40px);
+            top: 20px;
+        }
+
+    }
+
+}
+
 .page-wrapper{
 
     display: flex;
@@ -27,7 +75,6 @@
     @include display(phone) {
         flex-direction: column;
         align-items: center;
-        margin-bottom: 40px;
     }
 
     .page-logo{
@@ -41,28 +88,7 @@
         padding: 20px;
     }
 
-    h1{
-        font-size: 48px;
-        color: #444;
-        font-weight: 300;
-        line-height: 1.5;
-
-        @include display(phone) {
-            text-align: center;
-            font-size: 28px;
-        }
-
-        span{
-            color: #0c0c0c;
-            border-bottom: 4px solid #0c0c0c;
-
-            @include display(phone) {
-                border-width: 2px;
-            }
-        }
-    }
-
-    &:before{
+    /*&:before{
 
         width: calc(100vw - 160px);
         height: 100vh;
@@ -96,7 +122,7 @@
             content: none;
         }
 
-    }
+    }*/
 
 }
 
@@ -105,6 +131,10 @@
     position: relative;
     z-index: 3;
 
+    @include display(phone) {
+        width: 100%;
+    }
+
     ul{
         display: flex;
 
@@ -112,6 +142,21 @@
 
         li{
             margin-left: 10px;
+
+            @include display(phone) {
+                flex: 1;
+                margin-left: 5px;
+                margin-right: 5px;
+
+                &:first-child{
+                    margin-left: 0;
+                }
+
+                &:last-child{
+                    margin-right: 0;
+                }
+            }
+
         }
 
         a{
@@ -121,6 +166,10 @@
             justify-content: center;
             align-items: center;
             border: 1px solid #ddd;
+
+            @include display(phone) {
+                width: 100%;
+            }
 
             &:hover{
                 border-color: #ccc;
@@ -136,35 +185,63 @@
 }
 
 .page-intro{
+
     padding: 80px;
     margin: 0;
+
+    font-size: 48px;
+    color: #444;
+    font-weight: 300;
+    line-height: 1.5;
+
+    @include display(phone) {
+        text-align: center;
+        font-size: 28px;
+        padding: 20px;
+    }
+
+    span{
+
+        color: #0c0c0c;
+        border-bottom: 4px solid #0c0c0c;
+
+        @include display(phone) {
+            border-width: 2px;
+        }
+
+    }
+    
+}
+
+.page-main{
+
+    margin-bottom: 80px;
+
+    @include display(phone) {
+        margin-bottom: 20px;
+    }
+
+    > *{
+        margin-bottom: 40px;
+
+        @include display(phone) {
+            margin-bottom: 20px;
+        }
+
+        &:last-child{
+            margin-bottom: 0;
+        }
+    }
+
 }
 
 .page-footer{
     
     text-align: center;
-    padding: 80px 0;
+    padding: 0 0 80px 0;
 
     @include display(phone) {
-        padding: 30px 0;
-    }
-
-    &:after{
-
-        width: calc(100vw + 2px);
-        height: calc(100% - 160px);
-        content: " ";
-        border-bottom: 1px solid #efefef;
-        position: absolute;
-        left: -1px;
-        bottom: 80px;
-        pointer-events: none;
-        z-index: 1;
-
-        @include display(phone) {
-            content: none;
-        }
-
+        padding: 20px;
     }
 
     h2{
@@ -177,6 +254,7 @@
 
     .intro-text{
         margin-bottom: 30px;
+        color: #666;
     }
 
     ul{
@@ -187,7 +265,6 @@
 
         @include display(phone) {
             flex-direction: column;
-            padding: 0 10px;
         }
 
         li{
@@ -210,6 +287,10 @@
                 align-items: center;
                 padding: 0 20px 0 0;
 
+                @include display(phone) {
+                    justify-content: center;
+                }
+
                 i{
                     width: 80px;
                     height: 80px;
@@ -221,6 +302,11 @@
                 span{
                     flex: 1;
                     text-align: left;
+
+                    @include display(phone) {
+                        flex: none;
+                        width: 160px;
+                    }
                 }
 
             }
