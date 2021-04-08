@@ -16,6 +16,7 @@ body{
         @include display(phone) {
             width: calc(100vw - 40px);
             left: 20px;
+            content: none;
         }
 
     }
@@ -36,6 +37,7 @@ body{
         @include display(phone) {
             height: calc(100% - 40px);
             top: 20px;
+            content: none;
         }
 
     }
