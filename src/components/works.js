@@ -21,7 +21,7 @@ const SliderSettings = {
             }
         }
     ],
-};
+}
 
 const Works = ({ exclude, layout, ...props }) => {
   
@@ -65,7 +65,7 @@ const Works = ({ exclude, layout, ...props }) => {
   
     return (
   
-        <section className={"block-works block-works-"+layout}>
+        <section className={"block-works block-works-"+layout}>    
 
             {data.allMdx.nodes.map(({ body, frontmatter },index) => {
 

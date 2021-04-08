@@ -1,5 +1,4 @@
 import * as React from "react"
-import PropTypes from "prop-types"
 import { useStaticQuery, graphql, Link } from "gatsby"
 
 const Moreworks = ({ exclude, ...props }) => {
@@ -69,7 +68,7 @@ const Moreworks = ({ exclude, ...props }) => {
             
                                                 {frontmatter.tags.map((item,index) =>
                                             
-                                                    <li>
+                                                    <li key={index}>
                                                         {item}
                                                     </li>
                                                     
@@ -115,10 +114,6 @@ const Moreworks = ({ exclude, ...props }) => {
 
     )
 
-}
-  
-Moreworks.propTypes = {
-    children: PropTypes.node.isRequired,
 }
   
 export default Moreworks

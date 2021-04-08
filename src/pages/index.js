@@ -37,7 +37,7 @@ export const query = graphql
 const IndexPage = ({ data }) => {return (
     
   <Layout>
-
+    
     <SEO title="Danilo Nobre" />
 
     <h1 className="page-intro">Hi, i'm <span>Danilo Nobre</span>, an interface designer focused on bringing results from user-centered experiences.</h1>

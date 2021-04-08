@@ -38,7 +38,7 @@ export default function Template({
   return (
 
     <Layout>
-
+      
       <SEO title={frontmatter.title} />
 
       <section className="block-works block-works-full">

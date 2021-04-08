@@ -66,7 +66,7 @@ module.exports = {
       options: {
         extensions: [`.mdx`, `.md`],
         defaultLayouts: {
-          default: require.resolve("./src/pages/index.js"),
+          default: require.resolve("./src/templates/work.js"),
         },
         plugins: [`gatsby-remark-images`],
         gatsbyRemarkPlugins: [
