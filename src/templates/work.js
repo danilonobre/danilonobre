@@ -44,6 +44,7 @@ export default function Template({
 
       <Helmet>
         <meta property="og:image" content={frontmatter.socialImage.childImageSharp.gatsbyImageData.images.fallback.src} />
+        <meta property="og:image:type" content="image/png"></meta>
         <meta property="og:image:width" content="500" />
         <meta property="og:image:height" content="500" />
         <meta property="og:title" content={frontmatter.title+" | Danilo Nobre UI/UX Designer"} />
