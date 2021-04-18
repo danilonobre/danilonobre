@@ -68,7 +68,7 @@ module.exports = {
         defaultLayouts: {
           default: require.resolve("./src/templates/work.js"),
         },
-        plugins: [`gatsby-remark-images`],
+        plugins: [`gatsby-remark-images`,`gatsby-remark-images-zoom`],
         gatsbyRemarkPlugins: [
           {
             resolve: `gatsby-remark-images`,
@@ -77,6 +77,7 @@ module.exports = {
               linkImagesToOriginal: false,
             },
           },
+          `gatsby-remark-images-zoom`,
         ],
       },
     },
