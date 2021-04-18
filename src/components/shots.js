@@ -15,12 +15,12 @@ const Shots = ({...props}) => {
                         hover
                         shot {
                             childImageSharp {
-                                gatsbyImageData(layout: FIXED)
+                                gatsbyImageData(layout: FIXED, pngOptions: {quality: 100})
                             }
                         }
                         hoverimage {
                             childImageSharp {
-                                gatsbyImageData(layout: FIXED)
+                                gatsbyImageData(layout: FIXED, pngOptions: {quality: 100})
                             }
                         }
                     }

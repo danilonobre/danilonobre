@@ -20,12 +20,12 @@ const Moreworks = ({ exclude, ...props }) => {
                         slug
                         mock {
                             childImageSharp {
-                                gatsbyImageData(layout: FIXED)
+                                gatsbyImageData(layout: FIXED, pngOptions: {quality: 100})
                             }
                         }
                         mockMobile {
                             childImageSharp {
-                                gatsbyImageData(layout: FIXED)
+                                gatsbyImageData(layout: FIXED, pngOptions: {quality: 100})
                             }
                         }
                     }

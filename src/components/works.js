@@ -43,17 +43,17 @@ const Works = ({ exclude, layout, ...props }) => {
                         slug
                         mock {
                             childImageSharp {
-                                gatsbyImageData(layout: FIXED)
+                                gatsbyImageData(layout: FIXED, pngOptions: {quality: 100})
                             }
                         }
                         mockMobile {
                             childImageSharp {
-                                gatsbyImageData(layout: FIXED)
+                                gatsbyImageData(layout: FIXED, pngOptions: {quality: 100})
                             }
                         }
                         gallery {
                             childImageSharp {
-                                gatsbyImageData(layout: FIXED)
+                                gatsbyImageData(layout: FIXED, pngOptions: {quality: 100})
                             }
                         }
                     }

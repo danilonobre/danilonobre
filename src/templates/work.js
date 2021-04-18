@@ -73,48 +73,6 @@ export default function Template({
             />
           }
 
-          {frontmatter.gallery &&
-
-            <Slider {...SliderSettings}>
-
-            {frontmatter.gallery.map((item,index) =>
-              
-              <>
-                
-                {item.childImageSharp.gatsbyImageData.images.fallback.src.includes('mobile')
-                
-                  ?
-                  
-                    <div className="work-image work-image-mobile" key={index}>
-                  
-                      <img
-                        src={item.childImageSharp.gatsbyImageData.images.fallback.src}
-                        alt={frontmatter.title}
-                      />
-                      
-                    </div>
-                
-                  :
-                  
-                    <div className="work-image" key={index}>
-                  
-                      <img
-                        src={item.childImageSharp.gatsbyImageData.images.fallback.src}
-                        alt={frontmatter.title}
-                      />
-                      
-                    </div>
-                
-                }
-
-              </>
-              
-            )}
-
-            </Slider>
-
-          }
-
           <div className="work-body"><MDXRenderer>{body}</MDXRenderer></div>
 
           {frontmatter.gallery &&
@@ -182,13 +140,13 @@ export const pageQuery = graphql`
         slug
         gallery {
           childImageSharp {
-            gatsbyImageData(layout: FIXED)
+            gatsbyImageData(layout: FIXED, pngOptions: {quality: 100})
           }
           relativePath
         }
         socialImage {
           childImageSharp {
-              gatsbyImageData(layout: FIXED)
+              gatsbyImageData(layout: FIXED, pngOptions: {quality: 100})
           }
         }
       }

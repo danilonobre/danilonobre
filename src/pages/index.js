@@ -24,7 +24,7 @@ export const query = graphql
             slug
             gallery {
               childImageSharp {
-                gatsbyImageData(layout: FIXED)
+                gatsbyImageData(layout: FIXED, pngOptions: {quality: 100})
               }
               relativePath
             }
