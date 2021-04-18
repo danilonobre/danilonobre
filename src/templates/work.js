@@ -8,6 +8,7 @@ import Youtube from "../components/youtube"
 //import Video from "../components/video"
 import Slider from "react-slick";
 import Moreworks from "../components/more-works"
+import { Helmet } from "react-helmet"
 
 
 import "../styles/styles.scss";
@@ -41,16 +42,27 @@ export default function Template({
       
       <SEO title={frontmatter.title} />
 
+      <Helmet>
+        <meta property="og:image" content={frontmatter.socialImage.childImageSharp.gatsbyImageData.images.fallback.src} />
+        <meta property="og:image:width" content="500" />
+        <meta property="og:image:height" content="500" />
+        <meta property="og:title" content={frontmatter.title+" | Danilo Nobre UI/UX Designer"} />
+        <meta property="og:description" content={frontmatter.project} />
+        <meta property="twitter:description" content={frontmatter.project} />
+      </Helmet>
+
       <section className="block-works block-works-full">
 
         <article className="work" style={{backgroundImage: "linear-gradient(120deg, "+frontmatter.colorone+", "+frontmatter.colortwo+" 72.55%)"}}>
 
-          <h1>{frontmatter.title}</h1>
-
+          <h1>{frontmatter.title} - {frontmatter.socialimage}</h1>
+                     
           <div className="work-description">
             {frontmatter.aboutcompany && <p>{frontmatter.aboutcompany}</p> }
             {frontmatter.project && <p>{frontmatter.project}</p> }
           </div>
+
+          
 
           {frontmatter.youtube &&
             <Youtube
@@ -58,6 +70,48 @@ export default function Template({
               videoTitle={frontmatter.title}
               divClass="work-video"
             />
+          }
+
+          {frontmatter.gallery &&
+
+            <Slider {...SliderSettings}>
+
+            {frontmatter.gallery.map((item,index) =>
+              
+              <>
+                
+                {item.childImageSharp.gatsbyImageData.images.fallback.src.includes('mobile')
+                
+                  ?
+                  
+                    <div className="work-image work-image-mobile" key={index}>
+                  
+                      <img
+                        src={item.childImageSharp.gatsbyImageData.images.fallback.src}
+                        alt={frontmatter.title}
+                      />
+                      
+                    </div>
+                
+                  :
+                  
+                    <div className="work-image" key={index}>
+                  
+                      <img
+                        src={item.childImageSharp.gatsbyImageData.images.fallback.src}
+                        alt={frontmatter.title}
+                      />
+                      
+                    </div>
+                
+                }
+
+              </>
+              
+            )}
+
+            </Slider>
+
           }
 
           <div className="work-body"><MDXRenderer>{body}</MDXRenderer></div>
@@ -130,6 +184,11 @@ export const pageQuery = graphql`
             gatsbyImageData(layout: FIXED)
           }
           relativePath
+        }
+        socialImage {
+          childImageSharp {
+              gatsbyImageData(layout: FIXED)
+          }
         }
       }
       body

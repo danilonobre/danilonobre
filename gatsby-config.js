@@ -1,7 +1,7 @@
 module.exports = {
   siteMetadata: {
-    siteUrl: "https://danilonobre.com.br",
-    title: "Danilo Nobre - UI/UX Designer and Frontend developer",
+    siteUrl: "https://danilonobre.com",
+    title: "Danilo Nobre - UI/UX Designer",
     description: `Hi, i'm <span>Danilo Nobre</span>, an interface designer focused on bringing results from user-centered experiences.`,
     author: 'Danilo Nobre',
     email: "mailto:danilonobre@gmail.com",
