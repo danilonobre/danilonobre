@@ -3,6 +3,7 @@ import React from 'react'
 import Layout from "../components/layout"
 import SEO from "../components/seo"
 import Works from "../components/works"
+import Shots from "../components/shots"
 
 import "../styles/styles.scss";
 
@@ -38,10 +39,12 @@ const IndexPage = ({ data }) => {return (
     
   <Layout>
     
-    <SEO title="Danilo Nobre" />
+    <SEO title="Home" />
 
     <h1 className="page-intro">Hi, i'm <span>Danilo Nobre</span>, an interface designer focused on bringing results from user-centered experiences.</h1>
     
+    <Shots></Shots>
+
     <Works layout="banner"></Works>
 
   </Layout>

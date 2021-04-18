@@ -1,7 +1,7 @@
 module.exports = {
   siteMetadata: {
     siteUrl: "https://danilonobre.com.br",
-    title: "UI Designer and Frontend developer",
+    title: "Danilo Nobre - UI/UX Designer and Frontend developer",
     description: `Hi, i'm <span>Danilo Nobre</span>, an interface designer focused on bringing results from user-centered experiences.`,
     author: 'Danilo Nobre',
     email: "mailto:danilonobre@gmail.com",
@@ -59,6 +59,14 @@ module.exports = {
         path: "./src/works/",
       },
       __key: "works",
+    },
+    {
+      resolve: "gatsby-source-filesystem",
+      options: {
+        name: "shots",
+        path: "./src/shots/",
+      },
+      __key: "shots",
     },
     "gatsby-transformer-remark",
     {

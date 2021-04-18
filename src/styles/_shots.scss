@@ -1,0 +1,119 @@
+.block-shots{
+
+    margin-bottom: 80px;
+    display: flex;
+    scroll-snap-type: x mandatory;
+    overflow-x: auto;
+
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+
+    @include display(phone) {
+    }
+
+    &::-webkit-scrollbar {
+        display: unset;
+    }
+
+    article{
+
+        min-width: 400px;
+        height: 400px;
+        position: relative;
+        overflow: hidden;
+        flex: none;
+        scroll-snap-align: start;
+
+        &:first-child{
+            margin-left: 80px;
+        }
+
+        &.fade{
+
+            &:hover{
+
+                .shot-hover{
+                    display: block;
+                }
+
+            }
+            
+
+        }
+
+        &.gif{
+
+            .shot-hover{
+                display: block;
+                -webkit-animation: flickerAnimation 5s infinite;
+                -moz-animation: flickerAnimation 5s infinite;
+                -o-animation: flickerAnimation 5s infinite;
+                animation: flickerAnimation 5s infinite;
+            }
+        }
+
+        &.rollUp{
+            
+            width: 470px;
+            background: linear-gradient(135deg, #AE5CD1 0%, rgba(237, 197, 254, 0) 100%), #EDC5FE;
+
+            img{
+                height: auto;
+                position: absolute;
+                transition: bottom 1s;
+                bottom: -26px;
+            }
+
+            &:hover{
+
+                img{
+                    bottom: -220px;
+                }
+
+            }
+
+        }
+
+        img{
+            height: 100%;
+        }
+
+        .shot-hover{
+            display: none;
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+
+    }
+
+}
+
+@keyframes flickerAnimation {
+0%   { opacity:1; }
+40%   { opacity:1; }
+50%  { opacity:0; }
+60%   { opacity:1; }
+100% { opacity:1; }
+}
+@-o-keyframes flickerAnimation{
+0%   { opacity:1; }
+40%   { opacity:1; }
+50%  { opacity:0; }
+60%   { opacity:1; }
+100% { opacity:1; }
+}
+@-moz-keyframes flickerAnimation{
+0%   { opacity:1; }
+40%   { opacity:1; }
+50%  { opacity:0; }
+60%   { opacity:1; }
+100% { opacity:1; }
+}
+@-webkit-keyframes flickerAnimation{
+0%   { opacity:1; }
+40%   { opacity:1; }
+50%  { opacity:0; }
+60%   { opacity:1; }
+100% { opacity:1; }
+}
