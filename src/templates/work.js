@@ -43,7 +43,7 @@ export default function Template({
       <SEO title={frontmatter.title} />
 
       <Helmet>
-        <meta property="og:image" content={frontmatter.socialImage.childImageSharp.gatsbyImageData.images.fallback.src} />
+        {frontmatter.socialImage && <meta property="og:image" content={frontmatter.socialImage.childImageSharp.gatsbyImageData.images.fallback.src} /> }
         <meta property="og:image:type" content="image/png"></meta>
         <meta property="og:image:width" content="500" />
         <meta property="og:image:height" content="500" />
