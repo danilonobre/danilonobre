@@ -39,11 +39,11 @@ const Shots = ({...props}) => {
 
                     <article className={'shot '+frontmatter.hover} key={index}>
 
-                        <img src={frontmatter.shot.childImageSharp.gatsbyImageData.images.fallback.src} />
+                        <img src={frontmatter.shot.childImageSharp.gatsbyImageData.images.fallback.src} alt={index} />
 
                         {frontmatter.hoverimage &&
 
-                            <img className="shot-hover" src={frontmatter.hoverimage.childImageSharp.gatsbyImageData.images.fallback.src} />
+                            <img className="shot-hover" src={frontmatter.hoverimage.childImageSharp.gatsbyImageData.images.fallback.src} alt={index} />
 
                         }
 

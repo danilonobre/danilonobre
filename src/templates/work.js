@@ -56,14 +56,12 @@ export default function Template({
 
         <article className="work" style={{backgroundImage: "linear-gradient(120deg, "+frontmatter.colorone+", "+frontmatter.colortwo+" 72.55%)"}}>
 
-          <h1>{frontmatter.title} - {frontmatter.socialimage}</h1>
+          <h1>{frontmatter.title}</h1>
                      
           <div className="work-description">
             {frontmatter.aboutcompany && <p>{frontmatter.aboutcompany}</p> }
             {frontmatter.project && <p>{frontmatter.project}</p> }
           </div>
-
-          
 
           {frontmatter.youtube &&
             <Youtube
