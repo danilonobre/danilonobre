@@ -112,6 +112,7 @@
         margin-top: -40px;
         position: relative;
         display: flex;
+        margin-left: auto;
 
         @include display(phone) {
             margin-top: 0;
