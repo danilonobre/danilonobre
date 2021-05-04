@@ -10,7 +10,7 @@
         
         //height: 600px;
         margin-bottom: 80px;
-        padding-left: 80px;
+        padding: 0 0 0 80px;
         box-shadow: 0px 10px 20px rgba(#000, 0.25);
 
         @include display(phone) {
@@ -209,12 +209,14 @@
     //background: linear-gradient(120deg, #222 0%, #000 75%);
     //color: #fff;
     padding: 0 80px;
-    gap: 60px;
+    //gap: 60px;
+    @include gap--vertical(60px);
 
     @include display(phone) {
         //padding: 40px 0;
         padding: 40px 20px;
-        gap: 30px;
+        //gap: 30px;
+        @include gap--vertical(40px);
     }
 
     &.light{
@@ -255,7 +257,8 @@
         .work-wrapper{
             display: flex;
             flex-direction: column;
-            gap: 30px;
+            //gap: 30px;
+            @include gap--vertical(30px);
         }
 
         h1{
@@ -266,11 +269,13 @@
         .work-info{
         
             display: flex;
-            gap: 20px;
+            //gap: 20px;
+            @include gap--vertical(20px);
 
             @include display(phone) {
                 flex-direction: column;
-                gap: 5px;
+                //gap: 5px;
+                @include gap--vertical(5px);
             }
     
             > * {
@@ -315,6 +320,11 @@
     h2{
         font-size: 32px;
         margin-bottom: 10px;
+
+        @include display(phone) {
+            font-size: 24px;
+        }
+
     }
 
     h3{
@@ -345,11 +355,13 @@
         display: flex;
         flex-direction: column;
         align-items: center;
-        gap: 40px;
+        //gap: 40px;
+        @include gap--vertical(40px);
 
         @include display(phone) {
             padding: 0 20px;
-            gap: 20px;
+            //gap: 20px;
+            @include gap--vertical(80px);
         }
 
         &:empty{
@@ -421,10 +433,12 @@
 
             display: flex;
             justify-content: center;
-            gap: 10px;
+            //gap: 10px;
+            @include gap(10px);
 
             @include display(phone) {
                 flex-direction: column;
+                @include gap--vertical(10px);
             }
 
             .gatsby-resp-image-wrapper{
@@ -438,7 +452,7 @@
             }
 
             + .gallery{
-                margin-top: -30px;
+                margin-top: -10px;
             }
 
             &.gallery-narrow{
