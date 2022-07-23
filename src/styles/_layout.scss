@@ -187,26 +187,43 @@ body{
     padding: 80px;
     margin: 0;
 
-    font-size: 48px;
-    color: #444;
-    font-weight: 300;
-    line-height: 1.5;
-
     @include display(phone) {
         text-align: center;
         font-size: 28px;
         padding: 20px;
     }
 
-    span{
+    h1{
 
-        color: #0c0c0c;
-        border-bottom: 4px solid #0c0c0c;
+        font-size: 48px;
+        color: #444;
+        font-weight: 300;
+        line-height: 1.5;
+        
+        span{
 
-        @include display(phone) {
-            border-width: 2px;
+            color: #0c0c0c;
+            border-bottom: 4px solid #0c0c0c;
+
+            @include display(phone) {
+                border-width: 2px;
+            }
+
         }
 
+    }
+
+    p{
+        font-size: 32px;
+        color: #555;
+
+        .role{
+            color: #0c0c0c;
+        }
+
+        .outsystems{
+            color: #dd1234;
+        }
     }
     
 }

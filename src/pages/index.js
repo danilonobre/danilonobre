@@ -41,8 +41,14 @@ const IndexPage = ({ data }) => {return (
     
     <SEO title="Home" />
 
-    <h1 className="page-intro">Hi, I'm <span>Danilo Nobre</span>, a product designer focused on bringing results from user-centered experiences.</h1>
+    <div className="page-intro">
     
+      <h1>Hi, I'm <span>Danilo Nobre</span>, a product designer focused on bringing results from user-centered experiences.</h1>
+      
+      <p>Currently <span className="role">Lead Product Designer</span> at <a className="outsystems" href="http://outsystems.com" target='_blank'>OutSystems</a>.</p>
+
+    </div>
+
     <Works layout="banner"></Works>
 
     <Shots></Shots>
