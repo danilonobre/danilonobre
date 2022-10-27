@@ -30,7 +30,7 @@ const Works = ({ exclude, layout, ...props }) => {
         query WorksQuery {
             allMdx(
                 sort: {order: ASC, fields: frontmatter___order}
-                filter: {frontmatter: {published: {eq: true}, private: {ne: true}}}
+                filter: {frontmatter: {published: {eq: true}}}
             ) {
                 nodes {
                     frontmatter {

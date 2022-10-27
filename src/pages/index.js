@@ -12,7 +12,7 @@ export const query = graphql
 query SITE_INDEX_QUERY {
   allMdx(
     sort: {order: ASC, fields: frontmatter___order}
-    filter: {frontmatter: {published: {eq: true}, private: {ne: true}}}
+    filter: {frontmatter: {published: {eq: true}}}
   ) {
     nodes {
       frontmatter {
