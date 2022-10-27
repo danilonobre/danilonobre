@@ -9,30 +9,31 @@ import "../styles/styles.scss";
 
 export const query = graphql
 `
-    query SITE_INDEX_QUERY {
-      allMdx(
-        sort: {order: ASC, fields: frontmatter___order}
-        filter: {frontmatter: {published: {eq: true}}}
-      ) {
-        nodes {
-          frontmatter {
-            title
-            aboutcompany
-            project
-            colorone
-            colortwo
-            slug
-            gallery {
-              childImageSharp {
-                gatsbyImageData(layout: FIXED, pngOptions: {quality: 100})
-              }
-              relativePath
-            }
+query SITE_INDEX_QUERY {
+  allMdx(
+    sort: {order: ASC, fields: frontmatter___order}
+    filter: {frontmatter: {published: {eq: true}, private: {ne: true}}}
+  ) {
+    nodes {
+      frontmatter {
+        title
+        aboutcompany
+        project
+        colorone
+        colortwo
+        slug
+        gallery {
+          childImageSharp {
+            gatsbyImageData(layout: FIXED, pngOptions: {quality: 100})
           }
-          body
+          relativePath
         }
       }
+      body
     }
+  }
+}
+
 `
 
 const IndexPage = ({ data }) => {return (
