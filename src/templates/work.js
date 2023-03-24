@@ -70,22 +70,6 @@ export default function Template({
                     <span>{frontmatter.timeline}</span>
                   </div>
                 }
-                
-                {frontmatter.tags && 
-
-                	<ul className="work-tags">
-
-                    {frontmatter.tags.map((item,index) =>
-
-                        <li key={index}>
-                            {item}
-                        </li>
-                        
-                    )}
-                    
-                		</ul>
-
-              		}
               
               </div>
 
