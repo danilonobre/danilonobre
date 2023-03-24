@@ -184,7 +184,7 @@ height: auto;
 
 .page-intro{
 
-    padding: 80px;
+    padding: 0 80px;
     margin: 0;
 
     @include display(phone) {
@@ -201,7 +201,7 @@ height: auto;
         line-height: 1.5;
 
 @include display(phone) {
-                font-size: 24px;
+                font-size: 32px;
             }
         
         span{
@@ -211,6 +211,7 @@ height: auto;
 
             @include display(phone) {
                 border-width: 2px;
+font-size: 24px;
             }
 
         }
