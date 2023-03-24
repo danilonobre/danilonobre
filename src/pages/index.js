@@ -51,8 +51,6 @@ const IndexPage = ({ data }) => {return (
     </div>
 
     <Works layout="banner"></Works>
-
-    <Shots></Shots>
     
   </Layout>
 
