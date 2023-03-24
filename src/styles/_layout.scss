@@ -136,8 +136,6 @@ body{
     ul{
         display: flex;
 
-        
-
         li{
             margin-left: 10px;
 
@@ -199,6 +197,10 @@ body{
         color: #444;
         font-weight: 300;
         line-height: 1.5;
+
+@include display(phone) {
+                font-size: 24px;
+            }
         
         span{
 
