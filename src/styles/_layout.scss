@@ -211,7 +211,6 @@ height: auto;
 
             @include display(phone) {
                 border-width: 2px;
-font-size: 24px;
             }
 
         }
@@ -222,6 +221,10 @@ font-size: 24px;
         font-size: 32px;
         color: #555;
         letter-spacing: -.05em;
+
+@include {
+font-size: 24px;
+}
 
         .role{
             color: #0c0c0c;
