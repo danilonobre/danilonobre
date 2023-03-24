@@ -21,15 +21,6 @@ const Header = ({ siteTitle,siteNav,siteDescription }) => (
         />
 
     </Link>
-  
-    <nav className="page-nav">
-
-      <Contacts
-        data={siteNav}
-        showLabel={false}
-      />
-
-    </nav>
 
   </header>
 )
