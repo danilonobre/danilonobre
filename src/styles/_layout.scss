@@ -78,6 +78,8 @@ body{
     .page-logo{
 
         @include display(phone) {
+max-width: 64px;
+height: auto;
             margin-bottom: 20px;
         }
     }
