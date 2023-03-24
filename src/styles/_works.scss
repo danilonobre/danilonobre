@@ -257,8 +257,8 @@
         .work-wrapper{
             display: flex;
             flex-direction: column;
-            //gap: 30px;
-            @include gap--vertical(30px);
+            //gap: 20px;
+            @include gap--vertical(20px);
         }
 
         h1{
