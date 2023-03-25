@@ -62,22 +62,6 @@ const Moreworks = ({ exclude, ...props }) => {
 
                                         </div>
 
-                                        {frontmatter.tags && 
-
-                                            <ul className="work-tags">
-            
-                                                {frontmatter.tags.map((item,index) =>
-                                            
-                                                    <li key={index}>
-                                                        {item}
-                                                    </li>
-                                                    
-                                                )}
-                                                
-                                            </ul>
-
-                                        }
-
                                     </div>
 
                                     <div className="work-mock">
