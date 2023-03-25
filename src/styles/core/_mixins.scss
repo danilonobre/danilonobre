@@ -48,6 +48,32 @@
 
 }
 
+@mixin gap--horizontal($gap){
+
+  $gap : $gap/2;
+
+  > *{
+
+    margin-left: $gap;
+    margin-right: $gap;
+
+    @include display(phone) {
+      margin-left: $gap/2;
+      margin-right: $gap/2;
+    }
+
+    &:first-child{
+      margin-left: 0;
+    }
+
+    &:last-child{
+      margin-right: 0;
+    }
+
+  }
+
+}
+
 @mixin gap($gap){
 
   $gap : $gap/2;
