@@ -1,6 +1,6 @@
 .block-works-banner{
 
-    padding: 0 60px;
+    padding: 0 80px;
 
     @include display(phone) {
         padding: 0 20px;
@@ -9,8 +9,8 @@
     .work{
         
         //height: 600px;
-        margin-bottom: 80px;
-        padding: 0 0 0 80px;
+        margin-bottom: 40px;
+        padding: 0 0 0 60px;
         box-shadow: 0px 10px 20px rgba(#000, 0.25);
 
         @include display(phone) {
@@ -61,10 +61,10 @@
     }
 
     .work-text{
-        margin-bottom: 40px;
+        //margin-bottom: 40px;
 
         @include display(phone) {
-            margin-bottom: 20px;
+            //margin-bottom: 20px;
         }
     }
 
