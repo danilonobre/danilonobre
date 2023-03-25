@@ -274,6 +274,7 @@
             display: flex;
             //gap: 20px;
             @include gap--vertical(20px);
+			@include gap--horizontal(20px);
 			align-items: center;
 
             @include display(phone) {
@@ -286,6 +287,7 @@
                 //flex: 1;
                 display: flex;
                 align-items: center;
+				min-height: 24px;
             }
             
             i{
