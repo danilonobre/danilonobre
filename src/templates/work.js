@@ -63,6 +63,12 @@ export default function Template({
               <h1>{frontmatter.title}</h1>
 
               <div className="work-info">
+                
+                {frontmatter.project &&
+             			 <div className="work-company">
+                			<span>{frontmatter.project}</span>
+              			</div>
+            			}
 
                 {frontmatter.timeline &&
                   <div className="work-timeline">
@@ -84,15 +90,7 @@ export default function Template({
                 <p>{frontmatter.aboutcompany}</p>
               </div>
             }
-
-            {frontmatter.project &&
-              <div className="work-text work-wrapper">
-                <h3>Role</h3>
-                <p>{frontmatter.project}</p>
-              </div>
-            }
           
-
           {frontmatter.youtube &&
             <Youtube
               videoSrcURL={frontmatter.youtube}
