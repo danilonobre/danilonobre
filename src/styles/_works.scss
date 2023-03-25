@@ -210,7 +210,7 @@
     //color: #fff;
     padding: 0 80px;
     //gap: 60px;
-    @include gap--vertical(60px);
+    @include gap--vertical(40px);
 
     @include display(phone) {
         //padding: 40px 0;
