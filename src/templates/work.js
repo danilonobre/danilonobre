@@ -86,7 +86,6 @@ export default function Template({
 
             {frontmatter.aboutcompany &&
               <div className="work-text work-wrapper">
-                <h3>Company</h3>
                 <p>{frontmatter.aboutcompany}</p>
               </div>
             }
