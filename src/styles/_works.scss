@@ -52,7 +52,7 @@
         display: flex;
         flex-direction: column;
         justify-content: space-around;
-        padding: 60px 0 70px 0;
+        padding: 60px 0 60px 0;
 
         @include display(phone) {
             padding: 30px 20px 30px 20px;
