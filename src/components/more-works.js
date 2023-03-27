@@ -16,18 +16,8 @@ const Moreworks = ({ exclude, ...props }) => {
                         project
                         colorone
                         colortwo
-                        tags
                         slug
                         timeline
-                        mock {
-                            childImageSharp {
-                                gatsbyImageData(layout: FIXED, pngOptions: {quality: 100})
-                            }
-                        }
-                        mockMobile {
-                            childImageSharp {
-                                gatsbyImageData(layout: FIXED, pngOptions: {quality: 100})
-                            }
                         }
                     }
                 }
@@ -70,22 +60,6 @@ const Moreworks = ({ exclude, ...props }) => {
                                                 <span>{frontmatter.timeline}</span>
                                             </div>
                                         }
-
-                                    </div>
-
-                                    <div className="work-mock">
-                                                
-                                        <img
-                                            src={frontmatter.mock.childImageSharp.gatsbyImageData.images.fallback.src}
-                                            alt={frontmatter.title}
-                                            className="only-desktop"
-                                        />
-
-                                        <img
-                                            src={frontmatter.mockMobile.childImageSharp.gatsbyImageData.images.fallback.src}
-                                            alt={frontmatter.title}
-                                            className="only-mobile"
-                                        />
 
                                     </div>
 

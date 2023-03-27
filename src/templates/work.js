@@ -85,18 +85,10 @@ export default function Template({
           </header>
 
 
-            {frontmatter.aboutcompany &&
-              <div className="work-text work-wrapper">
-                <p>{frontmatter.aboutcompany}</p>
-              </div>
-            }
-          
-          {frontmatter.youtube &&
-            <Youtube
-              videoSrcURL={frontmatter.youtube}
-              videoTitle={frontmatter.title}
-              divClass="work-video"
-            />
+          {frontmatter.aboutcompany &&
+            <div className="work-text work-wrapper">
+              <p>{frontmatter.aboutcompany}</p>
+            </div>
           }
 
           <div className="work-body"><MDXRenderer>{body}</MDXRenderer></div>
@@ -164,7 +156,6 @@ export const pageQuery = graphql`
         colorone
         colortwo
         slug
-        tags
         gallery {
           childImageSharp {
             gatsbyImageData(layout: FIXED, pngOptions: {quality: 100})
