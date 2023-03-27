@@ -84,13 +84,6 @@ export default function Template({
 
           </header>
 
-
-          {frontmatter.aboutcompany &&
-            <div className="work-text work-wrapper">
-              <p>{frontmatter.aboutcompany}</p>
-            </div>
-          }
-
           <div className="work-body"><MDXRenderer>{body}</MDXRenderer></div>
 
           {frontmatter.gallery &&
@@ -151,7 +144,6 @@ export const pageQuery = graphql`
     mdx(frontmatter: { slug: { eq: $slug } }) {
       frontmatter {
         title
-        aboutcompany
         project
         colorone
         colortwo
