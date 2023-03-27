@@ -391,6 +391,7 @@
     //@include gap--vertical(20px);
     @include gap--horizontal(20px);
     align-items: center;
+    opacity: .8;
 
     @include display(phone) {
         flex-direction: column;
