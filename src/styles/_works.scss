@@ -39,6 +39,10 @@
 
             }
 
+            @include display(phone) {
+                padding: 40px;
+            }
+
         }
 
     }
@@ -52,12 +56,8 @@
     }
 
     .work-title{
-        font-size: 48px;
+        font-size: 32px;
         margin-bottom: 20px;
-
-        @include display(phone) {
-            font-size: 38px;
-        }
     }
 
     .work-description{
@@ -199,6 +199,7 @@
         h1{
             margin: 0;
             line-height: 1;
+            text-align: center;
         }
 
         .work-tags{
@@ -396,7 +397,8 @@
     @include display(phone) {
         flex-direction: column;
         //gap: 5px;
-        @include gap--vertical(5px);
+        @include gap--horizontal(0);
+        @include gap--vertical(10px);
     }
 
     > * {
