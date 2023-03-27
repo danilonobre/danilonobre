@@ -41,6 +41,7 @@ const Works = ({ exclude, layout, ...props }) => {
                         colorone
                         colortwo
                         slug
+                        timeline
                         mock {
                             childImageSharp {
                                 gatsbyImageData(layout: FIXED, pngOptions: {quality: 100})
@@ -167,22 +168,6 @@ const Works = ({ exclude, layout, ...props }) => {
                                             <span>{frontmatter.timeline}</span>
                                         </div>
                                     }
-
-                                </div>
-
-                                <div className="work-mock">
-                                            
-                                    <img
-                                        src={frontmatter.mock.childImageSharp.gatsbyImageData.images.fallback.src}
-                                        alt={frontmatter.title}
-                                        className="only-desktop"
-                                    />
-
-                                    <img
-                                        src={frontmatter.mockMobile.childImageSharp.gatsbyImageData.images.fallback.src}
-                                        alt={frontmatter.title}
-                                        className="only-mobile"
-                                    />
 
                                 </div>
 

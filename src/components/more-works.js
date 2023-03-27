@@ -18,6 +18,7 @@ const Moreworks = ({ exclude, ...props }) => {
                         colortwo
                         tags
                         slug
+                        timeline
                         mock {
                             childImageSharp {
                                 gatsbyImageData(layout: FIXED, pngOptions: {quality: 100})
