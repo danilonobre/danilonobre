@@ -273,7 +273,7 @@
         
             display: flex;
             //gap: 20px;
-            @include gap--vertical(20px);
+            //@include gap--vertical(20px);
 			@include gap--horizontal(20px);
 			align-items: center;
 
