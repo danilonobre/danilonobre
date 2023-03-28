@@ -68,7 +68,7 @@ h1{
 	color: inherit;
 	
 	@include display(phone) {
-		font-size: rem(40px);
+		font-size: rem(34px);
 	}
 
 }
