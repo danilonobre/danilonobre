@@ -56,8 +56,11 @@
     }
 
     .work-title{
-        font-size: 32px;
+        font-size: 36px;
         margin-bottom: 20px;
+        @include display(phone) {
+            font-size: 32px;
+        }
     }
 
     .work-description{
@@ -393,6 +396,7 @@
     @include gap--horizontal(20px);
     align-items: center;
     opacity: .8;
+    font-size: 16px;;
 
     @include display(phone) {
         flex-direction: column;
@@ -414,7 +418,7 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        margin-right: 8px;
+        margin-right: 6px;
     }
 
 }
@@ -443,10 +447,6 @@
 .slick-slider {
 
     width: 100%;
-    
-    &.slick-initialized{
-
-    }
 
     .slick-list{
 
