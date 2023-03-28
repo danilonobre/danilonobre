@@ -18,7 +18,6 @@ const Moreworks = ({ exclude, ...props }) => {
                         colortwo
                         slug
                         timeline
-                        }
                     }
                 }
             }
