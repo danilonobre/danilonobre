@@ -74,7 +74,7 @@ const Works = ({ exclude, layout, ...props }) => {
                     
                     return (
 
-                        <article className="work" key={index}>
+                        <article className="work" style={{backgroundColor: frontmatter.colortwo}} key={index}>
 
                             <h2 className="work-title"><Link to={"/"+frontmatter.slug+"/"}>{frontmatter.title}</Link></h2>
                         

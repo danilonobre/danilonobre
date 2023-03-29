@@ -56,7 +56,7 @@ export default function Template({
 
         <article className="work">
 
-          <header className="work-header">
+          <header className="work-header" style={{backgroundColor: frontmatter.colortwo}}>
 
             <div className="work-wrapper">
 

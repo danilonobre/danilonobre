@@ -38,7 +38,7 @@ const Moreworks = ({ exclude, ...props }) => {
 
                         return (
 
-                            <article className="work" key={index}>
+                            <article className="work" style={{backgroundColor: frontmatter.colortwo}} key={index}>
                             
                                 <Link to={"/"+frontmatter.slug+"/"}>
 
