@@ -56,7 +56,7 @@ export default function Template({
 
         <article className="work">
 
-          <header className="work-header" style={{backgroundImage: "linear-gradient(120deg, "+frontmatter.colorone+", "+frontmatter.colortwo+" 72.55%)"}}>
+          <header className="work-header">
 
             <div className="work-wrapper">
 

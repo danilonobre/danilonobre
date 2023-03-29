@@ -74,7 +74,7 @@ const Works = ({ exclude, layout, ...props }) => {
                     
                     return (
 
-                        <article className="work" style={{backgroundImage: "linear-gradient(120deg, "+frontmatter.colorone+", "+frontmatter.colortwo+" 72.55%)"}} key={index}>
+                        <article className="work" key={index}>
 
                             <h2 className="work-title"><Link to={"/"+frontmatter.slug+"/"}>{frontmatter.title}</Link></h2>
                         

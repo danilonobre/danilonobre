@@ -38,7 +38,7 @@ const Moreworks = ({ exclude, ...props }) => {
 
                         return (
 
-                            <article className="work" style={{backgroundImage: "linear-gradient(120deg, "+frontmatter.colorone+", "+frontmatter.colortwo+" 72.55%)"}} key={index}>
+                            <article className="work" key={index}>
                             
                                 <Link to={"/"+frontmatter.slug+"/"}>
 
