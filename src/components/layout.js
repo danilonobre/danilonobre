@@ -5,7 +5,7 @@ import { useStaticQuery, graphql } from "gatsby"
 import Header from "../components/header"
 import Footer from "../components/footer"
 
-const Layout = ({ children }) => {
+const Layout = ({ children, wrapperClass }) => {
   
   const data = useStaticQuery(graphql`
     query SiteTitleQuery {
@@ -25,7 +25,7 @@ const Layout = ({ children }) => {
 
   return (
 
-    <div className="page-wrapper">
+    <div className={"page-wrapper page-"+wrapperClass}>
 
       <Header siteTitle={data.site.siteMetadata?.title || `Title`} siteDescription={data.site.siteMetadata.description} siteNav={data.site.siteMetadata} />
 

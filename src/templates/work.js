@@ -51,6 +51,7 @@ export default function Template({
             <meta property="og:title" content={frontmatter.title+" | Danilo Nobre UI/UX Designer"} />
             <meta property="og:description" content={frontmatter.project} />
             <meta property="twitter:description" content={frontmatter.project} />
+            <body className="new-class-for-body" />
           </Helmet>
 
           <Figma url={frontmatter.figma} />
@@ -58,7 +59,7 @@ export default function Template({
         </>
 
       : 
-        <Layout>
+        <Layout wrapperClass="work">
       
           <Seo title={frontmatter.title} />
 

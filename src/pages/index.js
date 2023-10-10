@@ -29,7 +29,7 @@ query SITE_INDEX_QUERY {
 
 const IndexPage = ({ data }) => {return (
     
-  <Layout>
+  <Layout wrapperClass="home">
     
     <Seo title="Home" />
 

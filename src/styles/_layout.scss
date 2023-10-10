@@ -78,10 +78,11 @@ body{
     .page-logo{
 
         @include display(phone) {
-width: 128px;
-height: 128px;
+            width: 128px;
+            height: 128px;
             margin-bottom: 20px;
         }
+
     }
 
     @include display(phone) {

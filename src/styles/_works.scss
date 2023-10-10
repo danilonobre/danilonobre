@@ -1,3 +1,20 @@
+.page-work{
+
+    .page-header{
+
+        justify-content: center;
+
+        .page-logo{
+
+            width: 80px !important;
+            height: 80px !important;
+            
+        }
+
+    }
+
+}
+
 .block-works-banner{
 
     padding: 0 80px;
@@ -11,12 +28,12 @@
         //height: 600px;
         margin-bottom: 40px;
         padding: 0;
-        box-shadow: 0px 10px 20px rgba(#000, 0.25);
+        //box-shadow: 0px 10px 20px rgba(#000, 0.25);
 
         @include display(phone) {
             padding: 0;
             margin-bottom: 20px;
-            box-shadow: 0px 10px 10px rgba(#000, 0.25);
+            //box-shadow: 0px 10px 10px rgba(#000, 0.25);
             text-align: center;
         }
 
@@ -281,7 +298,7 @@ article.work{
             display: flex !important;
             align-items: center;
             border-radius: 10px;
-            box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.1), 0px 0px 40px rgba(0, 0, 0, 0.1);
+            //box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.1), 0px 0px 40px rgba(0, 0, 0, 0.1);
 
 
 
@@ -433,7 +450,7 @@ article.work{
         height: 528px;
         border-radius: 10px;
         overflow: hidden;
-        box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.4);
+        //box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.4);
     }
 
     video{
@@ -487,7 +504,7 @@ article.work{
             height: 100%;
             overflow: auto;
             border-radius: 10px;
-            box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.25), 0px 0 10px rgba(0, 0, 0, 0.25);
+            //box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.25), 0px 0 10px rgba(0, 0, 0, 0.25);
             background-color: #fff;
 
             @include display(phone) {
