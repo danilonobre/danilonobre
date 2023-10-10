@@ -562,7 +562,8 @@ article.work{
 
 }
 
-.block-figma{
+.block-figma,
+.block-figma-mobile{
 
     width: 100vw;
     height: 100vh;
@@ -573,6 +574,28 @@ article.work{
         width: 100vw;
         height: 100vh;
         border: 0;
+    }
+
+    @include display(phone) {
+        display: none !important;
+    }
+
+    @include display(tablet) {
+        display: none !important;
+    }
+
+}
+
+.block-figma-mobile{
+
+    display: none;
+
+    @include display(phone) {
+        display: block !important;
+    }
+
+    @include display(tablet) {
+        display: block !important;
     }
 
 }

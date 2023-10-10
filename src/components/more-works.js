@@ -7,18 +7,18 @@ const Moreworks = ({ exclude, ...props }) => {
 
         query MoreWorksQuery {
             allMdx(
-                sort: {order: ASC, fields: frontmatter___order}
-                filter: {frontmatter: {published: {eq: true}}}
+            sort: {frontmatter: {order: ASC}}
+            filter: {frontmatter: {published: {eq: true}}}
             ) {
-                nodes {
-                    frontmatter {
-                        title
-                        project
-                        color
-                        slug
-                        timeline
-                    }
+            nodes {
+                frontmatter {
+                title
+                project
+                color
+                slug
+                timeline
                 }
+            }
             }
         }
     `)

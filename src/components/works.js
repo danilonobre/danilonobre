@@ -7,21 +7,22 @@ const Works = ({...props}) => {
 
         query WorksQuery {
             allMdx(
-                sort: {order: ASC, fields: frontmatter___order}
-                filter: {frontmatter: {published: {eq: true}}}
+            sort: {frontmatter: {order: ASC}}
+            filter: {frontmatter: {published: {eq: true}}}
             ) {
-                nodes {
-                    frontmatter {
-                        title
-                        project
-                        color
-                        slug
-                        timeline
-                    }
-                    body
+            nodes {
+                frontmatter {
+                title
+                project
+                color
+                slug
+                timeline
                 }
+                body
+            }
             }
         }
+
     `)
   
     return (

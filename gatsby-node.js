@@ -6,8 +6,8 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
     const result = await graphql(`
       {
         allMdx(
-          filter: {fileAbsolutePath: {regex: "/(works)/"}}
-          sort: { order: DESC, fields: [frontmatter___order] }
+          filter: {internal: {contentFilePath: {regex: "/works/"}}}
+          sort: {frontmatter: {order: DESC}}
           limit: 1000
         ) {
           edges {

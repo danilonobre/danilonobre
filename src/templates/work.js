@@ -54,7 +54,7 @@ export default function Template({
             <body className="new-class-for-body" />
           </Helmet>
 
-          <Figma url={frontmatter.figma} />
+          <Figma url={frontmatter.figma} urlMobile={frontmatter.figmaMobile} />
         
         </>
 
@@ -174,6 +174,7 @@ export const pageQuery = graphql`
         timeline
         role
         figma
+        figmaMobile
       }
       body
     }

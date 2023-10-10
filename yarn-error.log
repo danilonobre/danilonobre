@@ -1,5 +1,5 @@
 Arguments: 
-  /usr/local/bin/node /Users/dno/.cache/node/corepack/yarn/1.22.19/bin/yarn.js add gatsby-remark-images-zoom
+  /usr/local/bin/node /Users/dno/.cache/node/corepack/yarn/1.22.19/bin/yarn.js upgrade-interactive
 
 PATH: 
   /usr/local/bin:/System/Cryptexes/App/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin

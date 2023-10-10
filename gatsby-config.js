@@ -69,23 +69,12 @@ module.exports = {
       __key: "shots",
     },
     "gatsby-transformer-remark",
+    `gatsby-plugin-mdx`,
     {
-      resolve: `gatsby-plugin-mdx`,
+      resolve: `gatsby-source-filesystem`,
       options: {
-        extensions: [`.mdx`, `.md`],
-        defaultLayouts: {
-          default: require.resolve("./src/templates/work.js"),
-        },
-        plugins: [`gatsby-remark-images`],
-        gatsbyRemarkPlugins: [
-          {
-            resolve: `gatsby-remark-images`,
-            options: {
-              maxWidth: 2000,
-              linkImagesToOriginal: false,
-            },
-          },
-        ],
+        name: `works`,
+        path: `${__dirname}/src/works`,
       },
     },
   ],
