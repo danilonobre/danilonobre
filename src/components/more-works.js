@@ -14,8 +14,7 @@ const Moreworks = ({ exclude, ...props }) => {
                     frontmatter {
                         title
                         project
-                        colorone
-                        colortwo
+                        color
                         slug
                         timeline
                     }
@@ -38,7 +37,7 @@ const Moreworks = ({ exclude, ...props }) => {
 
                         return (
 
-                            <article className="work" style={{backgroundColor: frontmatter.colortwo}} key={index}>
+                            <article className="work" style={{backgroundColor: frontmatter.color}} key={index}>
                             
                                 <Link to={"/"+frontmatter.slug+"/"}>
 

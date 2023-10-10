@@ -544,3 +544,18 @@ article.work{
     }
 
 }
+
+.block-figma{
+
+    width: 100vw;
+    height: 100vh;
+    position: relative;
+    z-index: 100;
+
+    iframe{
+        width: 100vw;
+        height: 100vh;
+        border: 0;
+    }
+
+}
