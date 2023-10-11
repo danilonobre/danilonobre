@@ -252,8 +252,9 @@ $gutter: 40px;
 
 	.column-#{$i}{
 
-		flex-basis: 100/$i  * 1%;
-		width: 100/$i  * 1%;
+		flex-basis: calc(100 / $i) * 1%;
+		
+		width: calc(100 / $i)  * 1%;
 
 		@include respond-to(handhelds) {
 			flex-basis: 100%;
@@ -267,8 +268,8 @@ $gutter: 40px;
 
 			.column{
 
-				flex-basis: 100/$i  * 1%;
-				width: 100/$i  * 1%;
+				flex-basis: calc(100 / $i)  * 1%;
+				width: calc(100 / $i)  * 1%;
 				//flex-basis: percentage($value);
 
 				@include respond-to(handhelds) {

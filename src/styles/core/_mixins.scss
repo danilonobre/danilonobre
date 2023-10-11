@@ -24,7 +24,7 @@
 
 @mixin gap--vertical($gap){
 
-  $gap : $gap/2;
+  $gap : calc($gap / 2);
 
   > *{
 
@@ -32,8 +32,8 @@
     margin-bottom: $gap;
 
     @include display(phone) {
-      margin-top: $gap/2;
-      margin-bottom: $gap/2;
+      margin-top: calc($gap / 2);
+      margin-bottom: calc($gap / 2);
     }
 
     &:first-child{
@@ -50,7 +50,7 @@
 
 @mixin gap--horizontal($gap){
 
-  $gap : $gap/2;
+  $gap : calc($gap / 2);
 
   > *{
 
@@ -58,8 +58,8 @@
     margin-right: $gap;
 
     @include display(phone) {
-      margin-left: $gap/2;
-      margin-right: $gap/2;
+      margin-left: calc($gap / 2);
+      margin-right: calc($gap / 2);
     }
 
     &:first-child{
@@ -76,7 +76,7 @@
 
 @mixin gap($gap){
 
-  $gap : $gap/2;
+  $gap : calc($gap / 2);
 
   > *{
 
@@ -119,5 +119,5 @@
 }
 
 @function rem($size) {
-  @return $size / 16px * 1rem;
+  @return calc($size / 16px) * 1rem;
 }
