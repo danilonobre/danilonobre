@@ -33,6 +33,15 @@ module.exports = {
         display: `standalone`,
       },
     },
+    "gatsby-plugin-mdx",
+    {
+      resolve: "gatsby-source-filesystem",
+      options: {
+        name: "works",
+        path: "./src/works/",
+      },
+      __key: "works",
+    },
     "gatsby-plugin-sharp",
     "gatsby-transformer-sharp",
     `gatsby-remark-images`,
@@ -52,30 +61,7 @@ module.exports = {
       },
       __key: "pages",
     },
-    {
-      resolve: "gatsby-source-filesystem",
-      options: {
-        name: "works",
-        path: "./src/works/",
-      },
-      __key: "works",
-    },
-    {
-      resolve: "gatsby-source-filesystem",
-      options: {
-        name: "shots",
-        path: "./src/shots/",
-      },
-      __key: "shots",
-    },
+    
     "gatsby-transformer-remark",
-    `gatsby-plugin-mdx`,
-    {
-      resolve: `gatsby-source-filesystem`,
-      options: {
-        name: `works`,
-        path: `${__dirname}/src/works`,
-      },
-    },
   ],
 };
