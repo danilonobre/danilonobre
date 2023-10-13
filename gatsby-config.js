@@ -2,7 +2,7 @@ module.exports = {
   siteMetadata: {
     siteUrl: "https://danilonobre.com",
     title: "Danilo Nobre - Product Designer",
-    description: `Hi, i'm <span>Danilo Nobre</span>, an interface designer focused on bringing results from user-centered experiences.`,
+    description: "Hi, i'm <span>Danilo Nobre</span>, an interface designer focused on bringing results from user-centered experiences.",
     author: 'Danilo Nobre',
     email: "mailto:danilonobre@gmail.com",
     linkedin: "https://www.linkedin.com/in/danilonobre",
@@ -25,15 +25,31 @@ module.exports = {
       resolve: "gatsby-plugin-manifest",
       options: {
         icon: "src/images/danilonobre-ui-designer-full.png",
-        name: `Danilo Nobre`,
-        short_name: `Danilo Nobre`,
-        start_url: `/`,
-        background_color: `#ffffff`,
-        theme_color: `#ffffff`,
-        display: `standalone`,
+        name: "Danilo Nobre",
+        short_name: "Danilo Nobre",
+        start_url: "/",
+        background_color: "#ffffff",
+        theme_color: "#ffffff",
+        display: "standalone",
       },
     },
-    "gatsby-plugin-mdx",
+    "gatsby-plugin-sharp",
+    "gatsby-transformer-sharp",
+    {
+      resolve: "gatsby-plugin-mdx",
+      options: {
+        gatsbyRemarkPlugins: [
+          {
+            resolve: "gatsby-remark-images",
+            options: {
+              maxWidth: 1200,
+              linkImagesToOriginal: false,
+            },
+          },
+          "gatsby-remark-images-zoom",
+        ],
+      },
+    },
     {
       resolve: "gatsby-source-filesystem",
       options: {
@@ -42,9 +58,6 @@ module.exports = {
       },
       __key: "works",
     },
-    "gatsby-plugin-sharp",
-    "gatsby-transformer-sharp",
-    `gatsby-remark-images`,
     {
       resolve: "gatsby-source-filesystem",
       options: {
@@ -61,7 +74,6 @@ module.exports = {
       },
       __key: "pages",
     },
-    
     "gatsby-transformer-remark",
   ],
 };

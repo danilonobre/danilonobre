@@ -27,6 +27,8 @@ function Template({ data: { mdx }, children }) {
             <meta property="og:title" content={mdx.frontmatter.title+" | Danilo Nobre UI/UX Designer"} />
             <meta property="og:description" content={mdx.frontmatter.project} />
             <meta property="twitter:description" content={mdx.frontmatter.project} />
+            <meta name="robots" content="nofollow"></meta>
+            <meta name="googlebot" content="noindex"></meta>
             <body className="new-class-for-body" />
           </Helmet>
 
