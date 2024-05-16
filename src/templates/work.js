@@ -24,7 +24,7 @@ function Template({ data: { mdx }, children }) {
             <meta property="og:image:type" content="image/png"></meta>
             <meta property="og:image:width" content="500" />
             <meta property="og:image:height" content="500" />
-            <meta property="og:title" content={mdx.frontmatter.title+" | Danilo Nobre UI/UX Designer"} />
+            <meta property="og:title" content={mdx.frontmatter.title+" | Danilo Nobre Product Designer"} />
             <meta property="og:description" content={mdx.frontmatter.project} />
             <meta property="twitter:description" content={mdx.frontmatter.project} />
             <meta name="robots" content="nofollow"></meta>
@@ -45,7 +45,7 @@ function Template({ data: { mdx }, children }) {
             <meta property="og:image:type" content="image/png"></meta>
             <meta property="og:image:width" content="500" />
             <meta property="og:image:height" content="500" />
-            <meta property="og:title" content={mdx.frontmatter.title+" | Danilo Nobre UI/UX Designer"} />
+            <meta property="og:title" content={mdx.frontmatter.title+" | Danilo Nobre Product Designer"} />
             <meta property="og:description" content={mdx.frontmatter.project} />
             <meta property="twitter:description" content={mdx.frontmatter.project} />
           </Helmet>
