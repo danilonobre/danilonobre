@@ -46,7 +46,6 @@ module.exports = {
               linkImagesToOriginal: false,
             },
           },
-          "gatsby-remark-images-zoom",
         ],
       },
     },
@@ -75,5 +74,12 @@ module.exports = {
       __key: "pages",
     },
     "gatsby-transformer-remark",
+    {
+      resolve: "gatsby-source-contentful",
+      options: {
+        spaceId: "39e2kdybfhcg",
+        accessToken: "LD7puFTftj0IJa9weNrReMw88i0b_4RXlQ3FvjJdhKI",
+      },
+    },
   ],
 };

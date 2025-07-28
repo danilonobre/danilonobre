@@ -6,37 +6,27 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
     const workTemplate = path.resolve("./src/templates/work.js")
   
     const result = await graphql(`
-      {
-        allMdx(
-          filter: {internal: {contentFilePath: {regex: "/works/"}}}
-          sort: {frontmatter: {order: DESC}}
-        ) {
-          edges {
-            node {
-              frontmatter {
-                slug
-              }
-              internal {
-                contentFilePath
-              }
-            }
-          }
+    {
+      allContentfulWorks {
+        nodes {
+          slug
         }
       }
+    }
   `)
 
   if (result.errors) {
     reporter.panicOnBuild('Error loading MDX result', result.errors)
   }
 
-  result.data.allMdx.edges.forEach(({ node }) => {
+  result.data.allContentfulWorks.nodes.forEach((work) => {
     createPage({
-      path: node.frontmatter.slug,
-      component: `${workTemplate}?__contentFilePath=${node.internal.contentFilePath}`,
+      path: `/${work.slug}/`,
+      component: require.resolve(`./src/templates/work.js`),
       context: {
-        slug: node.frontmatter.slug,
-        id: node.id,
+        slug: work.slug,
       },
     })
   })
+  
 }
