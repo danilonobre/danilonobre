@@ -6,7 +6,7 @@ const Works = ({...props}) => {
     const data = useStaticQuery(graphql`
 
         query ContentfulWorksQuery {
-            allContentfulWorks(sort: {order: ASC}) {
+            allContentfulWorks() {
                 nodes {
                     title
                     project

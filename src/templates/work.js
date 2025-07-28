@@ -10,6 +10,7 @@ import { documentToReactComponents } from "@contentful/rich-text-react-renderer"
 import "../styles/styles.scss"
 
 function WorkTemplate({ data }) {
+  
   const work = data.contentfulWorks
 
   return (
