@@ -6,19 +6,33 @@ import Moreworks from "../components/more-works"
 import { Helmet } from "react-helmet"
 import Figma from "../components/figma"
 import { documentToReactComponents } from "@contentful/rich-text-react-renderer"
+import { BLOCKS } from "@contentful/rich-text-types"
 
 import "../styles/styles.scss"
 
 function WorkTemplate({ data }) {
-  
   const work = data.contentfulWorks
+
+  const richTextOptions = {
+    renderNode: {
+      [BLOCKS.EMBEDDED_ASSET]: (node) => {
+        const asset = node.data.target
+        const alt = asset.description || asset.title || "Image"
+        return (
+          <figure>
+            <img src={asset.url} alt={alt} />
+            {asset.title && <figcaption>{asset.title}</figcaption>}
+          </figure>
+        )
+      },
+    },
+  }
 
   return (
     <>
       {work.figma ? (
         <>
           <Seo title={work.title} />
-
           <Helmet>
             <meta property="og:image:type" content="image/png" />
             <meta property="og:image:width" content="500" />
@@ -33,13 +47,11 @@ function WorkTemplate({ data }) {
             <meta name="googlebot" content="noindex" />
             <body className="new-class-for-body" />
           </Helmet>
-
           <Figma url={work.figma} urlMobile={work.figmaMobile} />
         </>
       ) : (
         <Layout wrapperClass="work">
           <Seo title={work.title} />
-
           <Helmet>
             <meta property="og:image:type" content="image/png" />
             <meta property="og:image:width" content="500" />
@@ -60,7 +72,6 @@ function WorkTemplate({ data }) {
               >
                 <div className="work-wrapper">
                   <h1>{work.title}</h1>
-
                   <div className="work-info">
                     {work.project && (
                       <div className="work-company">
@@ -68,7 +79,6 @@ function WorkTemplate({ data }) {
                         <span>{work.project}</span>
                       </div>
                     )}
-
                     {work.timeline && (
                       <div className="work-timeline">
                         <i>{/* ícone aqui */}</i>
@@ -81,7 +91,30 @@ function WorkTemplate({ data }) {
 
               <div className="work-body">
                 {work.body?.raw &&
-                  documentToReactComponents(JSON.parse(work.body.raw))}
+                  documentToReactComponents(
+                    JSON.parse(work.body.raw),
+                    {
+                      ...richTextOptions,
+                      // mapeando os assets:
+                      renderNode: {
+                        ...richTextOptions.renderNode,
+                        [BLOCKS.EMBEDDED_ASSET]: (node) => {
+                          const asset = work.body.references.find(
+                            (ref) =>
+                              ref.contentful_id ===
+                              node.data.target.sys.id
+                          )
+                          if (!asset) return null
+                          const alt = asset.description || asset.title
+                          return (
+                            <figure>
+                              <img src={asset.url} alt={alt} />
+                            </figure>
+                          )
+                        },
+                      },
+                    }
+                  )}
               </div>
             </article>
           </section>
@@ -106,6 +139,14 @@ export const pageQuery = graphql`
       slug
       body {
         raw
+        references {
+          ... on ContentfulAsset {
+            contentful_id
+            title
+            description
+            url
+          }
+        }
       }
     }
   }
