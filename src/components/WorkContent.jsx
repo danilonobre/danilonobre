@@ -40,7 +40,7 @@ export default function WorkContent({ work, restricted }) {
                 return <Slideshow media={entry.media} />
             }
 
-            return <Gallery media={entry.media} />
+            return <Gallery media={entry.media} shadows={entry.shadows} />
         }
 
 

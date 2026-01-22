@@ -101,6 +101,7 @@ export const query = graphql`
          ... on ContentfulGallery {
             contentful_id
             slideshow
+            shadows
             media {
               gatsbyImageData(width: 1200)
               description

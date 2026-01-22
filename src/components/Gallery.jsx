@@ -1,9 +1,9 @@
 import React from "react"
 import { GatsbyImage, getImage } from "gatsby-plugin-image"
 
-export default function Gallery({ media, slideshow }) {
+export default function Gallery({ media, shadows }) {
   return (
-    <div className="gallery">
+    <div className={`gallery ${shadows ? "has-shadows" : ""}`}>
       {media.map((img, index) => {
         const image = getImage(img)
         return (
