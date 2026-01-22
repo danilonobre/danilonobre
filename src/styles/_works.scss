@@ -86,72 +86,6 @@
 
 }
 
-.block-works-full{
-
-    .work{
-        flex-direction: column;
-        align-items: center;
-        background-color: transparent;
-
-        @include display(phone) {
-            padding: 0;
-        }
-
-    }
-
-    .work-title{
-        text-align: center;
-    }
-
-    .work-description{
-        padding: 0 80px;
-        font-size: 20px;
-        display: flex;
-    
-        @include display(phone) {
-            flex-direction: column;
-            padding: 0 20px;
-            text-align: center;
-            font-size: 18px;
-        }
-
-        > * {
-
-            flex: 1;
-            margin-right: 10px;
-            margin-left: 10px;
-
-            @include display(phone) {
-                margin-right: 0;
-                margin-left: 0;
-                margin-bottom: 10px;
-            }
-
-            &:first-child{
-                margin-left: 0;
-            }
-
-            &:last-child{
-                margin-right: 0;
-
-                @include display(phone) {
-                    margin-bottom: 0;
-                }
-            }
-
-        }
-    
-        p:first-child{
-    
-            @include display(phone) {
-                margin-bottom: 20px;
-            }
-    
-        }
-    }
-
-}
-
 article.work{
 
     //background: url(.png), linear-gradient(121.19deg, #326FF9 0%, #8238F4 72.55%);
@@ -203,7 +137,6 @@ article.work{
 
         width: 100%;
         display: flex;
-        color: #fff;
         padding: 60px 0 50px 0;
         margin-bottom: 40px;
 
@@ -632,6 +565,84 @@ article.work{
 
     @include display(tablet) {
         display: block !important;
+    }
+
+}
+
+.block-works-full{
+
+    .work{
+        flex-direction: column;
+        align-items: center;
+        background-color: transparent;
+
+        @include display(phone) {
+            padding: 0;
+        }
+
+    }
+
+    .work-header{
+        flex-direction: column;
+    }
+
+    .work-title{
+        text-align: center;
+    }
+
+    .work-description{
+        padding: 0 80px;
+        font-size: 20px;
+        display: flex;
+    
+        @include display(phone) {
+            flex-direction: column;
+            padding: 0 20px;
+            text-align: center;
+            font-size: 18px;
+        }
+
+        > * {
+
+            flex: 1;
+            margin-right: 10px;
+            margin-left: 10px;
+
+            @include display(phone) {
+                margin-right: 0;
+                margin-left: 0;
+                margin-bottom: 10px;
+            }
+
+            &:first-child{
+                margin-left: 0;
+            }
+
+            &:last-child{
+                margin-right: 0;
+
+                @include display(phone) {
+                    margin-bottom: 0;
+                }
+            }
+
+        }
+    
+        p:first-child{
+    
+            @include display(phone) {
+                margin-bottom: 20px;
+            }
+    
+        }
+    }
+
+    figure{
+
+        figcaption{
+            display: none;
+        }
+
     }
 
 }
