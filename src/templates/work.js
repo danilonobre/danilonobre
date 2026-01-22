@@ -73,22 +73,43 @@ export const query = graphql`
       color
       figma
       figmaMobile
+      introtext {
+        introtext
+      }
+
       slug
       accessPassword
       project
       timeline
       role
+      cover {
+        gatsbyImageData(width: 1600)
+        description
+      }
       body {
         raw
         references {
+          __typename
+
           ... on ContentfulAsset {
             contentful_id
             title
             description
             url
           }
+
+         ... on ContentfulGallery {
+            contentful_id
+            slideshow
+            media {
+              gatsbyImageData(width: 1200)
+              description
+            }
+          }
+
         }
       }
+
     }
   }
 `
