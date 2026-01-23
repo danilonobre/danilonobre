@@ -96,10 +96,14 @@ export const query = graphql`
             title
             description
             url
+            file {
+              fileName
+            }
           }
 
          ... on ContentfulGallery {
             contentful_id
+            name
             slideshow
             shadows
             media {

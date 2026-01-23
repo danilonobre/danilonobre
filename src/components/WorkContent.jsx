@@ -12,9 +12,6 @@ import { GatsbyImage, getImage } from "gatsby-plugin-image"
 import "../styles/styles.scss"
 
 export default function WorkContent({ work, restricted }) {
-  /**
-   * Helpers
-   */
 
   const findReference = (node) => {
     const id = node?.data?.target?.sys?.id
@@ -33,29 +30,49 @@ export default function WorkContent({ work, restricted }) {
   const isCustomBlockEntry = (node) => {
     const entry = findReference(node)
     if (!entry) return false
-
-    // aqui você expande no futuro
     return entry.__typename === "ContentfulGallery"
   }
 
+  const getAssetSlug = (asset) => {
+    if (!asset?.file?.fileName) return null
+
+    return asset.file.fileName
+      .toLowerCase()
+      .replace(/\.[^/.]+$/, "")      // remove extensão
+      .replace(/@2x$/, "")            // remove @2x
+      .replace(/[^a-z0-9]+/g, "-")    // normaliza
+      .replace(/^-+|-+$/g, "")        // trim
+  }
+
+  const slugify = (value) => {
+    if (!value) return null
+
+    return value
+      .toLowerCase()
+      .normalize("NFD").replace(/[\u0300-\u036f]/g, "") // remove acentos
+      .replace(/[^a-z0-9]+/g, "-")
+      .replace(/^-+|-+$/g, "")
+  }
+
+
   const renderCustomEntry = (entry) => {
     if (entry.__typename === "ContentfulGallery") {
-      if (entry.slideshow) {
-        return (
-          <Slideshow
-            media={entry.media}
-            shadows={entry.shadows}
-          />
-        )
+      const slug = slugify(entry.name)
+
+      const commonProps = {
+        media: entry.media,
+        shadows: entry.shadows,
+        className: slug ? `gallery--${slug}` : undefined,
+        "data-gallery": slug || undefined
       }
 
-      return (
-        <Gallery
-          media={entry.media}
-          shadows={entry.shadows}
-        />
-      )
+      if (entry.slideshow) {
+        return <Slideshow {...commonProps} />
+      }
+
+      return <Gallery {...commonProps} />
     }
+
 
     return null
   }
@@ -105,7 +122,7 @@ export default function WorkContent({ work, restricted }) {
         const alt = asset.description
 
         return (
-          <figure>
+          <figure data-image={getAssetSlug(asset)}>
             <img src={asset.url} alt={alt} />
             {alt && <figcaption>{alt}</figcaption>}
           </figure>

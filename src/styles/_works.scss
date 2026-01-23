@@ -151,7 +151,7 @@ article.work{
     .work-intro{
         max-width: 680px;
         font-weight: 400;
-        font-size: 22px;
+        font-size: 24px;
     }
 
     .work-body{
@@ -160,7 +160,7 @@ article.work{
         flex-direction: column;
         align-items: center;
         margin: 0;
-        font-size: 18px;
+        font-size: 20px;
         color: #333333;
         letter-spacing: -0.02em;
         
@@ -172,7 +172,7 @@ article.work{
             display: none;
         }
 
-        *{
+        > *{
             width: 100%;
             max-width: 680px;
         }
@@ -183,7 +183,9 @@ article.work{
             font-size: 16px;
             text-transform: uppercase;
             color: #666666;
+            margin-top: 48px;
             margin-bottom: 16px;
+            letter-spacing: 0.02em;
         }
 
         h2{
@@ -197,6 +199,10 @@ article.work{
             margin-bottom: 16px;
 
             + h2{
+                margin-top: 16px;
+            }
+
+            + figure{
                 margin-top: 16px;
             }
             
@@ -246,7 +252,20 @@ article.work{
 
             img{
                 max-width: 100%;
+                width: 100%;
+                height: auto;
+                display: block;
             }
+        }
+
+        h3{
+            font-size: 24px;
+            font-weight: 700;
+        }
+
+        h4{
+            font-weight: 500;
+            font-size: 20px;
         }
 
     }
@@ -494,6 +513,7 @@ article.work{
 }
 
 .embla {
+    max-width: 100%;
   //overflow: hidden;
 }
 
@@ -507,19 +527,97 @@ article.work{
   width: clamp(260px, 30vw, 800px);
 }
 
+.embla__buttons{
+    width: 80px;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    right: 0;
+    z-index: 100;
+
+    .embla__button--prev{
+        margin-bottom: 8px;
+    }
+}
+
 .embla__button {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  background: none;
-  border: none;
-  cursor: pointer;
+    width: 80px;
+    height: 80px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    background: #FFFFFF;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.08);
+
+    &.is-disabled{
+
+        svg{
+            opacity: 0.3;
+        }
+
+    }
+
 }
 
-.embla__button--prev {
-  left: -32px;
+
+figure{
+    
+    figcaption{
+        font-size: 16px;
+        color: #6E6E6E;
+        margin-top: 16px;
+        font-style: normal;
+    }
+
 }
 
-.embla__button--next {
-  right: -32px;
+/* CASES */
+
+article.work .work-body{
+
+    > {
+
+        figure[data-image=system-mapping]{
+            max-width: 1096px;
+        }
+
+    }
+
+    .gallery--extensibility-settings-and-mobile-tab{
+        max-width: 1208px;
+    }
+
+    .gallery--charts-new-app-settings{
+        max-width: 880px;
+    }
+
+    figure[data-image=window-resizing]{
+        max-width: 505px;
+    }
+
+    figure[data-image=sidebar-navigation],
+    figure[data-image=search-experience]{
+        max-width: 420px;
+    }
+
+    figure[data-image=sub-page-experience]{
+        max-width: 680px;
+    }
+
+    figure[data-image=two-settings-per-line],
+    figure[data-image=max-width],
+    figure[data-image=spacing],
+    figure[data-image=sub-page-preview]{
+        max-width: 848px;
+    }
+
+    .gallery--plugins-injecting-settings-new-settings-experience{
+        max-width: 1000px;
+    }
+
+    .gallery--settings-per-platform-android-ios-new-apps-experience{
+        max-width: 1280px;
+    }
 }
+
