@@ -172,7 +172,12 @@ article.work{
             display: none;
         }
 
-        > *{
+        > h6,
+        > h2,
+        > p,
+        > ul,
+        > h3,
+        > h4{
             width: 100%;
             max-width: 680px;
         }
@@ -247,7 +252,6 @@ article.work{
         }
 
         > figure{
-            max-width: 100%;
             margin: 6px 0 24px 0;
 
             img{
@@ -519,13 +523,23 @@ article.work{
 
 .embla__container {
   display: flex;
+  align-items: flex-start;
   gap: 16px;
 }
 
 .embla__slide {
   flex: 0 0 auto;
-  width: clamp(260px, 30vw, 800px);
+  width: auto;
+  max-width: none;
+  display: flex;
 }
+
+.slideshow__item {
+  width: var(--image-max-width);
+  max-width: min(100%, var(--image-max-width));
+}
+
+
 
 .embla__buttons{
     width: 80px;
@@ -572,52 +586,36 @@ figure{
 
 }
 
-/* CASES */
-
-article.work .work-body{
-
-    > {
-
-        figure[data-image=system-mapping]{
-            max-width: 1096px;
-        }
-
-    }
-
-    .gallery--extensibility-settings-and-mobile-tab{
-        max-width: 1208px;
-    }
-
-    .gallery--charts-new-app-settings{
-        max-width: 880px;
-    }
-
-    figure[data-image=window-resizing]{
-        max-width: 505px;
-    }
-
-    figure[data-image=sidebar-navigation],
-    figure[data-image=search-experience]{
-        max-width: 420px;
-    }
-
-    figure[data-image=sub-page-experience]{
-        max-width: 680px;
-    }
-
-    figure[data-image=two-settings-per-line],
-    figure[data-image=max-width],
-    figure[data-image=spacing],
-    figure[data-image=sub-page-preview]{
-        max-width: 848px;
-    }
-
-    .gallery--plugins-injecting-settings-new-settings-experience{
-        max-width: 1000px;
-    }
-
-    .gallery--settings-per-platform-android-ios-new-apps-experience{
-        max-width: 1280px;
-    }
+.slideshow__item,
+.gallery__item,
+.rt-image {
+  width: var(--image-max-width);
 }
 
+
+.rt-image img,
+.gallery__item img,
+.slideshow__item img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+article.work .work-body .gallery{
+
+    &.gallery--charts-new-app-settings{
+        width: 880px;
+        justify-content: space-between;
+
+        .gallery__item{
+            width: 100% !important;
+            max-width: 100% !important;
+            text-align: center;
+
+            img{
+                width: 200px;
+            }
+        }
+    }
+
+}

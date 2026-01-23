@@ -1,6 +1,7 @@
 import React, { useCallback, useEffect, useState } from "react"
 import useEmblaCarousel from "embla-carousel-react"
 import { GatsbyImage, getImage } from "gatsby-plugin-image"
+import { getVisualImageWidth } from "../utils/imageSizing"
 
 export default function Slideshow({ media, shadows, className }) {
   const [emblaRef, emblaApi] = useEmblaCarousel({
@@ -46,10 +47,18 @@ export default function Slideshow({ media, shadows, className }) {
         <div className="embla__container">
           {media.map((img, index) => {
             const image = getImage(img)
+            const visualWidth = getVisualImageWidth(img)
 
             return (
               <div className="embla__slide" key={index}>
-                <figure>
+                <figure
+                  className="slideshow__item"
+                  style={
+                    visualWidth
+                      ? { "--image-max-width": `${visualWidth}px` }
+                      : undefined
+                  }
+                >
                   <GatsbyImage
                     image={image}
                     alt={img.description || ""}
@@ -61,6 +70,7 @@ export default function Slideshow({ media, shadows, className }) {
               </div>
             )
           })}
+
         </div>
       </div>
 

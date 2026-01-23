@@ -82,10 +82,20 @@ export const query = graphql`
       project
       timeline
       role
+
       cover {
         gatsbyImageData(width: 1600)
         description
+        file {
+          details {
+            image {
+              width
+              height
+            }
+          }
+        }
       }
+
       body {
         raw
         references {
@@ -98,10 +108,16 @@ export const query = graphql`
             url
             file {
               fileName
+              details {
+                image {
+                  width
+                  height
+                }
+              }
             }
           }
 
-         ... on ContentfulGallery {
+          ... on ContentfulGallery {
             contentful_id
             name
             slideshow
@@ -109,14 +125,22 @@ export const query = graphql`
             media {
               gatsbyImageData(width: 1200)
               description
+              file {
+                fileName
+                details {
+                  image {
+                    width
+                    height
+                  }
+                }
+              }
             }
           }
-
         }
       }
-
     }
   }
 `
+
 
 export default WorkTemplate

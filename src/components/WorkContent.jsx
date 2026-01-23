@@ -8,6 +8,7 @@ import { BLOCKS, INLINES } from "@contentful/rich-text-types"
 import Gallery from "./Gallery"
 import Slideshow from "./Slideshow"
 import { GatsbyImage, getImage } from "gatsby-plugin-image"
+import { getVisualImageWidth } from "../utils/imageSizing"
 
 import "../styles/styles.scss"
 
@@ -120,14 +121,24 @@ export default function WorkContent({ work, restricted }) {
         if (!asset) return null
 
         const alt = asset.description
+        const visualWidth = getVisualImageWidth(asset)
 
         return (
-          <figure data-image={getAssetSlug(asset)}>
+          <figure
+            className="rt-image"
+            style={
+              visualWidth
+                ? { "--image-max-width": `${visualWidth}px` }
+                : undefined
+            }
+            data-image={getAssetSlug(asset)}
+          >
             <img src={asset.url} alt={alt} />
             {alt && <figcaption>{alt}</figcaption>}
           </figure>
         )
       },
+
 
       /**
        * Embedded entry inline
