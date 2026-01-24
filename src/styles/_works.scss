@@ -25,15 +25,12 @@
 
     .work{
         
-        //height: 600px;
-        margin-bottom: 40px;
+        margin-bottom: 24px;
         padding: 0;
-        //box-shadow: 0px 10px 20px rgba(#000, 0.25);
 
         @include display(phone) {
             padding: 0;
-            margin-bottom: 20px;
-            //box-shadow: 0px 10px 10px rgba(#000, 0.25);
+            margin-bottom: 16px;
             text-align: center;
         }
 
@@ -44,8 +41,9 @@
         a{
             width: 100%;
             display: flex;
-            padding: 60px;
+            padding: 48px;
             flex-direction: column;
+            gap: 24px;
 
             &:hover{
                 text-decoration: none;
@@ -57,9 +55,14 @@
             }
 
             @include display(phone) {
-                padding: 40px;
+                padding: 32px;
+                gap: 16px;
             }
 
+        }
+
+        h3{
+            margin: 0;
         }
 
     }
@@ -73,11 +76,13 @@
     }
 
     .work-title{
+        
         font-size: 40px;
-        margin-bottom: 20px;
+
         @include display(phone) {
             font-size: 32px;
         }
+
     }
 
     .work-description{
@@ -116,7 +121,7 @@ article.work{
             margin-bottom: 24px;
 
             @include display(phone) {
-                margin-bottom: 8px;
+                margin-bottom: 16px;
             }
 
             .indicator{
@@ -308,7 +313,11 @@ article.work{
     gap: 24px;
     align-items: center;
     opacity: .8;
-    font-size: 16px;;
+    font-size: 16px;
+    
+    @include display(phone) {
+        justify-content: center;
+    }
 
 
     > * {
@@ -353,6 +362,10 @@ article.work{
         font-size: 2rem;     
         font-weight: 900;
         margin-bottom: 24px;
+
+        @include display(phone) {
+           margin-bottom: 16px;
+        }
     }
 
     .works{
@@ -372,12 +385,18 @@ article.work{
 
         a{
             padding: 40px;
+            gap: 24px;
+
+            @include display(phone) {
+                padding: 32px;
+                gap: 16px;
+            }
         }
         
         h3{
             font-size: 2.2rem;
-            margin-bottom: 16px;
             text-align: center;
+            margin: 0;
         }
 
     }
