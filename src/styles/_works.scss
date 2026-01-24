@@ -183,6 +183,7 @@ article.work{
         
         @include display(phone) {
             padding: 0 20px;
+            overflow-x: hidden;
         }
 
         &:empty{
