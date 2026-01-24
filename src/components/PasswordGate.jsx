@@ -24,30 +24,37 @@ export default function PasswordGate({ slug, password, onAuthorized }) {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="password-gate">
+
+    <div className="block-password-gate">
         
-      <h1>Restrict page</h1>
+      <h1>Restricted page</h1>
 
-      <input
-        type="text"
-        placeholder="Digite a senha"
-        value={value}
-        onChange={(e) => {
-          setValue(e.target.value)
-          setError(false)
-        }}
-      />
+      <form onSubmit={handleSubmit} className="password-gate">
 
-      <button type="submit">
-        Acessar
-      </button>
+        <div className="fields">
 
-      {error && (
-        <p className="password-error">
-          Senha incorreta
-        </p>
-      )}
+          <input
+            type="text"
+            placeholder="Type password"
+            value={value}
+            onChange={(e) => {
+              setValue(e.target.value)
+              setError(false)
+            }}
+          />
 
-    </form>
+          <button type="submit"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="#FAFAFA" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+          
+        </div>
+
+        {error && (
+          <p className="password-error">
+            Wrong password.
+          </p>
+        )}
+
+      </form>
+
+    </div>
   )
 }
