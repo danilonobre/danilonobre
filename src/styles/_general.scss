@@ -67,7 +67,7 @@ h1{
 	line-height: 1.2;
 	
 	@include display(phone) {
-		font-size: rem(34px);
+		font-size: rem(40px);
 	}
 
 }
