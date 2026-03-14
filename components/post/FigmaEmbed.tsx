@@ -15,7 +15,7 @@ function toEmbedUrl(url: string): string {
     parsed.searchParams.set('embed-host', 'share')
   }
   parsed.searchParams.set('hide-ui', '1')
-  parsed.searchParams.set('scaling', '1')
+  parsed.searchParams.set('scaling', 'scale-down-width')
   parsed.searchParams.set('hotspot-hints', '0')
   return parsed.toString()
 }
