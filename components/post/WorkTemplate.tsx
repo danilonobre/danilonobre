@@ -35,12 +35,7 @@ export function WorkTemplate({ frontmatter, children, pathSlug, cover, intro, as
   const { title, project, timeline, private: isPrivate, figma, figmaMobile } = frontmatter
 
   if (figma) {
-    return (
-      <>
-        <FigmaEmbed url={figma} urlMobile={figmaMobile} />
-        <MoreWorks exclude={pathSlug} />
-      </>
-    )
+    return <FigmaEmbed url={figma} urlMobile={figmaMobile} />
   }
 
   return (

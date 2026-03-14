@@ -25,9 +25,7 @@ export default async function WorkPage({ params }: PageProps) {
 
   if (frontmatter.figma) {
     return (
-      <Layout wrapperClass="page-main" isHome={false} pageWork>
-        <WorkTemplate frontmatter={frontmatter} pathSlug={slug} intro={frontmatter.intro} cover={frontmatter.cover} />
-      </Layout>
+      <WorkTemplate frontmatter={frontmatter} pathSlug={slug} />
     )
   }
 
