@@ -24,7 +24,7 @@ Definida no `.env.local` para desenvolvimento e nas variáveis de ambiente do Ve
 4. Usuário submete a senha no formulário
 5. POST para `/api/auth` com `{ password, slug }`
 6. Se senha correta: API seta cookie `portfolio_auth` e retorna `{ success: true, redirect: '/<slug>' }`
-7. Se senha errada: retorna `{ success: false, error: 'Senha incorreta' }`
+7. Se senha errada: retorna `{ success: false, error: 'Wrong password' }`
 8. Com cookie válido: middleware deixa passar, post renderiza normalmente
 
 ---

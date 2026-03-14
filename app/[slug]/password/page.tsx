@@ -27,7 +27,7 @@ export default function PasswordPage() {
         router.push(data.redirect)
         return
       }
-      setError(data.error ?? 'Senha incorreta')
+      setError(data.error ?? 'Wrong password')
     } catch {
       setError('Erro ao validar. Tente novamente.')
     } finally {

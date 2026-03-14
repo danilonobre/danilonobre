@@ -25,7 +25,7 @@ export async function POST(request: NextRequest) {
 
   if (!validatePassword(password)) {
     return NextResponse.json(
-      { success: false, error: 'Senha incorreta' },
+      { success: false, error: 'Wrong password' },
       { status: 401 }
     )
   }
