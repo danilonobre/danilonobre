@@ -72,7 +72,7 @@ const assetBasePath = (pathSlug: string) => `/works-asset/${pathSlug}`
 export function getMDXComponents(pathSlug: string): MDXComponents {
   const basePath = assetBasePath(pathSlug)
   return {
-    p: ({ children }: { children: React.ReactNode }) => {
+    p: ({ children }: { children?: React.ReactNode }) => {
       const childArray = React.Children.toArray(children)
       const hasBlockElement = childArray.some(
         (child) => React.isValidElement(child) && typeof child.type !== 'string'
