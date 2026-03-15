@@ -17,7 +17,6 @@
 ```yaml
 title: string        # obrigatório — título do work
 slug: string         # obrigatório — único, define a URL (/slug)
-order: number        # obrigatório — ordem na home (menor = primeiro)
 published: boolean   # obrigatório — false oculta da home e bloqueia a rota
 project: string      # opcional — nome da empresa/cliente
 timeline: string     # opcional — ex: '2021 - 2023'
@@ -31,6 +30,24 @@ cover: string        # opcional — nome do arquivo da imagem de capa (na pasta 
 **Regra:** se `figma` estiver preenchido, o post renderiza `FigmaEmbed` em vez do body MDX. O body pode ficar vazio.
 
 **Regra:** se `private: true`, o middleware bloqueia a rota e redireciona para `/<slug>/password`.
+
+---
+
+## Ordenação dos works na home
+
+A ordem é controlada pelo arquivo `/content/works-order.json` — um array de `pathSlug` strings. A posição no array define a posição na home.
+
+```json
+[
+  "designing-scalable-system-app-settings",
+  "push-notification-composer",
+  "camera-capabilities-outsystems-mobile-apps"
+]
+```
+
+- Works ausentes do arquivo aparecem no final da lista.
+- Se o arquivo não existir, os works são exibidos sem ordenação específica (fallback).
+- Em desenvolvimento, a página `/admin` permite reordenar via drag-and-drop.
 
 ---
 
@@ -135,7 +152,6 @@ Usados diretamente como Markdown — não como componente:
 ---
 title: Nome do Work
 slug: "nome-do-work"
-order: 1
 published: true
 project: Nome da Empresa
 timeline: '2023'
@@ -163,7 +179,6 @@ Texto explicativo em markdown.
 ---
 title: Nome do Work
 slug: "nome-do-work"
-order: 1
 published: true
 project: Nome da Empresa
 timeline: '2023'

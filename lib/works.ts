@@ -14,7 +14,6 @@ const WORKS_DIR = path.join(process.cwd(), 'content/works')
 export interface WorkFrontmatter {
   title: string
   slug: string
-  order: number
   published: boolean
   project?: string
   timeline?: string
@@ -49,7 +48,22 @@ export function getWorks(): WorkItem[] {
     if (!frontmatter || (!frontmatter.published && !isDev)) continue
     works.push({ ...frontmatter, pathSlug })
   }
-  works.sort((a, b) => a.order - b.order)
+  let slugOrder: string[] = []
+  const orderFile = path.join(process.cwd(), 'content/works-order.json')
+  if (fs.existsSync(orderFile)) {
+    slugOrder = JSON.parse(fs.readFileSync(orderFile, 'utf-8'))
+  }
+
+  works.sort((a, b) => {
+    if (slugOrder.length === 0) return 0
+    const ai = slugOrder.indexOf(a.pathSlug)
+    const bi = slugOrder.indexOf(b.pathSlug)
+    if (ai === -1 && bi === -1) return 0
+    if (ai === -1) return 1
+    if (bi === -1) return -1
+    return ai - bi
+  })
+
   return works
 }
 
