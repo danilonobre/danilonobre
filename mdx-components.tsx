@@ -7,6 +7,10 @@ import { GalleryImage } from '@/components/post/GalleryImage'
 import { FigmaEmbed } from '@/components/post/FigmaEmbed'
 import { Cover } from '@/components/post/Cover'
 import { WorkVideo } from '@/components/post/WorkVideo'
+import { ResearchBlock } from '@/components/post/ResearchBlock'
+import { HypothesisStatement } from '@/components/post/HypothesisStatement'
+import { Highlight } from '@/components/post/Highlight'
+import { ResearchResults, ResearchResult } from '@/components/post/ResearchResult'
 
 function resolveImageSrc(src: string | undefined, pathSlug: string): string {
   if (!src) return ''
@@ -96,6 +100,11 @@ export function getMDXComponents(pathSlug: string): MDXComponents {
       <Cover src={props.src} alt={props.alt} basePath={basePath} />
     ),
     WorkVideo,
+    Highlight,
+    ResearchResults,
+    ResearchResult,
+    HypothesisStatement,
+    ResearchBlock,
   }
 }
 
@@ -115,6 +124,11 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
     FigmaEmbed,
     Cover,
     WorkVideo,
+    Highlight,
+    ResearchResults,
+    ResearchResult,
+    HypothesisStatement,
+    ResearchBlock,
     ...components,
   }
 }

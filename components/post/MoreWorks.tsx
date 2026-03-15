@@ -7,7 +7,7 @@ interface MoreWorksProps {
 }
 
 export function MoreWorks({ exclude }: MoreWorksProps) {
-  const works = getWorks().filter((w) => w.pathSlug !== exclude)
+  const works = getWorks().filter((w) => w.pathSlug !== exclude).slice(0, 1)
   return (
     <section className="works-related">
       <h2>More works</h2>
