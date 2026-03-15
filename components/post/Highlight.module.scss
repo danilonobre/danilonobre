@@ -7,7 +7,7 @@
     background-color: rgba($brand-red, 0.06);
     border-radius: 12px;
     padding: 32px 40px;
-    max-width: 680px;
+    max-width: 1064px;
     width: 100%;
     margin: 16px 0;
 
@@ -21,14 +21,14 @@
     flex-shrink: 0;
     display: flex;
     align-items: center;
-    color: $black;
+    color: #D61408;
 }
 
 .content {
     flex: 1;
 
     p:last-child {
-        margin-bottom: 0;
+        margin-bottom: 0 !important;
     }
 }
 
