@@ -1,0 +1,56 @@
+// Shared variables and mixins for CSS Modules
+// Import this instead of styles.scss in .module.scss files
+
+// Typography
+$font-family: 'Circular DN', sans-serif;
+$font-size: 16px !default;
+$font-weight: 400;
+$line-height: 1.5 !default;
+$letter-spacing: -.025em !default;
+
+// Colors
+$black: #0c0c0c;
+$brand-red: #D61408;
+$brand-red-dark: #dd1234;
+
+$text-primary: #333333;
+$text-secondary: #666666;
+$text-tertiary: #6E6E6E;
+
+$bg-page: #FAFAFA;
+$bg-warm: #FBF6F2;
+$border-light: #efefef;
+$bar-bg: #EBEBEB;
+
+// Spacing
+$space-xs: 4px;
+$space-sm: 8px;
+$space-md: 16px;
+$space-lg: 24px;
+$space-xl: 48px;
+$space-2xl: 80px;
+
+// Breakpoints
+@mixin display($range) {
+    $phone: 600px;
+    $laptop: 980px;
+    $desktop: 1200px;
+    $huge: 1420px;
+
+    @if $range == phone {
+        @media (max-width: #{$phone - 1}) { @content; }
+    } @else if $range == tablet {
+        @media (min-width: $phone) and (max-width: #{$laptop - 1}) { @content; }
+    } @else if $range == laptop {
+        @media (min-width: $laptop) and (max-width: #{$desktop - 1}) { @content; }
+    } @else if $range == desktop {
+        @media (min-width: $desktop) and (max-width: #{$huge - 1}) { @content; }
+    } @else if $range == huge {
+        @media (min-width: $huge) { @content; }
+    }
+}
+
+// Utilities
+@function rem($size) {
+    @return calc($size / 16px) * 1rem;
+}

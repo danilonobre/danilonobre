@@ -1,4 +1,5 @@
 import React from 'react'
+import styles from './HypothesisStatement.module.scss'
 
 interface HypothesisStatementProps {
   action: string
@@ -18,30 +19,30 @@ export function HypothesisStatement({
   success,
 }: HypothesisStatementProps) {
   return (
-    <div className="hypothesis">
-      <p className="hypothesis__text">
+    <div className={styles.root}>
+      <p className={styles.text}>
         We believe that{' '}
-        <span className="hypothesis__highlight hypothesis__highlight--purple">
+        <span className={`${styles.highlight} ${styles.purple}`}>
           {action}
         </span>{' '}
         will align with{' '}
-        <span className="hypothesis__highlight hypothesis__highlight--purple">
+        <span className={`${styles.highlight} ${styles.purple}`}>
           {alignment}
         </span>{' '}
         by{' '}
-        <span className="hypothesis__highlight hypothesis__highlight--purple">
+        <span className={`${styles.highlight} ${styles.purple}`}>
           {value}
         </span>
         . This solution is expected to{' '}
-        <span className="hypothesis__highlight hypothesis__highlight--blue">
+        <span className={`${styles.highlight} ${styles.blue}`}>
           {outcome}
         </span>
         , thereby{' '}
-        <span className="hypothesis__highlight hypothesis__highlight--blue">
+        <span className={`${styles.highlight} ${styles.blue}`}>
           {impact}
         </span>
         . We will know we are successful when{' '}
-        <span className="hypothesis__highlight hypothesis__highlight--green">
+        <span className={`${styles.highlight} ${styles.green}`}>
           {success}
         </span>
         .

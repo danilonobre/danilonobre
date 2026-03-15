@@ -1,22 +1,23 @@
 import React from 'react'
+import styles from './ResearchResult.module.scss'
 
 export function ResearchResults({ children }: { children: React.ReactNode }) {
-  return <div className="research-results">{children}</div>
+  return <div className={styles.results}>{children}</div>
 }
 
 export function ResearchResult({ percentage, text }: { percentage: string; text: string }) {
   const pct = Number(percentage) || 0
   return (
-    <div className="research-result">
-      <div className="research-result__bar-wrapper">
+    <div className={styles.result}>
+      <div className={styles.barWrapper}>
         <div
-          className="research-result__bar"
+          className={styles.bar}
           style={{ width: `${pct}%` }}
         />
       </div>
-      <div className="research-result-wrapper">
-        <span className="research-result__value">{pct}%</span>
-        <span className="research-result__text">{text}</span>
+      <div className={styles.wrapper}>
+        <span className={styles.value}>{pct}%</span>
+        <span className={styles.text}>{text}</span>
       </div>
     </div>
   )

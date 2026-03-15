@@ -2,6 +2,7 @@
 
 import React from 'react'
 import { Star, StarHalf, ChatText, ClipboardText } from '@phosphor-icons/react'
+import styles from './ResearchBlock.module.scss'
 
 interface ResearchBlockProps {
   variant: 'quote' | 'rating'
@@ -57,27 +58,27 @@ export function ResearchBlock({
   const maxRating = toNumber(maxRatingProp) ?? 7
 
   return (
-    <div className="research-block">
-      <div className="research-block__header">
-        <i className="research-block__icon" aria-hidden>
+    <div className={styles.root}>
+      <div className={styles.header}>
+        <i className={styles.icon} aria-hidden>
           {variant === 'quote'
             ? <ChatText size={24} color="#D61408" />
             : <ClipboardText size={24} color="#D61408" />
           }
         </i>
-        <span className="research-block__label">{displayLabel}</span>
+        <span className={styles.label}>{displayLabel}</span>
       </div>
 
-      <p className="research-block__question">{question}</p>
+      <p className={styles.question}>{question}</p>
 
       {variant === 'quote' && children && (
-        <blockquote className="research-block__quote">
+        <blockquote className={styles.quote}>
           {children}
         </blockquote>
       )}
 
       {variant === 'rating' && rating !== null && (
-        <div className="research-block__rating" aria-label={`${rating} out of ${maxRating}`}>
+        <div className={styles.rating} aria-label={`${rating} out of ${maxRating}`}>
           <RatingStars rating={rating} maxRating={maxRating} />
         </div>
       )}

@@ -199,10 +199,6 @@ h5{
 	margin-bottom: 6px;
 }
 
-h6{
-
-}
-
 iframe{
 	max-width: 100%;
 	border: 0;
@@ -211,13 +207,6 @@ iframe{
 table{
 	width: 100%;
 
-
-	tr{
-
-		&:hover{
-		}
-	}
-
 	th{
 		font-weight: bold;
 	}
@@ -225,30 +214,6 @@ table{
 	th,
 	td{
 		padding: 15px;
-	}
-
-	/*tr:last-child,
-	th:last-child,
-	td:last-child,
-	.sembg{
-		background-image: none;
-	}*/
-
-	td.sembg{
-	}
-
-		th,
-		td{
-		}
-
-		th{
-		}
-
-		td{
-
-		}
-
-	h3{
 	}
 
 }

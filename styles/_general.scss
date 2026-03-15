@@ -5,7 +5,7 @@ body {
 	height: auto;
 	min-height: 100%;
 	position: relative;
-	background-color: #FAFAFA;
+	background-color: $bg-page;
 	overflow-x: hidden;
 }
 
@@ -21,34 +21,8 @@ a{
 	}
 }
 
-.opened{
-
-	display: block;
-
-}
-
-.ui-autocomplete{
-
-	a{
-		img{
-			display: none !important;
-		}
-	}
-
-}
-
 img {
     height: auto;
-}
-
-.flex{
-	display: flex;
-	justify-content: space-between;
-
-	@include display(phone) {
-		flex-direction: column;
-	}
-
 }
 
 p{
@@ -97,20 +71,8 @@ h2{
 	letter-spacing: -0.05em;
 	margin: 0 0 16px 0;
 
-	@media (max-width: 768px) {
+	@include display(phone) {
 		font-size: 36px;
-		margin: 0 0 16px 0;
-	}
-
-	&.titulo-sessao{
-		border-bottom: 5px solid #eee;
-		padding-bottom: 20px;
-	}
-}
-
-.container{
-
-	@media (max-width: 768px) {
 	}
 
 }
@@ -130,161 +92,6 @@ figure{
 	img{
 		height: 100%;
     object-fit: cover;
-	}
-
-}
-
-body{
-
-	.blocker{
-
-		background-color: rgba(255,255,255,0.9);
-		z-index: 10;
-
-		@include display(phone) {
-
-				padding: 10px 10px 0 10px;
-				//background-color: transparent;
-
-		}
-
-		&.jquery-modal.current{
-
-			.modal{
-				display: inline-block !important;
-				bottom: 0;
-			}
-		}
-
-	}
-
-	.modal{
-		max-width: 707px;
-		width: 100%;
-		height: auto;
-		box-shadow: none;
-		@include border-radius(20px);
-		//border: 2px solid #CCCCCC;
-		padding: 40px;
-		font-family: 'CircularStd';
-
-		box-shadow: 0 0 20px 0 rgba(0,0,0,.5);
-
-		@include display(phone) {
-
-			@include border-radius(20px 20px 0 0);
-			transition: all 3s;
-			bottom: -100%;
-
-		}
-
-		a.close-modal{
-
-			@include display(phone) {
-				top: 12px;
-				right: 12px;
-			}
-
-		}
-
-		h3{
-			font-size: 44px;
-			font-weight: 900;
-			letter-spacing: -.05em;
-
-			@include display(phone) {
-				line-height: 1;
-				font-size: 32px;
-			}
-
-		}
-
-		.introtext{
-			color: #808080;
-			font-size: 18px;
-			margin-bottom: 20px;
-			line-height: 1.4;
-
-			@include display(phone) {
-				font-size: 16px;
-			}
-		}
-
-		.wpcf7-form-control-wrap{
-			width: 50%;
-			padding-right: 10px;
-			padding-left: 10px;
-			display: block;
-			float: left;
-			margin-bottom: 20px;
-
-			@include display(phone) {
-				padding-left: 0;
-				padding-right: 0;
-				width: 100%;
-			}
-
-			&:nth-child(odd){
-				padding-left: 0;
-			}
-
-			&:nth-child(even){
-				padding-right: 0;
-			}
-		}
-
-		.field-contactado{
-
-			.wpcf7-form-control-wrap{
-				padding-left: 0;
-			}
-
-			& > label{
-				float: left;
-				font-size: 20px;
-				margin-bottom: 5px;
-				color: #555;
-			}
-
-			.contato{
-				width: 100%;
-				clear: both;
-				display: block;
-			}
-
-		}
-
-		.wpcf7-radio{
-
-			@include display(phone) {
-				display: flex;
-				flex-direction: column;
-			}
-
-			input{
-				//display: none;
-			}
-
-			span.wpcf7-list-item{
-
-				margin: 0 30px 0 0;
-				font-size: 1.3rem;
-				cursor: pointer;
-
-				label{
-				    display: flex;
-					align-items: center;
-				}
-
-			}
-
-
-		}
-
-		.btn{
-			width: 100%;
-		}
-
 	}
 
 }

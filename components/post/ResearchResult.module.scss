@@ -1,0 +1,70 @@
+@import '../../styles/shared';
+
+.results {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    width: 100%;
+    max-width: 680px;
+    margin: 24px 0;
+}
+
+.result {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+
+    @include display(phone) {
+        gap: 16px;
+        flex-direction: column;
+    }
+}
+
+.wrapper {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+
+    @include display(phone) {
+        width: 100%;
+        gap: 8px;
+    }
+}
+
+.barWrapper {
+    width: 200px;
+    min-width: 200px;
+    height: 5px;
+    border-radius: 3px;
+    background: $bar-bg;
+
+    @include display(phone) {
+        width: 100%;
+        flex: auto;
+    }
+}
+
+.bar {
+    height: 100%;
+    background: $brand-red;
+    border-radius: 3px;
+}
+
+.value {
+    font-weight: 700;
+    font-size: 24px;
+    color: $black;
+    min-width: 52px;
+    text-align: right;
+
+    @include display(phone) {
+        text-align: left;
+    }
+}
+
+.text {
+    font-size: 16px;
+    color: $text-primary;
+    flex: 1;
+    line-height: 1.2;
+}
