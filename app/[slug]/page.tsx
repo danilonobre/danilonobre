@@ -19,7 +19,8 @@ export default async function WorkPage({ params }: PageProps) {
   const frontmatter = getWorkFrontmatter(slug)
   const rawContent = getWorkContent(slug)
 
-  if (!frontmatter) notFound()
+  const isDev = process.env.NODE_ENV === 'development'
+  if (!frontmatter || (!frontmatter.published && !isDev)) notFound()
 
   const assetBasePath = `/works-asset/${slug}`
 

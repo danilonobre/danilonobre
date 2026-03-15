@@ -108,6 +108,24 @@ article.work{
             padding: 0 16px;
         }
 
+        .draft-indicator{
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+            padding: 6px 16px;
+            gap: 6px;
+            background: rgba(180, 130, 0, 0.1);
+            border-radius: 50px;
+            color: #8B6914;
+            font-size: 14px;
+            margin-bottom: 24px;
+
+            @include display(phone) {
+                margin-bottom: 16px;
+            }
+        }
+
         .restricted-indicator{
 
             margin-bottom: 24px;

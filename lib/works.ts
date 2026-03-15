@@ -45,7 +45,8 @@ export function getWorks(): WorkItem[] {
   const works: WorkItem[] = []
   for (const pathSlug of slugs) {
     const frontmatter = getWorkFrontmatter(pathSlug)
-    if (!frontmatter || !frontmatter.published) continue
+    const isDev = process.env.NODE_ENV === 'development'
+    if (!frontmatter || (!frontmatter.published && !isDev)) continue
     works.push({ ...frontmatter, pathSlug })
   }
   works.sort((a, b) => a.order - b.order)

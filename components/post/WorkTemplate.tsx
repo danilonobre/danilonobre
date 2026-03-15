@@ -31,8 +31,12 @@ const IconLock = () => (
   <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4.66667 7.33331V4.66665C4.66667 3.78259 5.01786 2.93474 5.64298 2.30962C6.2681 1.6845 7.11595 1.33331 8 1.33331C8.88406 1.33331 9.7319 1.6845 10.357 2.30962C10.9821 2.93474 11.3333 3.78259 11.3333 4.66665V7.33331M3.33333 7.33331H12.6667C13.403 7.33331 14 7.93027 14 8.66665V13.3333C14 14.0697 13.403 14.6666 12.6667 14.6666H3.33333C2.59695 14.6666 2 14.0697 2 13.3333V8.66665C2 7.93027 2.59695 7.33331 3.33333 7.33331Z" stroke="#0C0C0C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></svg>
 )
 
+const IconDraft = () => (
+  <svg width="16" height="16" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12.75 2.25L15.75 5.25M1.5 16.5L2.18 13.44C2.22 13.26 2.31 13.1 2.44 12.97L11.69 3.72C12.08 3.33 12.71 3.33 13.1 3.72L14.28 4.9C14.67 5.29 14.67 5.92 14.28 6.31L5.03 15.56C4.9 15.69 4.74 15.78 4.56 15.82L1.5 16.5Z" stroke="#0C0C0C" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
+)
+
 export function WorkTemplate({ frontmatter, children, pathSlug, cover, intro, assetBasePath }: WorkTemplateProps) {
-  const { title, project, timeline, private: isPrivate, figma, figmaMobile } = frontmatter
+  const { title, project, timeline, private: isPrivate, published, figma, figmaMobile } = frontmatter
 
   if (figma) {
     return <FigmaEmbed url={figma} urlMobile={figmaMobile} />
@@ -42,6 +46,11 @@ export function WorkTemplate({ frontmatter, children, pathSlug, cover, intro, as
     <section className="block-works block-works-full">
       <article className="work">
         <header className="work-header">
+          {!published && (
+            <div className="draft-indicator">
+              <IconDraft /> <span>Draft</span>
+            </div>
+          )}
           {isPrivate && (
             <div className="restricted-indicator">
               <a href="javascript:void(0);" className="indicator">
