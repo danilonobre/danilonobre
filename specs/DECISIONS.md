@@ -101,3 +101,33 @@ Registro de decisões técnicas não-óbvias tomadas durante o desenvolvimento.
 **Decisão:** O lock button é sempre o **último botão** (mais à direita) na `DevToolbar`. Outros botões (como o "+" de criar post) vêm antes dele.
 
 **Motivo:** Consistência posicional — o user sempre encontra o cadeado no mesmo lugar, independente de quantos botões existam na toolbar.
+
+---
+
+## D011 — Preview de body com placeholders para componentes MDX
+
+**Contexto:** O body do post é escrito em MDX raw. Renderizar MDX completo no client exigiria `next-mdx-remote` no client side.
+
+**Decisão:** Em preview mode de posts novos (`/new`), o body é parseado com um parser simples: markdown (headings, parágrafos) renderiza normalmente, e tags JSX (`<Gallery>`, `<Highlight>`, etc.) exibem um placeholder visual estilizado com o nome do componente. Para posts existentes, o preview usa o conteúdo MDX renderizado server-side (passado como `children`).
+
+**Motivo:** Simplicidade — evita dependência de compilação MDX no client. Os placeholders comunicam visualmente onde os componentes vão aparecer sem necessidade de renderizá-los.
+
+---
+
+## D012 — Posts novos aparecem primeiro na ordem
+
+**Contexto:** Ao criar um post via `/new`, ele precisa de uma posição na lista da home.
+
+**Decisão:** Novos posts são inseridos no **início** de `content/works-order.json` (via `unshift`).
+
+**Motivo:** Posts recém-criados são mais relevantes e devem aparecer no topo para facilitar acesso e teste durante desenvolvimento.
+
+---
+
+## D013 — Arquivo MDX criado apenas no save
+
+**Contexto:** Navegar para `/new` poderia criar imediatamente o diretório e arquivo no disco.
+
+**Decisão:** Nada é escrito no disco até o user clicar explicitamente no lock button (save). Todo o estado do formulário é mantido em memória.
+
+**Motivo:** Evita lixo no filesystem — posts abandonados ou em rascunho não deixam resíduos.

@@ -80,6 +80,19 @@ A ordem é controlada pelo arquivo `/content/works-order.json` — um array de `
 - Works ausentes do arquivo aparecem no final da lista.
 - Se o arquivo não existir, os works são exibidos sem ordenação específica (fallback).
 - Em dev mode, a reordenação é feita via drag-and-drop e salva com `POST /api/admin/reorder`.
+- Posts novos criados via `/new` são inseridos no **início** do array (aparecem primeiro na home).
+
+---
+
+## Criação de works via API
+
+Em dev mode, works podem ser criados ou editados via `POST /api/admin/create-work`. A API:
+
+1. Recebe campos do frontmatter + `body` (MDX raw) + `overwrite` (boolean).
+2. Cria `content/works/[slug]/index.mdx` com frontmatter YAML + body.
+3. Adiciona slug ao início de `works-order.json` (se ainda não existir).
+4. Com `overwrite: true`, sobrescreve arquivo existente (usado para edição).
+5. Nada é escrito no disco até o save explícito (o formulário em `/new` mantém tudo em memória até o user clicar save).
 
 ---
 

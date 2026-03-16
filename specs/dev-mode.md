@@ -2,7 +2,7 @@
 
 ## Visão geral
 
-Sistema de edição local ativo apenas em `NODE_ENV === 'development'`. Permite editar conteúdo da home (hero e ordem dos works) diretamente no browser, salvando alterações nos arquivos JSON do projeto.
+Sistema de edição local ativo apenas em `NODE_ENV === 'development'`. Permite editar conteúdo da home (hero e ordem dos works), criar novos posts e editar frontmatter de posts existentes diretamente no browser, salvando alterações nos arquivos do projeto.
 
 Nenhum componente ou API do dev mode é acessível em produção.
 
@@ -18,6 +18,12 @@ Com dev mode ativo, o hero da home se torna editável via `contentEditable`. Cad
 
 ### 3. Visibilidade de drafts
 Works com `published: false` aparecem na lista durante dev mode, com overlay visual (branco semitransparente) e badge "Draft".
+
+### 4. Criação de posts
+Botão "+" na toolbar da home navega para `/new`. A página exibe um formulário com todos os campos do frontmatter + body. Ao salvar (lock button), `POST /api/admin/create-work` cria o diretório e arquivo MDX no disco e adiciona o slug ao início de `content/works-order.json`. Nada é escrito no disco até o save explícito.
+
+### 5. Edição de frontmatter em posts existentes
+Nas páginas de post (`/[slug]`), o lock button (fechado) aparece em dev mode. Ao clicar, a página entra em edit mode com os campos do frontmatter pré-preenchidos. Ao salvar, sobrescreve o arquivo MDX via API e retorna ao preview mode com `router.refresh()` para re-renderizar o MDX server-side. O slug é read-only para posts existentes.
 
 ---
 
@@ -52,11 +58,46 @@ interface DevModeContextValue {
 
 O hook `useDevMode()` retorna `null` quando fora do provider (produção).
 
+### Toolbar
+
+**`DevToolbar`** (`components/dev/DevToolbar.tsx`)
+
+Client component. Wrapper fixo (top-right, z-index 900, `display: flex; gap: 8px`) que agrupa os botões de dev mode. Ordem: `CreatePostButton` primeiro, `DevModeToggle` por último (D010).
+
 ### Toggle
 
 **`DevModeToggle`** (`components/dev/DevModeToggle.tsx`)
 
-Botão flutuante fixo (top-right, z-index 900). Ícone de cadeado fechado (inativo) ou aberto (ativo). Cor de acento: `#f5a623`.
+Botão flutuante no `DevToolbar`. Ícone de cadeado fechado (inativo) ou aberto (ativo). Cor de acento: `#f5a623`. Sempre o último botão na toolbar (D010).
+
+### Criar post
+
+**`CreatePostButton`** (`components/dev/CreatePostButton.tsx`)
+
+Client component. Botão "+" no `DevToolbar` que navega para `/new`. Mesmo estilo visual base do toggle (44×44px, round, `#1a1a1a`).
+
+### Formulário de criação/edição
+
+**`CreatePostForm`** (`components/dev/CreatePostForm.tsx`)
+
+Client component. Formulário que gerencia edit/preview mode para posts novos e existentes.
+
+```tsx
+interface CreatePostFormProps {
+  initialData?: Partial<PostData>
+  children?: ReactNode
+}
+```
+
+- Sem `initialData`: modo criação (page `/new`), inicia em edit mode, campos vazios.
+- Com `initialData`: modo edição (page `/[slug]`), inicia em preview mode, campos pré-preenchidos, slug read-only.
+- `children`: conteúdo server-rendered (MDX) exibido no preview de posts existentes.
+
+Campos editáveis: `title`, `slug`, `published`, `project`, `timeline`, `private`, `intro`, `cover`, `figma`, `figmaMobile`, `body`.
+
+Slug auto-gerado do título (slugify) em posts novos. Editável manualmente.
+
+Lock button integrado: cadeado aberto (edit mode, tooltip "Save changes") → salva via API → preview mode. Cadeado fechado (preview mode) → click → volta ao edit mode.
 
 ### Save Actions
 
@@ -102,6 +143,13 @@ Recebe `{ slugs: string[] }` e escreve em `content/works-order.json`. Retorna 40
 
 Recebe campos do `HomeContent` e escreve em `content/home-content.json`. Sanitiza inputs para aceitar apenas os campos permitidos (`name`, `description`, `role`, `company`, `companyUrl`). Retorna 403 se `NODE_ENV !== 'development'`.
 
+### `POST /api/admin/create-work`
+**Arquivo:** `app/api/admin/create-work/route.ts`
+
+Recebe campos do frontmatter + `body` + `overwrite` (boolean). Cria `content/works/[slug]/index.mdx` com frontmatter YAML + body. Adiciona slug ao início de `content/works-order.json` (posts novos aparecem primeiro). Com `overwrite: true`, sobrescreve arquivo existente. Retorna 403 se produção, 400 se campos inválidos, 409 se slug já existe sem `overwrite`.
+
+Validação de slug: apenas `[a-z0-9]` e hifens.
+
 ---
 
 ## Fluxo na home (`app/page.tsx`)
@@ -111,13 +159,43 @@ Se NODE_ENV !== 'development':
   → <Layout> + <PageIntro> + <WorkList> (estático)
 
 Se NODE_ENV === 'development':
-  → <DevModeProvider> + <Layout> + <PageIntro> + <WorkList> + <DevModeToggle>
+  → <DevModeProvider> + <Layout> + <PageIntro> + <WorkList> + <DevToolbar>
+    → DevToolbar renderiza: CreatePostButton + DevModeToggle
     → PageIntro verifica useDevMode():
       - devMode OFF → renderiza conteúdo estático
       - devMode ON  → renderiza EditableIntro
     → WorkList verifica useDevMode():
       - devMode OFF → renderiza WorkCard normal
       - devMode ON  → renderiza WorkListSortable + DevModeSaveBar
+```
+
+## Fluxo na página de post (`app/[slug]/page.tsx`)
+
+```
+Se NODE_ENV !== 'development':
+  → <Layout> + <WorkTemplate> + <MDXRemote> (estático)
+
+Se NODE_ENV === 'development':
+  → <Layout> + <CreatePostForm initialData={...}> + <WorkTemplate> + <MDXRemote>
+    → CreatePostForm inicia em preview mode:
+      - preview → exibe children (WorkTemplate com MDX) + lock button (fechado)
+      - click lock → edit mode (formulário com campos pré-preenchidos)
+      - save → sobrescreve via API + router.refresh() → volta a preview
+```
+
+## Fluxo na página de criação (`app/new/page.tsx`)
+
+```
+Se NODE_ENV !== 'development':
+  → notFound()
+
+Se NODE_ENV === 'development':
+  → <Layout> + <CreatePostForm>
+    → CreatePostForm inicia em edit mode:
+      - edit → formulário com campos vazios + lock button (aberto, "Save changes")
+      - save → cria MDX via API → preview mode (placeholder para componentes MDX)
+      - click lock → volta a edit mode
+      - saves subsequentes usam overwrite: true
 ```
 
 ---
@@ -128,11 +206,24 @@ Todos os estilos do dev mode estão em `components/dev/DevMode.module.scss` (CSS
 
 | Classe | Uso |
 |---|---|
-| `.toggle` | Botão flutuante de toggle |
+| `.devToolbar` | Wrapper fixo top-right para botões (flex, gap 8px) |
+| `.toggleWrapper` | Wrapper relativo para toggle + tooltip |
+| `.toggle` | Botão circular 44×44px (base para toggle e "+") |
 | `.toggleActive` | Estado ativo do toggle (cor #f5a623) |
-| `.saveAction` | Container do botão de save |
-| `.saveButton` | Botão de save |
-| `.feedback` | Texto "Saved!" (verde) |
-| `.feedbackError` | Texto de erro (vermelho) |
+| `.tooltip` | Tooltip posicionado abaixo do botão |
+| `.spinner` | Spinner de loading animado |
 | `.editable` | Campos contentEditable (border dashed) |
 | `.dragHandle` | Handle de drag (posicionado à esquerda do card) |
+| `.formFieldTitle` | Input de título (font-size 50px, bold) |
+| `.formFieldInline` | Input inline para company/timeline |
+| `.formMetaSection` | Seção de metadata (slug, cover, figma, checkboxes) |
+| `.formMetaRow` | Row dentro da seção de metadata |
+| `.formMetaLabel` | Label uppercase para campo de metadata |
+| `.formMetaInput` | Input dentro de metadata |
+| `.formCheckboxLabel` | Label com checkbox (published, private) |
+| `.formFieldIntro` | Textarea para intro (font-size 24px) |
+| `.formFieldBody` | Textarea monospace para body MDX |
+| `.formError` | Mensagem de erro fixa (bottom center, vermelho) |
+| `.mdxPlaceholder` | Bloco placeholder para componentes MDX no preview |
+| `.mdxPlaceholderIcon` | Ícone do placeholder (code brackets) |
+| `.mdxPlaceholderLabel` | Label monospace do componente (ex: `<Gallery>`) |

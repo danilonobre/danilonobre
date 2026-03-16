@@ -508,7 +508,43 @@ Classes CSS: `.block-password-gate`, `.password-gate`, `.fields`, `.password-err
 
 ## Dev Mode Components
 
-Documentados em `specs/dev-mode.md`.
+### `DevToolbar`
+**Arquivo:** `components/dev/DevToolbar.tsx`
+
+Client component. Wrapper fixo (top-right) que agrupa `CreatePostButton` e `DevModeToggle`. O lock button é sempre o último (D010).
+
+Classe CSS: `.devToolbar` (CSS Module)
+
+---
+
+### `CreatePostButton`
+**Arquivo:** `components/dev/CreatePostButton.tsx`
+
+Client component. Botão "+" que navega para `/new`. Usa `useRouter().push('/new')`.
+
+Classe CSS: `.toggle` (reutiliza o estilo base do botão circular)
+
+---
+
+### `CreatePostForm`
+**Arquivo:** `components/dev/CreatePostForm.tsx`
+
+Client component. Formulário completo para criação e edição de posts. Gerencia edit/preview mode com lock toggle integrado.
+
+```tsx
+interface CreatePostFormProps {
+  initialData?: Partial<PostData>
+  children?: ReactNode
+}
+```
+
+- Sem `initialData`: modo criação (inicia em edit mode, campos vazios, slug auto-gerado).
+- Com `initialData` + `children`: modo edição de post existente (inicia em preview mode com conteúdo server-rendered, slug read-only).
+- Preview de posts novos: markdown renderizado + placeholders visuais para componentes MDX.
+- Preview de posts existentes: exibe `children` (MDX renderizado server-side).
+- Lock toggle: cadeado aberto salva via API → preview. Cadeado fechado → edit.
+
+Demais componentes de dev mode documentados em `specs/dev-mode.md`.
 
 ---
 
