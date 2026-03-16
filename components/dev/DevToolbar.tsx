@@ -7,8 +7,8 @@ import styles from './DevMode.module.scss'
 export function DevToolbar() {
   return (
     <div className={styles.devToolbar}>
-      <DevModeToggle />
       <CreatePostButton />
+      <DevModeToggle />
     </div>
   )
 }

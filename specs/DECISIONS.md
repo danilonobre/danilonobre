@@ -91,3 +91,13 @@ Registro de decisões técnicas não-óbvias tomadas durante o desenvolvimento.
 **Decisão:** `getWorks()` inclui works não publicados quando `NODE_ENV === 'development'`. No card, recebem overlay branco semitransparente e badge "Draft".
 
 **Motivo:** Permite pré-visualizar works em progresso sem publicá-los acidentalmente.
+
+---
+
+## D010 — Lock button sempre último na toolbar
+
+**Contexto:** O botão de cadeado (dev mode toggle) existe na home e na página de criação de post. A posição dele precisa ser consistente em qualquer tela.
+
+**Decisão:** O lock button é sempre o **último botão** (mais à direita) na `DevToolbar`. Outros botões (como o "+" de criar post) vêm antes dele.
+
+**Motivo:** Consistência posicional — o user sempre encontra o cadeado no mesmo lugar, independente de quantos botões existam na toolbar.
