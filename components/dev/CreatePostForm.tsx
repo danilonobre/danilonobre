@@ -134,6 +134,9 @@ export function CreatePostForm({ initialData, children }: CreatePostFormProps) {
   const [hasSaved, setHasSaved] = useState(isExisting)
   const [error, setError] = useState('')
   const slugManuallyEdited = useRef(isExisting)
+  const [advancedOpen, setAdvancedOpen] = useState(
+    !!(initialData?.figma || initialData?.figmaMobile)
+  )
 
   const updateField = useCallback(<K extends keyof PostData>(field: K, value: PostData[K]) => {
     setData((prev) => {
@@ -316,28 +319,6 @@ export function CreatePostForm({ initialData, children }: CreatePostFormProps) {
               </label>
             </div>
             <div className={styles.formMetaRow}>
-              <label className={styles.formMetaLabel}>
-                Figma URL
-                <input
-                  type="text"
-                  className={styles.formMetaInput}
-                  placeholder="https://www.figma.com/proto/..."
-                  value={data.figma}
-                  onChange={(e) => updateField('figma', e.target.value)}
-                />
-              </label>
-              <label className={styles.formMetaLabel}>
-                Figma Mobile URL
-                <input
-                  type="text"
-                  className={styles.formMetaInput}
-                  placeholder="https://www.figma.com/proto/..."
-                  value={data.figmaMobile}
-                  onChange={(e) => updateField('figmaMobile', e.target.value)}
-                />
-              </label>
-            </div>
-            <div className={styles.formMetaRow}>
               <label className={styles.formCheckboxLabel}>
                 <input
                   type="checkbox"
@@ -354,6 +335,48 @@ export function CreatePostForm({ initialData, children }: CreatePostFormProps) {
                 />
                 Private (password-protected)
               </label>
+            </div>
+
+            <button
+              type="button"
+              className={styles.formMetaAdvancedToggle}
+              onClick={() => setAdvancedOpen((prev) => !prev)}
+            >
+              <svg viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path
+                  d={advancedOpen ? 'M2 4L6 8L10 4' : 'M4 2L8 6L4 10'}
+                  stroke="currentColor"
+                  strokeWidth="1.5"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+              </svg>
+              Advanced settings
+            </button>
+
+            <div className={`${styles.formMetaAdvanced} ${advancedOpen ? styles.formMetaAdvancedOpen : ''}`}>
+              <div className={styles.formMetaRow}>
+                <label className={styles.formMetaLabel}>
+                  Figma URL
+                  <input
+                    type="text"
+                    className={styles.formMetaInput}
+                    placeholder="https://www.figma.com/proto/..."
+                    value={data.figma}
+                    onChange={(e) => updateField('figma', e.target.value)}
+                  />
+                </label>
+                <label className={styles.formMetaLabel}>
+                  Figma Mobile URL
+                  <input
+                    type="text"
+                    className={styles.formMetaInput}
+                    placeholder="https://www.figma.com/proto/..."
+                    value={data.figmaMobile}
+                    onChange={(e) => updateField('figmaMobile', e.target.value)}
+                  />
+                </label>
+              </div>
             </div>
           </div>
 
