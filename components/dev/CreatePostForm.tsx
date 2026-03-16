@@ -357,7 +357,7 @@ export function CreatePostForm({ initialData, children }: CreatePostFormProps) {
             </div>
           </div>
 
-          <div className="work-intro">
+          <div className="work-intro" style={{ width: '100%' }}>
             <textarea
               className={styles.formFieldIntro}
               placeholder="Introduction text (optional)"
