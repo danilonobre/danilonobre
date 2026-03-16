@@ -22,8 +22,10 @@
 ├── app/
 │   ├── layout.tsx                  # RootLayout — importa styles.scss, GTM
 │   ├── page.tsx                    # Home — hero dinâmico + lista de works
+│   ├── new/
+│   │   └── page.tsx                # Criação de post (dev only, 404 em produção)
 │   ├── [slug]/
-│   │   ├── page.tsx                # Work template (SSG)
+│   │   ├── page.tsx                # Work template (SSG) + edit mode em dev
 │   │   └── password/
 │   │       └── page.tsx            # Tela de senha para posts privados
 │   ├── works-asset/
@@ -35,8 +37,10 @@
 │       └── admin/
 │           ├── reorder/
 │           │   └── route.ts        # POST — salva works-order.json (dev only)
-│           └── home-content/
-│               └── route.ts        # POST — salva home-content.json (dev only)
+│           ├── home-content/
+│           │   └── route.ts        # POST — salva home-content.json (dev only)
+│           └── create-work/
+│               └── route.ts        # POST — cria/sobrescreve MDX (dev only)
 ├── components/
 │   ├── layout/
 │   │   ├── Header.tsx
@@ -70,6 +74,9 @@
 │   └── dev/
 │       ├── DevModeProvider.tsx     # Context provider (dev mode state)
 │       ├── DevModeToggle.tsx       # Botão flutuante para toggle dev mode
+│       ├── DevToolbar.tsx          # Wrapper fixo que agrupa botões dev
+│       ├── CreatePostButton.tsx    # Botão "+" que navega para /new
+│       ├── CreatePostForm.tsx      # Formulário de criação/edição de posts
 │       ├── DevModeSaveBar.tsx      # Barra de save para reorder
 │       ├── DevSaveAction.tsx       # Botão genérico de save com feedback
 │       ├── EditableIntro.tsx       # Hero editável via contentEditable
@@ -153,7 +160,9 @@ O hero da home (nome, descrição, role, empresa) é lido de `content/home-conte
 Sistema ativo apenas quando `NODE_ENV === 'development'`. Permite:
 - Reordenar works via drag-and-drop (`@dnd-kit`)
 - Editar o conteúdo do hero inline
-- Salvar alterações que persistem nos arquivos JSON do projeto
+- Criar novos posts via formulário (`/new`)
+- Editar frontmatter de posts existentes via lock toggle
+- Salvar alterações que persistem nos arquivos JSON e MDX do projeto
 
 Ver `specs/dev-mode.md` para documentação completa.
 

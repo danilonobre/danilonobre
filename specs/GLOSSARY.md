@@ -9,7 +9,7 @@ Termos usados no projeto e nas specs.
 | **Work** | Um case study ou projeto de design no portfolio. Cada work é um diretório em `content/works/` com um `index.mdx`. |
 | **Slug** | Identificador único de um work, usado na URL (`/<slug>`). Corresponde ao nome da pasta em `content/works/`. Também chamado de `pathSlug` no código. |
 | **Frontmatter** | Metadados YAML no início de cada `index.mdx`. Define título, slug, published, private, etc. |
-| **Dev mode** | Modo de edição local (apenas em development). Permite reordenar works e editar o hero da home. |
+| **Dev mode** | Modo de edição local (apenas em development). Permite reordenar works, editar o hero da home, criar novos posts e editar frontmatter de posts existentes. |
 | **Hero** | Seção de introdução no topo da home page com nome, descrição, cargo e empresa. Conteúdo em `content/home-content.json`. |
 | **Private work** | Work protegido por senha. `private: true` no frontmatter ativa o middleware de autenticação. |
 | **Draft work** | Work não publicado. `published: false` no frontmatter. Visível apenas em dev mode. |
@@ -23,3 +23,6 @@ Termos usados no projeto e nas specs.
 | **Spec sync** | Processo de atualizar as specs para refletir o que foi implementado (step 4 do workflow SDD). |
 | **HomeContent** | Interface TypeScript e schema JSON para o conteúdo dinâmico do hero da home (name, description, role, company, companyUrl). |
 | **WorkItem** | Interface TypeScript que estende `WorkFrontmatter` com `pathSlug`. Tipo principal usado na listagem de works. |
+| **Post Creator** | Interface de criação de novos works via formulário em `/new`. Acessível apenas em development. Gera o arquivo MDX no disco ao salvar. |
+| **DevToolbar** | Wrapper fixo (top-right) que agrupa botões de dev mode. Ordem: "+" primeiro, lock por último (D010). |
+| **PostData** | Interface TypeScript com todos os campos editáveis de um post (frontmatter + body). Usada pelo `CreatePostForm`. |
