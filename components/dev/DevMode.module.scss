@@ -1,8 +1,15 @@
-.toggleWrapper {
+.devToolbar {
   position: fixed;
   top: 24px;
   right: 24px;
   z-index: 900;
+  display: flex;
+  gap: 8px;
+  align-items: flex-start;
+}
+
+.toggleWrapper {
+  position: relative;
 }
 
 .toggle {

@@ -3,7 +3,7 @@ import { WorkList } from '@/components/works/WorkList'
 import { getWorks } from '@/lib/works'
 import { getHomeContent } from '@/lib/home-content'
 import { DevModeProvider } from '@/components/dev/DevModeProvider'
-import { DevModeToggle } from '@/components/dev/DevModeToggle'
+import { DevToolbar } from '@/components/dev/DevToolbar'
 import { PageIntro } from '@/components/home/PageIntro'
 
 export default function HomePage() {
@@ -25,7 +25,7 @@ export default function HomePage() {
       <Layout wrapperClass="page-main" isHome>
         <PageIntro content={homeContent} />
         <WorkList works={works} />
-        <DevModeToggle />
+        <DevToolbar />
       </Layout>
     </DevModeProvider>
   )
