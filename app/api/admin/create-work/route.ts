@@ -92,7 +92,7 @@ export async function POST(request: NextRequest) {
   }
 
   if (!order.includes(slug)) {
-    order.push(slug)
+    order.unshift(slug)
     fs.writeFileSync(ORDER_FILE, JSON.stringify(order, null, 2) + '\n', 'utf-8')
   }
 
