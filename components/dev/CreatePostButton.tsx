@@ -13,12 +13,15 @@ export function CreatePostButton() {
   const router = useRouter()
 
   return (
-    <button
-      className={styles.toggle}
-      onClick={() => router.push('/new')}
-      aria-label="Create new post"
-    >
-      <IconPlus />
-    </button>
+    <div className={styles.toggleWrapper}>
+      <button
+        className={styles.toggle}
+        onClick={() => router.push('/new')}
+        aria-label="Create new post"
+      >
+        <IconPlus />
+      </button>
+      <span className={styles.tooltipWhite}>Create case</span>
+    </div>
   )
 }

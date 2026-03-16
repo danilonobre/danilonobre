@@ -60,6 +60,8 @@
   font-weight: 600;
   white-space: nowrap;
   pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.15s;
 
   &::before {
     content: '';
@@ -80,6 +82,10 @@
     border: 4px solid transparent;
     border-bottom-color: #1a1a1a;
   }
+}
+
+.toggleWrapper:hover .tooltip {
+  opacity: 1;
 }
 
 .tooltipEnd {
@@ -103,12 +109,6 @@
 .tooltipWhite {
   composes: tooltip;
   color: #fff;
-  opacity: 0;
-  transition: opacity 0.15s;
-}
-
-.toggleWrapper:hover .tooltipWhite {
-  opacity: 1;
 }
 
 .spinner {
