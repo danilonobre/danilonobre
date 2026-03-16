@@ -44,7 +44,7 @@ export function DevModeToggle() {
         )}
       </button>
       {ctx.devMode && (
-        <span className={styles.tooltip}>Save changes</span>
+        <span className={`${styles.tooltip} ${styles.tooltipEnd}`}>Save changes</span>
       )}
     </div>
   )
