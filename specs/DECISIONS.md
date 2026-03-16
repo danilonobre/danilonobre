@@ -131,3 +131,23 @@ Registro de decisões técnicas não-óbvias tomadas durante o desenvolvimento.
 **Decisão:** Nada é escrito no disco até o user clicar explicitamente no lock button (save). Todo o estado do formulário é mantido em memória.
 
 **Motivo:** Evita lixo no filesystem — posts abandonados ou em rascunho não deixam resíduos.
+
+---
+
+## D014 — Campos primários vs avançados no formulário de post
+
+**Contexto:** O formulário de criação/edição de posts tem muitos campos. Figma URL e Figma Mobile URL são usados apenas em alguns posts.
+
+**Decisão:** Separar campos em dois grupos: **primários** (slug, cover, published, private — sempre visíveis) e **avançados** (figma, figmaMobile — ocultos por defeito numa secção colapsável "Advanced settings"). A secção auto-expande se `initialData` já contém valores preenchidos.
+
+**Motivo:** Reduz ruído visual e mantém o formulário focado nos campos mais frequentes. Campos raramente usados continuam acessíveis mas não poluem a UI.
+
+---
+
+## D015 — Tooltip "Save changes" always visible
+
+**Contexto:** Todos os admin buttons têm tooltip on hover. Mas "Save changes" é uma call-to-action que indica uma ação pendente.
+
+**Decisão:** "Save changes" é a única tooltip que fica **sempre visível** (sem depender de hover) e **centrada** sob o botão. Todas as outras ("Edit", "Create case") mantêm o padrão on hover.
+
+**Motivo:** O user precisa de ver sempre que há uma ação pendente. Tooltips informativas (que apenas identificam o botão) devem aparecer apenas on hover para não poluir a UI.

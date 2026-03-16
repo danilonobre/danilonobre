@@ -520,9 +520,9 @@ Classe CSS: `.devToolbar` (CSS Module)
 ### `CreatePostButton`
 **Arquivo:** `components/dev/CreatePostButton.tsx`
 
-Client component. Botão "+" que navega para `/new`. Usa `useRouter().push('/new')`.
+Client component. Botão "+" que navega para `/new`. Usa `useRouter().push('/new')`. Envolvido em `.toggleWrapper` com tooltip "Create case" (branco, on hover, centrada).
 
-Classe CSS: `.toggle` (reutiliza o estilo base do botão circular)
+Classes CSS: `.toggle`, `.toggleWrapper`, `.tooltipWhite` (CSS Module)
 
 ---
 
@@ -542,7 +542,8 @@ interface CreatePostFormProps {
 - Com `initialData` + `children`: modo edição de post existente (inicia em preview mode com conteúdo server-rendered, slug read-only).
 - Preview de posts novos: markdown renderizado + placeholders visuais para componentes MDX.
 - Preview de posts existentes: exibe `children` (MDX renderizado server-side).
-- Lock toggle: cadeado aberto salva via API → preview. Cadeado fechado → edit.
+- Lock toggle: cadeado aberto + tooltip "Save changes" (always visible, centrada) → salva via API → preview. Cadeado fechado + tooltip "Edit" (on hover, right-aligned) → edit.
+- State `advancedOpen`: controla a secção colapsável "Advanced settings" (Figma URLs). Auto-expande se `initialData` contém `figma` ou `figmaMobile` preenchidos.
 
 Demais componentes de dev mode documentados em `specs/dev-mode.md`.
 
