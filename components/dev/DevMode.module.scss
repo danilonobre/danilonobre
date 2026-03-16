@@ -111,3 +111,211 @@
     color: #fff;
   }
 }
+
+// --- Create Post Form ---
+
+.formFieldTitle {
+  display: block;
+  width: 100%;
+  background: transparent;
+  border: none;
+  border-bottom: 2px dashed #ddd;
+  font-size: 50px;
+  font-weight: 700;
+  letter-spacing: -0.05em;
+  line-height: 1.2;
+  color: #0c0c0c;
+  padding: 0 0 8px;
+  outline: none;
+  transition: border-color 0.15s;
+
+  &::placeholder {
+    color: #ccc;
+  }
+
+  &:focus {
+    border-color: #f5a623;
+  }
+}
+
+.formFieldInline {
+  background: transparent;
+  border: none;
+  border-bottom: 1px dashed #ddd;
+  font-size: 14px;
+  font-weight: 500;
+  color: #0c0c0c;
+  padding: 2px 0;
+  outline: none;
+  width: 180px;
+  transition: border-color 0.15s;
+
+  &::placeholder {
+    color: #bbb;
+  }
+
+  &:focus {
+    border-color: #f5a623;
+  }
+}
+
+.formMetaSection {
+  margin: 32px 0;
+  padding: 24px;
+  background: #fafafa;
+  border: 1px dashed #ddd;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.formMetaRow {
+  display: flex;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+
+.formMetaLabel {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-size: 12px;
+  font-weight: 600;
+  color: #666;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  flex: 1;
+  min-width: 200px;
+}
+
+.formMetaInput {
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 14px;
+  font-weight: 400;
+  color: #0c0c0c;
+  padding: 8px 12px;
+  outline: none;
+  text-transform: none;
+  letter-spacing: normal;
+  transition: border-color 0.15s;
+
+  &::placeholder {
+    color: #bbb;
+  }
+
+  &:focus {
+    border-color: #f5a623;
+  }
+}
+
+.formCheckboxLabel {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  color: #333;
+  cursor: pointer;
+
+  input[type='checkbox'] {
+    width: 18px;
+    height: 18px;
+    cursor: pointer;
+    accent-color: #f5a623;
+  }
+}
+
+.formFieldIntro {
+  display: block;
+  width: 100%;
+  background: transparent;
+  border: none;
+  border-bottom: 1px dashed #ddd;
+  font-size: 24px;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #0c0c0c;
+  padding: 0 0 8px;
+  outline: none;
+  resize: vertical;
+  font-family: inherit;
+  transition: border-color 0.15s;
+
+  &::placeholder {
+    color: #ccc;
+  }
+
+  &:focus {
+    border-color: #f5a623;
+  }
+}
+
+.formFieldBody {
+  display: block;
+  width: 100%;
+  min-height: 400px;
+  background: #fafafa;
+  border: 1px dashed #ddd;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.6;
+  color: #0c0c0c;
+  padding: 24px;
+  outline: none;
+  resize: vertical;
+  font-family: 'SFMono-Regular', 'Consolas', 'Liberation Mono', 'Menlo', monospace;
+  transition: border-color 0.15s;
+
+  &::placeholder {
+    color: #bbb;
+    font-family: inherit;
+  }
+
+  &:focus {
+    border-color: #f5a623;
+  }
+}
+
+.formError {
+  position: fixed;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 12px 24px;
+  background: rgba(213, 19, 7, 0.95);
+  color: #fff;
+  font-size: 14px;
+  font-weight: 600;
+  border-radius: 8px;
+  z-index: 901;
+}
+
+// --- MDX Placeholders (preview mode) ---
+
+.mdxPlaceholder {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 20px 24px;
+  margin: 16px 0;
+  background: #f5f5f5;
+  border: 1px dashed #ccc;
+  border-radius: 8px;
+}
+
+.mdxPlaceholderIcon {
+  display: flex;
+  align-items: center;
+  color: #999;
+}
+
+.mdxPlaceholderLabel {
+  font-family: 'SFMono-Regular', 'Consolas', 'Liberation Mono', 'Menlo', monospace;
+  font-size: 14px;
+  color: #999;
+  font-weight: 500;
+}
