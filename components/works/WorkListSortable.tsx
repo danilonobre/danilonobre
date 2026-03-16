@@ -40,7 +40,7 @@ function SortableWorkCard({ work }: { work: WorkItem }) {
         transition: transition ?? undefined,
         opacity: isDragging ? 0.5 : 1,
       }}
-      sortableAttributes={attributes}
+      sortableAttributes={attributes as Record<string, unknown>}
     />
   )
 }
