@@ -3,21 +3,50 @@
 ## Estrutura de pastas
 
 ```
-/content/works/
-└── [slug]/
-    ├── index.mdx          # conteúdo + frontmatter
-    ├── og-image.png       # 500x500px, Open Graph
-    └── *.png / *.jpg      # imagens do post, referenciadas no MDX
+/content/
+├── home-content.json       # Conteúdo dinâmico do hero da home
+├── works-order.json        # Ordem dos works na home (array de pathSlug)
+└── works/
+    └── [slug]/
+        ├── index.mdx       # conteúdo + frontmatter
+        ├── og-image.png    # 500x500px, Open Graph
+        └── *.png / *.jpg   # imagens do post, referenciadas no MDX
 ```
 
 ---
 
-## Frontmatter
+## Home content (`content/home-content.json`)
+
+Conteúdo do hero da home, editável via dev mode.
+
+```json
+{
+  "name": "Danilo Nobre",
+  "description": "a product designer focused on bringing results from user-centered experiences.",
+  "role": "Lead Product Designer",
+  "company": "OutSystems",
+  "companyUrl": "https://outsystems.com"
+}
+```
+
+| Campo | Tipo | Uso |
+|---|---|---|
+| `name` | string | Nome exibido no h1 |
+| `description` | string | Frase após o nome no h1 |
+| `role` | string | Cargo atual exibido no p |
+| `company` | string | Nome da empresa exibido como link |
+| `companyUrl` | string | URL da empresa |
+
+Lido por `lib/home-content.ts` com fallback para valores default se o arquivo não existir.
+
+---
+
+## Work frontmatter
 
 ```yaml
 title: string        # obrigatório — título do work
 slug: string         # obrigatório — único, define a URL (/slug)
-published: boolean   # obrigatório — false oculta da home e bloqueia a rota
+published: boolean   # obrigatório — false oculta da home e bloqueia a rota (visível apenas em dev)
 project: string      # opcional — nome da empresa/cliente
 timeline: string     # opcional — ex: '2021 - 2023'
 private: boolean     # opcional (default: false) — exige senha para acessar
@@ -31,6 +60,8 @@ cover: string        # opcional — nome do arquivo da imagem de capa (na pasta 
 
 **Regra:** se `private: true`, o middleware bloqueia a rota e redireciona para `/<slug>/password`.
 
+**Regra:** se `published: false`, o work só aparece em development. Em produção, retorna 404.
+
 ---
 
 ## Ordenação dos works na home
@@ -39,6 +70,7 @@ A ordem é controlada pelo arquivo `/content/works-order.json` — um array de `
 
 ```json
 [
+  "designing-the-system-first-and-my-meal-planning-app",
   "designing-scalable-system-app-settings",
   "push-notification-composer",
   "camera-capabilities-outsystems-mobile-apps"
@@ -47,7 +79,16 @@ A ordem é controlada pelo arquivo `/content/works-order.json` — um array de `
 
 - Works ausentes do arquivo aparecem no final da lista.
 - Se o arquivo não existir, os works são exibidos sem ordenação específica (fallback).
-- Em desenvolvimento, a página `/admin` permite reordenar via drag-and-drop.
+- Em dev mode, a reordenação é feita via drag-and-drop e salva com `POST /api/admin/reorder`.
+
+---
+
+## Resolução de assets
+
+Imagens nos MDX usam caminhos relativos (`./image.png`). A resolução acontece em dois níveis:
+
+1. **`getMDXComponents(pathSlug)`** em `mdx-components.tsx` — converte `./image.png` para `/works-asset/{pathSlug}/image.png`
+2. **`app/works-asset/[...path]/route.ts`** — serve o arquivo de `content/works/{slug}/image.png`
 
 ---
 
@@ -96,40 +137,66 @@ Carrossel horizontal com Embla Carousel. Botões prev/next com estado disabled. 
 </Slideshow>
 ```
 
-Suporta prop `shadows`:
-```mdx
-<Slideshow shadows>
-  ![Slide](slide.png)
-</Slideshow>
-```
-
 ### `<Cover>`
-Imagem de capa isolada, `max-width: 1280px`, centralizada. Para imagens de destaque que não pertencem a uma galeria.
+Imagem de capa isolada, `max-width: 1280px`, centralizada. `basePath` é injetado automaticamente pelo `getMDXComponents`.
 
 ```mdx
 <Cover src="delivery-truck.jpg" alt="Capa" />
 ```
 
-**Nota:** imagens com sintaxe markdown `![alt](src.png)` fora de qualquer componente são renderizadas como `<img>` padrão com `max-width: 100%`.
-
 ### `<WorkVideo>`
-Embed de vídeo (iframe ou `<video>`). Largura de 846px, height de 528px, border-radius de 10px.
+Embed de vídeo (iframe ou `<video>`).
 
 ```mdx
 <WorkVideo src="https://youtube.com/embed/..." />
 ```
 
-Ou vídeo local:
+### `<Highlight>`
+Bloco de destaque com ícone Phosphor e conteúdo livre.
+
 ```mdx
-<WorkVideo src="video.mp4" />
+<Highlight icon="Lightbulb" title="Key insight">
+  Texto do destaque.
+</Highlight>
+```
+
+### `<HypothesisStatement>`
+Declaração de hipótese estruturada com trechos coloridos (roxo/azul/verde).
+
+```mdx
+<HypothesisStatement
+  action="redesigning the settings page"
+  alignment="the platform's scalability goals"
+  value="providing a modular architecture"
+  outcome="reduce configuration time"
+  impact="increasing developer satisfaction"
+  success="task completion time drops by 30%"
+/>
+```
+
+### `<ResearchBlock>`
+Bloco de pesquisa: citação de entrevista ou escala de usabilidade.
+
+```mdx
+<ResearchBlock variant="quote" question="How do you manage notifications?">
+  "I usually just ignore them because there are too many."
+</ResearchBlock>
+
+<ResearchBlock variant="rating" question="Ease of use" rating={5.8} maxRating={7} />
+```
+
+### `<ResearchResults>` / `<ResearchResult>`
+Barras de resultado percentual.
+
+```mdx
+<ResearchResults>
+  <ResearchResult percentage="85" text="Found the feature useful" />
+  <ResearchResult percentage="72" text="Would use it daily" />
+</ResearchResults>
 ```
 
 ### `<FigmaEmbed>`
 Renderizado automaticamente quando `figma` está no frontmatter. Não é usado diretamente no body do MDX.
-
-Renderiza dois blocos:
-- `.block-figma` — desktop, oculto no mobile/tablet
-- `.block-figma-mobile` — mobile/tablet, oculto no desktop
 
 ---
 
@@ -155,11 +222,9 @@ slug: "nome-do-work"
 published: true
 project: Nome da Empresa
 timeline: '2023'
+cover: "cover.png"
+intro: "Texto de introdução do work."
 ---
-
-Introdução do work (parágrafos em markdown).
-
-<Cover src="cover.png" alt="Cover" />
 
 ## Seção principal
 
@@ -169,6 +234,19 @@ Texto explicativo em markdown.
   ![Imagem 1](imagem1.png)
   ![Imagem 2](imagem2.png)
 </Gallery>
+
+<Highlight icon="Target" title="Goal">
+  Objetivo principal do projeto.
+</Highlight>
+
+<HypothesisStatement
+  action="..."
+  alignment="..."
+  value="..."
+  outcome="..."
+  impact="..."
+  success="..."
+/>
 ```
 
 ---

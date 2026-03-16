@@ -101,14 +101,28 @@ O `body::before` e `body::after` criam linhas decorativas em `#efefef` a 80px da
 
 ---
 
-## Conteúdo estático — hero (home)
+## Conteúdo do hero (home)
 
+O conteúdo do hero é dinâmico, lido de `content/home-content.json`. Ver `content-model.md` para o schema.
+
+Estrutura do HTML:
 ```tsx
 // H1
-"Hi, I'm " + <span>Danilo Nobre</span> + ", a product designer focused on bringing results from user-centered experiences."
+"Hi, I'm " + <span>{name}</span> + ", " + {description}
 
 // P
-"Currently " + <span className="role">Lead Product Designer</span> + " at " + <a className="outsystems" href="http://outsystems.com" target="_blank">OutSystems</a> + "."
+"Currently " + <span className="role">{role}</span> + " at " + <a className="outsystems" href={companyUrl}>{company}</a> + "."
+```
+
+Valores default (caso o JSON não exista):
+```json
+{
+  "name": "Danilo Nobre",
+  "description": "a product designer focused on bringing results from user-centered experiences.",
+  "role": "Lead Product Designer",
+  "company": "OutSystems",
+  "companyUrl": "https://outsystems.com"
+}
 ```
 
 ---
@@ -131,7 +145,7 @@ Links de contato (componente `Contacts`):
 
 ## SVG Icons (inline)
 
-Usados nos cards de work e no header do post. Copiar exatamente — não substituir por bibliotecas de ícones.
+Usados nos cards de work, header do post e dev mode. Copiar exatamente — não substituir por bibliotecas de ícones.
 
 **Ícone de company (casa):**
 ```svg
@@ -144,6 +158,32 @@ Usados nos cards de work e no header do post. Copiar exatamente — não substit
 ```svg
 <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
   <path fill-rule="evenodd" clip-rule="evenodd" d="M13.0227 0.818176C13.0227 0.403963 12.6869 0.0681763 12.2727 0.0681763C11.8585 0.0681763 11.5227 0.403963 11.5227 0.818176V1.70454H6.47726V0.818176C6.47726 0.403963 6.14148 0.0681763 5.72726 0.0681763C5.31305 0.0681763 4.97726 0.403963 4.97726 0.818176V1.70454H3.27272C1.95476 1.70454 0.886353 2.77295 0.886353 4.0909V7.36363V15.5454C0.886353 16.8634 1.95476 17.9318 3.27272 17.9318H14.7273C16.0452 17.9318 17.1136 16.8634 17.1136 15.5454V7.36363V4.0909C17.1136 2.77295 16.0452 1.70454 14.7273 1.70454H13.0227V0.818176ZM15.6136 6.61363V4.0909C15.6136 3.60138 15.2168 3.20454 14.7273 3.20454H13.0227V4.0909C13.0227 4.50512 12.6869 4.8409 12.2727 4.8409C11.8585 4.8409 11.5227 4.50512 11.5227 4.0909V3.20454H6.47726V4.0909C6.47726 4.50512 6.14148 4.8409 5.72726 4.8409C5.31305 4.8409 4.97726 4.50512 4.97726 4.0909V3.20454H3.27272C2.78319 3.20454 2.38635 3.60138 2.38635 4.0909V6.61363H15.6136ZM2.38635 8.11363H15.6136V15.5454C15.6136 16.035 15.2168 16.4318 14.7273 16.4318H3.27272C2.78319 16.4318 2.38635 16.035 2.38635 15.5454V8.11363Z" fill="white"/>
+</svg>
+```
+
+**Ícone de cadeado (private — cards):**
+```svg
+<svg width="18" height="18" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <path d="M4.66667 7.33331V4.66665C4.66667 3.78259 5.01786 2.93474 5.64298 2.30962C6.2681 1.6845 7.11595 1.33331 8 1.33331C8.88406 1.33331 9.7319 1.6845 10.357 2.30962C10.9821 2.93474 11.3333 3.78259 11.3333 4.66665V7.33331M3.33333 7.33331H12.6667C13.403 7.33331 14 7.93027 14 8.66665V13.3333C14 14.0697 13.403 14.6666 12.6667 14.6666H3.33333C2.59695 14.6666 2 14.0697 2 13.3333V8.66665C2 7.93027 2.59695 7.33331 3.33333 7.33331Z" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
+```
+
+**Ícone de draft (lápis):**
+```svg
+<svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <path d="M12.75 2.25L15.75 5.25M1.5 16.5L2.18 13.44C2.22 13.26 2.31 13.1 2.44 12.97L11.69 3.72C12.08 3.33 12.71 3.33 13.1 3.72L14.28 4.9C14.67 5.29 14.67 5.92 14.28 6.31L5.03 15.56C4.9 15.69 4.74 15.78 4.56 15.82L1.5 16.5Z" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+</svg>
+```
+
+**Ícone de grip (drag handle — dev mode):**
+```svg
+<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <circle cx="6" cy="3.5" r="1.25" fill="currentColor"/>
+  <circle cx="10" cy="3.5" r="1.25" fill="currentColor"/>
+  <circle cx="6" cy="8" r="1.25" fill="currentColor"/>
+  <circle cx="10" cy="8" r="1.25" fill="currentColor"/>
+  <circle cx="6" cy="12.5" r="1.25" fill="currentColor"/>
+  <circle cx="10" cy="12.5" r="1.25" fill="currentColor"/>
 </svg>
 ```
 
@@ -161,6 +201,37 @@ Usados nos cards de work e no header do post. Copiar exatamente — não substit
 </svg>
 ```
 
+**Ícones do Slideshow (prev/next):**
+```svg
+<!-- prev -->
+<svg width="36" height="36" viewBox="0 0 36 36" fill="none">
+  <path d="M18 28.5L7.5 18M7.5 18L18 7.5M7.5 18H28.5" stroke="#0C0C0C" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+</svg>
+<!-- next -->
+<svg width="36" height="36" viewBox="0 0 36 36" fill="none">
+  <path d="M7.5 18H28.5M28.5 18L18 7.5M28.5 18L18 28.5" stroke="#0C0C0C" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+</svg>
+```
+
+**Ícone do submit (senha — seta direita):**
+```svg
+<svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+  <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="#FAFAFA" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+</svg>
+```
+
+**Ícones do Dev Mode (lock closed/open):**
+```svg
+<!-- lock closed -->
+<svg width="18" height="18" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <path d="M4.66667 7.33331V4.66665C4.66667 3.78259 5.01786 2.93474 5.64298 2.30962C6.2681 1.6845 7.11595 1.33331 8 1.33331C8.88406 1.33331 9.7319 1.6845 10.357 2.30962C10.9821 2.93474 11.3333 3.78259 11.3333 4.66665V7.33331M3.33333 7.33331H12.6667C13.403 7.33331 14 7.93027 14 8.66665V13.3333C14 14.0697 13.403 14.6666 12.6667 14.6666H3.33333C2.59695 14.6666 2 14.0697 2 13.3333V8.66665C2 7.93027 2.59695 7.33331 3.33333 7.33331Z" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+</svg>
+<!-- lock open -->
+<svg width="18" height="18" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <path d="M11.3333 4.66665C11.3333 3.78259 10.9821 2.93474 10.357 2.30962C9.7319 1.6845 8.88406 1.33331 8 1.33331C7.11595 1.33331 6.2681 1.6845 5.64298 2.30962C5.01786 2.93474 4.66667 3.78259 4.66667 4.66665M3.33333 7.33331H12.6667C13.403 7.33331 14 7.93027 14 8.66665V13.3333C14 14.0697 13.403 14.6666 12.6667 14.6666H3.33333C2.59695 14.6666 2 14.0697 2 13.3333V8.66665C2 7.93027 2.59695 7.33331 3.33333 7.33331Z" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+</svg>
+```
+
 ---
 
 ## Cor de acento — restricted/password
@@ -171,12 +242,13 @@ Usados nos cards de work e no header do post. Copiar exatamente — não substit
 - Mensagem de erro de senha (`.password-error`)
 - `h1` do work header em `.block-works-full`
 - `h2` dentro do `.work-body`
+- Ícones do `ResearchBlock` (ChatText, ClipboardText)
 
 ---
 
 ## CSS Custom Property — `--image-max-width`
 
-Aplicado via `style` inline em `GalleryItem` e `Slideshow` items. Valor calculado como metade da largura original da imagem (`Math.round(width * 0.5)`).
+Aplicado via `style` inline em `GalleryImage` e `Slideshow` items. Valor calculado como metade da largura original da imagem (`Math.round(naturalWidth * 0.5)`).
 
 Usado pelo CSS em:
 ```scss
@@ -187,11 +259,25 @@ Usado pelo CSS em:
 }
 ```
 
-No Next.js, a largura original vem das dimensões da imagem (via `next/image` com `width`/`height` explícitos ou import estático).
+A largura natural vem do `onLoad` no `<img>` — `img.naturalWidth`.
 
 ---
 
-## Classes novas do CSS atualizado
+## CSS Modules (componentes novos)
+
+Componentes que não existiam no Gatsby usam CSS Modules para isolar estilos:
+
+| Arquivo | Componente |
+|---|---|
+| `components/post/Highlight.module.scss` | Highlight |
+| `components/post/HypothesisStatement.module.scss` | HypothesisStatement |
+| `components/post/ResearchBlock.module.scss` | ResearchBlock |
+| `components/post/ResearchResult.module.scss` | ResearchResult |
+| `components/dev/DevMode.module.scss` | Todos os componentes dev |
+
+---
+
+## Classes do CSS legado
 
 ### Dentro de `.work-body`
 
@@ -212,8 +298,10 @@ No Next.js, a largura original vem das dimensões da imagem (via `next/image` co
 | `.embla__button` | Botão prev/next, 80x80px, borda sutil |
 | `.embla__button.is-disabled` | Estado disabled (opacity 0.3 no SVG) |
 | `.restricted-indicator` | Badge "Restricted page" no work header |
+| `.draft-indicator` | Badge "Draft" no work header |
 | `.work-body h2` | `font-size: 36px`, `color: #D61408` |
 | `.work-body h6` | Uppercase label de seção, `color: #666666`, `font-size: 16px` |
+| `.work-video-wrapper` | Container do embed de vídeo |
 
 ### Password gate
 
@@ -230,11 +318,11 @@ No Next.js, a largura original vem das dimensões da imagem (via `next/image` co
 
 ```ts
 export const siteConfig = {
-  title: "Danilo Nobre - Product Designer",
-  siteUrl: "https://danilonobre.com",
-  author: "Danilo Nobre",
-  email: "mailto:danilonobre@gmail.com",
-  linkedin: "https://www.linkedin.com/in/danilonobre",
-  gtmId: "GTM-T8C7JHT",
+  title: 'Danilo Nobre - Product Designer',
+  siteUrl: 'https://danilonobre.com',
+  author: 'Danilo Nobre',
+  email: 'mailto:danilonobre@gmail.com',
+  linkedin: 'https://www.linkedin.com/in/danilonobre',
+  gtmId: 'GTM-T8C7JHT',
 }
 ```

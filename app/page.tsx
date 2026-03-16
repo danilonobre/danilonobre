@@ -1,36 +1,32 @@
 import { Layout } from '@/components/layout/Layout'
 import { WorkList } from '@/components/works/WorkList'
 import { getWorks } from '@/lib/works'
-import { DevPanel } from '@/components/dev/DevPanel'
+import { getHomeContent } from '@/lib/home-content'
+import { DevModeProvider } from '@/components/dev/DevModeProvider'
+import { DevModeToggle } from '@/components/dev/DevModeToggle'
+import { PageIntro } from '@/components/home/PageIntro'
 
 export default function HomePage() {
   const works = getWorks()
+  const homeContent = getHomeContent()
   const isDev = process.env.NODE_ENV === 'development'
 
-  const devItems = isDev
-    ? works.map((w) => ({
-        slug: w.pathSlug,
-        title: w.title,
-        project: w.project ?? null,
-        published: w.published,
-      }))
-    : []
+  if (!isDev) {
+    return (
+      <Layout wrapperClass="page-main" isHome>
+        <PageIntro content={homeContent} />
+        <WorkList works={works} />
+      </Layout>
+    )
+  }
 
   return (
-    <Layout wrapperClass="page-main" isHome>
-      <div className="page-intro">
-        <h1>
-          Hi, I&apos;m <span>Danilo Nobre</span>, a product designer focused on bringing results from user-centered experiences.
-        </h1>
-        <p>
-          Currently <span className="role">Lead Product Designer</span> at{' '}
-          <a className="outsystems" href="https://outsystems.com" target="_blank" rel="noopener noreferrer">
-            OutSystems
-          </a>.
-        </p>
-      </div>
-      <WorkList works={works} />
-      {isDev && <DevPanel initialItems={devItems} />}
-    </Layout>
+    <DevModeProvider works={works} initialContent={homeContent}>
+      <Layout wrapperClass="page-main" isHome>
+        <PageIntro content={homeContent} />
+        <WorkList works={works} />
+        <DevModeToggle />
+      </Layout>
+    </DevModeProvider>
   )
 }

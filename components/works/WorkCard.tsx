@@ -1,9 +1,15 @@
-import React from 'react'
+import React, { forwardRef, type CSSProperties } from 'react'
 import Link from 'next/link'
 import type { WorkItem } from '@/lib/works'
+import type { SyntheticListenerMap } from '@dnd-kit/core/dist/hooks/utilities'
 
 interface WorkCardProps {
   work: WorkItem
+  devMode?: boolean
+  dragListeners?: SyntheticListenerMap
+  dragHandleClass?: string
+  sortableStyle?: CSSProperties
+  sortableAttributes?: Record<string, unknown>
 }
 
 const IconCompany = () => (
@@ -26,38 +32,78 @@ const IconDraft = () => (
   <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12.75 2.25L15.75 5.25M1.5 16.5L2.18 13.44C2.22 13.26 2.31 13.1 2.44 12.97L11.69 3.72C12.08 3.33 12.71 3.33 13.1 3.72L14.28 4.9C14.67 5.29 14.67 5.92 14.28 6.31L5.03 15.56C4.9 15.69 4.74 15.78 4.56 15.82L1.5 16.5Z" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
 )
 
-export function WorkCard({ work }: WorkCardProps) {
-  return (
-    <article className="work">
-      <Link href={`/${work.pathSlug}`}>
-        <h3 className="work-title">{work.title}</h3>
-        <div className="work-info">
-          {work.project && (
-            <div className="work-company">
-              <i aria-hidden><IconCompany /></i>
-              <span>{work.project}</span>
-            </div>
-          )}
-          {work.timeline && (
-            <div className="work-timeline">
-              <i aria-hidden><IconTimeline /></i>
-              <span>{work.timeline}</span>
-            </div>
-          )}
-          {work.private && (
-            <div className="work-timeline">
-              <i aria-hidden><IconLock /></i>
-              <span>Private</span>
-            </div>
-          )}
-          {!work.published && (
-            <div className="work-draft">
-              <i aria-hidden><IconDraft /></i>
-              <span>Draft</span>
-            </div>
-          )}
-        </div>
-      </Link>
-    </article>
-  )
-}
+const IconGrip = () => (
+  <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <circle cx="6" cy="3.5" r="1.25" fill="currentColor"/>
+    <circle cx="10" cy="3.5" r="1.25" fill="currentColor"/>
+    <circle cx="6" cy="8" r="1.25" fill="currentColor"/>
+    <circle cx="10" cy="8" r="1.25" fill="currentColor"/>
+    <circle cx="6" cy="12.5" r="1.25" fill="currentColor"/>
+    <circle cx="10" cy="12.5" r="1.25" fill="currentColor"/>
+  </svg>
+)
+
+export const WorkCard = forwardRef<HTMLElement, WorkCardProps>(
+  function WorkCard({ work, devMode, dragListeners, dragHandleClass, sortableStyle, sortableAttributes }, ref) {
+    const title = (
+      <h3 className="work-title" style={devMode ? { position: 'relative' } : undefined}>
+        {devMode && (
+          <span className={dragHandleClass} {...dragListeners}>
+            <IconGrip />
+          </span>
+        )}
+        {work.title}
+      </h3>
+    )
+
+    const info = (
+      <div className="work-info">
+        {work.project && (
+          <div className="work-company">
+            <i aria-hidden><IconCompany /></i>
+            <span>{work.project}</span>
+          </div>
+        )}
+        {work.timeline && (
+          <div className="work-timeline">
+            <i aria-hidden><IconTimeline /></i>
+            <span>{work.timeline}</span>
+          </div>
+        )}
+        {work.private && (
+          <div className="work-timeline">
+            <i aria-hidden><IconLock /></i>
+            <span>Private</span>
+          </div>
+        )}
+        {!work.published && (
+          <div className="work-draft">
+            <i aria-hidden><IconDraft /></i>
+            <span>Draft</span>
+          </div>
+        )}
+      </div>
+    )
+
+    const articleStyle = {
+      ...sortableStyle,
+      ...(!work.published && { boxShadow: 'inset 0 0 0 9999px rgba(255, 255, 255, 0.25)' }),
+    }
+
+    return (
+      <article className="work" ref={ref} style={Object.keys(articleStyle).length ? articleStyle : undefined} {...sortableAttributes}>
+        {devMode ? (
+          <a role="button" style={{ cursor: 'grab' }}>
+            {title}
+            {info}
+          </a>
+        ) : (
+          <Link href={`/${work.pathSlug}`}>
+            {title}
+            {info}
+          </Link>
+        )}
+      </article>
+    )
+  }
+)

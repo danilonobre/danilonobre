@@ -5,11 +5,13 @@ Você vai construir do zero o portfolio de Danilo Nobre em Next.js 14 (App Route
 Antes de escrever qualquer código, leia obrigatoriamente todos os arquivos em `/specs/`:
 
 - `architecture.md` — stack, estrutura de pastas, decisões técnicas
-- `content-model.md` — estrutura dos posts MDX e frontmatter
+- `content-model.md` — estrutura dos posts MDX, frontmatter e conteúdo dinâmico da home
 - `components.md` — todos os componentes com props e classes CSS
-- `design-system.md` — tokens, tipografia, breakpoints, conteúdo estático, SVG icons
+- `design-system.md` — tokens, tipografia, breakpoints, conteúdo, SVG icons, CSS Modules
 - `auth.md` — fluxo de autenticação para posts privados
-- `.cursor/rules/portfolio.mdc` — regras de comportamento que você deve seguir durante todo o projeto
+- `dev-mode.md` — sistema de edição local (dev mode)
+- `DECISIONS.md` — registro de decisões técnicas
+- `GLOSSARY.md` — termos e definições do projeto
 
 ---
 

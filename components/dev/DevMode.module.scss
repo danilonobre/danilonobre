@@ -1,0 +1,106 @@
+.toggleWrapper {
+  position: fixed;
+  top: 24px;
+  right: 24px;
+  z-index: 900;
+}
+
+.toggle {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 1px solid #333;
+  background: #1a1a1a;
+  color: #999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: border-color 0.15s, color 0.15s, background 0.15s;
+
+  &:hover {
+    border-color: #555;
+    color: #fff;
+  }
+
+  &:disabled {
+    cursor: wait;
+  }
+}
+
+.toggleActive {
+  border-color: #f5a623;
+  color: #f5a623;
+  background: rgba(245, 166, 35, 0.1);
+
+  &:hover {
+    border-color: #f5a623;
+    color: #f5a623;
+  }
+}
+
+.tooltip {
+  position: absolute;
+  top: calc(100% + 8px);
+  right: 0;
+  padding: 6px 12px;
+  background: #1a1a1a;
+  border: 1px solid #333;
+  border-radius: 6px;
+  color: #f5a623;
+  font-size: 12px;
+  font-weight: 600;
+  white-space: nowrap;
+  pointer-events: none;
+}
+
+.spinner {
+  width: 18px;
+  height: 18px;
+  border: 2px solid rgba(245, 166, 35, 0.3);
+  border-top-color: #f5a623;
+  border-radius: 50%;
+  animation: spin 0.6s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.editable {
+  outline: none;
+  border-bottom: 1px dashed rgba(255, 255, 255, 0.3);
+  transition: border-color 0.15s;
+
+  &:hover {
+    border-color: rgba(255, 255, 255, 0.5);
+  }
+
+  &:focus {
+    border-color: #f5a623;
+  }
+}
+
+.dragHandle {
+  position: absolute;
+  left: -32px;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  color: rgba(255, 255, 255, 0.7);
+  cursor: grab;
+
+  &:active {
+    cursor: grabbing;
+  }
+
+  &:hover {
+    color: #fff;
+  }
+}
