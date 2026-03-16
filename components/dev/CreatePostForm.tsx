@@ -1,9 +1,10 @@
 'use client'
 
-import { useState, useCallback, useRef } from 'react'
+import { useState, useCallback, useRef, type ReactNode } from 'react'
+import { useRouter } from 'next/navigation'
 import styles from './DevMode.module.scss'
 
-interface PostData {
+export interface PostData {
   title: string
   slug: string
   published: boolean
@@ -29,6 +30,11 @@ const INITIAL_DATA: PostData = {
   figma: '',
   figmaMobile: '',
   body: '',
+}
+
+interface CreatePostFormProps {
+  initialData?: Partial<PostData>
+  children?: ReactNode
 }
 
 function slugify(text: string): string {
@@ -119,13 +125,15 @@ function parseBodyPreview(body: string): React.ReactNode[] {
   return elements
 }
 
-export function CreatePostForm() {
-  const [data, setData] = useState<PostData>(INITIAL_DATA)
-  const [mode, setMode] = useState<'edit' | 'preview'>('edit')
+export function CreatePostForm({ initialData, children }: CreatePostFormProps) {
+  const isExisting = !!initialData
+  const router = useRouter()
+  const [data, setData] = useState<PostData>({ ...INITIAL_DATA, ...initialData })
+  const [mode, setMode] = useState<'edit' | 'preview'>(isExisting ? 'preview' : 'edit')
   const [saving, setSaving] = useState(false)
-  const [hasSaved, setHasSaved] = useState(false)
+  const [hasSaved, setHasSaved] = useState(isExisting)
   const [error, setError] = useState('')
-  const slugManuallyEdited = useRef(false)
+  const slugManuallyEdited = useRef(isExisting)
 
   const updateField = useCallback(<K extends keyof PostData>(field: K, value: PostData[K]) => {
     setData((prev) => {
@@ -167,12 +175,15 @@ export function CreatePostForm() {
 
       setHasSaved(true)
       setMode('preview')
+      if (isExisting) {
+        router.refresh()
+      }
     } catch {
       setError('Network error. Try again.')
     } finally {
       setSaving(false)
     }
-  }, [data, hasSaved])
+  }, [data, hasSaved, isExisting, router])
 
   const handleLockClick = useCallback(() => {
     if (mode === 'edit') {
@@ -183,45 +194,49 @@ export function CreatePostForm() {
   }, [mode, save])
 
   if (mode === 'preview') {
-    return (
-      <>
-        <section className="block-works block-works-full">
-          <article className="work">
-            <header className="work-header">
-              {!data.published && (
-                <div className="draft-indicator">
-                  <svg width="16" height="16" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12.75 2.25L15.75 5.25M1.5 16.5L2.18 13.44C2.22 13.26 2.31 13.1 2.44 12.97L11.69 3.72C12.08 3.33 12.71 3.33 13.1 3.72L14.28 4.9C14.67 5.29 14.67 5.92 14.28 6.31L5.03 15.56C4.9 15.69 4.74 15.78 4.56 15.82L1.5 16.5Z" stroke="#0C0C0C" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
-                  <span>Draft</span>
+    const previewContent = children ?? (
+      <section className="block-works block-works-full">
+        <article className="work">
+          <header className="work-header">
+            {!data.published && (
+              <div className="draft-indicator">
+                <svg width="16" height="16" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12.75 2.25L15.75 5.25M1.5 16.5L2.18 13.44C2.22 13.26 2.31 13.1 2.44 12.97L11.69 3.72C12.08 3.33 12.71 3.33 13.1 3.72L14.28 4.9C14.67 5.29 14.67 5.92 14.28 6.31L5.03 15.56C4.9 15.69 4.74 15.78 4.56 15.82L1.5 16.5Z" stroke="#0C0C0C" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
+                <span>Draft</span>
+              </div>
+            )}
+            <h1 className="work-title">{data.title || 'Untitled'}</h1>
+            <div className="work-info">
+              {data.project && (
+                <div className="work-company">
+                  <i aria-hidden><IconCompany /></i>
+                  <span>{data.project}</span>
                 </div>
               )}
-              <h1 className="work-title">{data.title || 'Untitled'}</h1>
-              <div className="work-info">
-                {data.project && (
-                  <div className="work-company">
-                    <i aria-hidden><IconCompany /></i>
-                    <span>{data.project}</span>
-                  </div>
-                )}
-                {data.timeline && (
-                  <div className="work-timeline">
-                    <i aria-hidden><IconTimeline /></i>
-                    <span>{data.timeline}</span>
-                  </div>
-                )}
-              </div>
-            </header>
-            {data.intro && (
-              <div className="work-intro">
-                <p>{data.intro}</p>
-              </div>
-            )}
-            {data.body && (
-              <div className="work-body">
-                {parseBodyPreview(data.body)}
-              </div>
-            )}
-          </article>
-        </section>
+              {data.timeline && (
+                <div className="work-timeline">
+                  <i aria-hidden><IconTimeline /></i>
+                  <span>{data.timeline}</span>
+                </div>
+              )}
+            </div>
+          </header>
+          {data.intro && (
+            <div className="work-intro">
+              <p>{data.intro}</p>
+            </div>
+          )}
+          {data.body && (
+            <div className="work-body">
+              {parseBodyPreview(data.body)}
+            </div>
+          )}
+        </article>
+      </section>
+    )
+
+    return (
+      <>
+        {previewContent}
 
         <div className={styles.devToolbar}>
           <div className={styles.toggleWrapper}>
@@ -284,6 +299,8 @@ export function CreatePostForm() {
                   placeholder="post-slug"
                   value={data.slug}
                   onChange={(e) => handleSlugChange(e.target.value)}
+                  readOnly={isExisting}
+                  style={isExisting ? { opacity: 0.6, cursor: 'not-allowed' } : undefined}
                 />
               </label>
               <label className={styles.formMetaLabel}>
