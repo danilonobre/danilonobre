@@ -1,9 +1,21 @@
 import { Layout } from '@/components/layout/Layout'
 import { WorkList } from '@/components/works/WorkList'
 import { getWorks } from '@/lib/works'
+import { DevPanel } from '@/components/dev/DevPanel'
 
 export default function HomePage() {
   const works = getWorks()
+  const isDev = process.env.NODE_ENV === 'development'
+
+  const devItems = isDev
+    ? works.map((w) => ({
+        slug: w.pathSlug,
+        title: w.title,
+        project: w.project ?? null,
+        published: w.published,
+      }))
+    : []
+
   return (
     <Layout wrapperClass="page-main" isHome>
       <div className="page-intro">
@@ -18,6 +30,7 @@ export default function HomePage() {
         </p>
       </div>
       <WorkList works={works} />
+      {isDev && <DevPanel initialItems={devItems} />}
     </Layout>
   )
 }
