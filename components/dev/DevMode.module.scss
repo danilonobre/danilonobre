@@ -61,6 +61,17 @@
   pointer-events: none;
 }
 
+.tooltipWhite {
+  composes: tooltip;
+  color: #fff;
+  opacity: 0;
+  transition: opacity 0.15s;
+}
+
+.toggleWrapper:hover .tooltipWhite {
+  opacity: 1;
+}
+
 .spinner {
   width: 18px;
   height: 18px;
@@ -231,6 +242,7 @@
 .formFieldIntro {
   display: block;
   width: 100%;
+  max-width: 680px;
   background: transparent;
   border: none;
   border-bottom: 1px dashed #ddd;
@@ -257,7 +269,7 @@
   display: block;
   width: 100%;
   min-height: 400px;
-  background: #fafafa;
+  background: rgba(0, 0, 0, 0.02);
   border: 1px dashed #ddd;
   border-radius: 8px;
   font-size: 16px;

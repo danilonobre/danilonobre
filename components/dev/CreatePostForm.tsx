@@ -247,6 +247,7 @@ export function CreatePostForm({ initialData, children }: CreatePostFormProps) {
             >
               <LockClosed />
             </button>
+            <span className={styles.tooltipWhite}>Edit</span>
           </div>
         </div>
       </>
