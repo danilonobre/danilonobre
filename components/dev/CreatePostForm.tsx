@@ -416,7 +416,7 @@ export function CreatePostForm({ initialData, children }: CreatePostFormProps) {
           >
             {saving ? <span className={styles.spinner} /> : <LockOpen />}
           </button>
-          <span className={`${styles.tooltip} ${styles.tooltipEnd}`}>Save changes</span>
+          <span className={`${styles.tooltip} ${styles.tooltipVisible}`}>Save changes</span>
         </div>
       </div>
     </>

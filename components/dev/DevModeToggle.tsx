@@ -43,7 +43,7 @@ export function DevModeToggle() {
           <LockClosed />
         )}
       </button>
-      <span className={`${ctx.devMode ? styles.tooltip : styles.tooltipWhite} ${styles.tooltipEnd}`}>
+      <span className={`${ctx.devMode ? `${styles.tooltip} ${styles.tooltipVisible}` : `${styles.tooltipWhite} ${styles.tooltipEnd}`}`}>
         {ctx.devMode ? 'Save changes' : 'Edit'}
       </span>
     </div>
