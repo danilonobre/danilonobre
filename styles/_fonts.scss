@@ -1,0 +1,18 @@
+@mixin fontface($name,$path,$file, $weight, $style){
+	
+	@font-face {
+		font-family: $name;
+		src:
+			url('../fonts/#{$path}/#{$file}.woff2') format('woff2'),
+        	url('../fonts/#{$path}/#{$file}.woff') format('woff');
+        	
+		font-weight: $weight;
+		font-style: normal;
+	}
+
+}
+
+@include fontface('Circular DN', 'circular' , 'CircularStd-Book', 400, 'normal' );
+@include fontface('Circular DN', 'circular' , 'CircularStd-Medium', 500, 'normal' );
+@include fontface('Circular DN', 'circular' , 'CircularStd-Bold', 700, 'normal' );
+@include fontface('Circular DN', 'circular' , 'CircularStd-Black', 900, 'normal' );

@@ -1,0 +1,128 @@
+---
+title: "Designing the system first — and my meal planning app"
+slug: "designing-the-system-first-and-my-meal-planning-app"
+published: false
+project: "Tracei"
+timeline: 'Feb 2026 - Present'
+intro: "What happens when a designer specifies everything — domain, behavior, rules, and experience — before opening Figma. This is how Tracei was built."
+cover: "cover.png"
+---
+
+## At a Glance
+
+| | |
+|---|---|
+| **Role** | Solo Product Designer & AI Product Builder |
+| **Type** | Personal project — self-initiated |
+| **Stack** | React Native, Expo, Supabase, Claude API |
+| **Platform** | Mobile — iOS & Android |
+| **Status** | Specs complete, UI in progress |
+| **Scope** | VM1 — patient-side app. Roadmap includes AI Variant Generation, calorie tracking, activity logging, and AI diet assistant |
+
+---
+
+## Context & Problem
+
+Most people who follow a nutritionist's diet plan receive it as a PDF. A structured document with meals, variants, substitution groups, and quantities — carefully designed by a professional. Then they're left to manage it on their own.
+
+The existing apps fail not because they lack features, but because they carry the wrong mental model. They're built around calorie counting and generic food logging. They don't reflect how a real diet plan is structured. The result is that users abandon their plan not from lack of discipline, but from lack of clarity.
+
+The insight that drove Tracei is this: **the problem is one of representation, not tracking.** If the app modeled the plan the way the nutritionist designed it, adherence would follow naturally.
+
+Tracei is being built in value milestones. VM1 focuses entirely on the patient side — importing a diet via PDF, navigating the daily meal plan, and checking off food items. The roadmap beyond VM1 already includes AI Variant Generation, calorie tracking, physical activity logging, and an AI-powered diet assistant.
+
+---
+
+## Before Opening Figma
+
+The first decision I made on Tracei was to not open Figma.
+
+Instead, I used a process called Spec-Driven Development — specifying every layer of the product before any code was written or any screen was drawn. Domain entities, business rules, technical architecture, AI behavior, UX guidelines, UI tokens. All documented, all connected.
+
+What makes this process powerful when AI is part of the stack is that it turns the AI from a generator of surprises into a reliable executor. When every behavior is specified — including edge cases, error states, and failure handling — the AI follows the plan. It doesn't fill gaps with assumptions.
+
+By the time I started thinking about user experience, the terrain was already mapped. I knew the exact data hierarchy, every business rule, how the AI would behave, what was in and out of scope for VM1. Designing the UX on top of that is a fundamentally different exercise from discovering the product while drawing screens.
+
+The brand was born at this stage too — name, logo, color palette, typography. Decisions that are agnostic to any product definition, but that already gave shape and personality to what was being built.
+
+---
+
+## Modeling the Domain
+
+The domain model came directly from real nutritionist PDFs. I studied how plans are actually structured — not how apps usually represent them — and built the hierarchy from that.
+
+**Diet → Meal → Meal Variant → Food Group → Food Item**
+
+This isn't an engineering decision. It's a product decision. A meal can have multiple variants — "Lunch option 1" and "Lunch option 2" — and a food group can contain multiple items as substitution choices. This is exactly how a nutritionist thinks about a plan, and it's what no existing app reflects accurately.
+
+The business rules followed from the domain. The active diet is immutable — daily interactions never modify it. Multiple diets can be active simultaneously, each with its own independent log. Checked items don't reorder on screen — they stay in place with reduced opacity, because reordering would break the user's mental map of the meal.
+
+One of the more nuanced decisions was the option balancing feature. Instead of choosing a single food item from a substitution group, the user can distribute quantities proportionally across multiple items using sliders. Single option and balance are mutually exclusive states. Balance is day-specific, persisted via log entries. Confirming either journey resets the check state for the entire food group — because changing what's in the portion invalidates the check.
+
+These rules exist because the domain was modeled with precision first. They couldn't have been discovered by drawing screens.
+
+The domain also informed the first UI components — the variant carousel, the food item card, the check-off row, the Option Swap Sheet. Components that exist because the data hierarchy requires them.
+
+---
+
+## Teaching the AI How to Behave
+
+The AI in Tracei has two distinct roles, and both are governed by specs.
+
+**Pipeline 1 — PDF Ingestion.** The user uploads their nutritionist's PDF. The Claude API extracts the full diet structure and returns it as structured JSON matching the app's data model. The extraction rules are explicit: how to handle unnamed variants, how to group substitution items into food groups, how to represent "livre" quantities, what to do with ambiguous fields. The AI never hallucinations missing data — unknown fields are set to null, never estimated. The Edge Function coerces and validates the response before it reaches the client. Malformed output is rejected and the user sees a recovery action.
+
+**Pipeline 2 — AI Variant Generation.** When the existing meal options don't work for the user on a given day, they can generate a new variant using natural language. The AI receives not just the structured meal data, but the original PDF — which contains the nutritionist's macro calculations and dietary guidelines. The suggestion respects the plan. It's not a generic substitution. The user reviews the generated variant, can request a new one, or confirm — at which point the new variant is saved to the diet and appears immediately in the meal carousel.
+
+This is the distinction between using AI and orchestrating AI. When the AI has specs to follow, constraints to respect, and a defined output contract, it behaves like a component of the system — not like a black box.
+
+---
+
+## Designing the Experience on Solid Ground
+
+With domain, rules, and AI behavior fully specified, designing the UX was a different kind of exercise. I wasn't discovering the product — I was translating something that already had structure and form.
+
+The journeys were specified before any screen was drawn: PDF onboarding, the daily check-off loop, option swapping and balancing, AI variant generation. Each with states, edge cases, empty states, and error paths.
+
+The UX guidelines defined the visual mood before the visual design existed — minimal, warm, natureba, closer to Duolingo's satisfaction loops than MyFitnessPal's data density. Interaction patterns were specified too: optimistic updates for all check-off interactions, bottom sheets for contextual actions, no pull to refresh, no tabs within screens.
+
+The design tokens followed: a complete token system for color, typography, spacing, border radius, shadows, and z-index layers. Semantic naming throughout. No hardcoded values anywhere.
+
+All of this was specified before a single pixel was placed in Figma.
+
+---
+
+## When the Designer Took the Brush Back
+
+The AI generated a functional UI from the specs — and it worked. The behavior was correct, the tokens were applied, the components reflected the hierarchy.
+
+But specification fidelity is not the same as aesthetic vision.
+
+I chose to redesign the UI in Figma deliberately — not because the AI's output was wrong, but because I wanted to find out how far the craft could go when a designer with visual sensibility takes the controls back.
+
+The check-off interaction is the hero moment of the app. Every meal option is a card. When the user marks it as done, the card flips — a subtle animation that makes the act of completing a meal feel like something. That's not in a spec. That's a designer deciding that this moment deserves more than a state change.
+
+The Option Swap Sheet is another rich UX moment — two distinct journeys in one native sheet, proportional sliders with specific redistribution behavior, mutually exclusive states, a confirmation that impacts the rest of the day.
+
+The AI Variant Generation bottom sheet is where natural language meets structured output — the user types freely, sees a generated meal variant preview inline, and confirms into a carousel that updates in real time.
+
+---
+
+## What Came Out the Other Side
+
+The result is an app with refined UX, correct business rules, and consistent behavior throughout — gestures respected, UX patterns applied, micro-interactions purposeful.
+
+What SDD made possible is that the AI executed what was specified, not what it thought was best. Every behavior was intentional. Every edge case was handled because it was documented before it was encountered.
+
+The process also gives confidence at scale. New features like AI Variant Generation enter the product with the same rigor — specs first, implementation after. Bugs have documented context, which means they can be fixed with precision rather than guesswork. SDD wasn't a way to start well. It's what makes the product sustainable.
+
+Current state: specs complete, data model finalized, architecture defined, UI in progress in Figma.
+
+---
+
+## Reflection
+
+I'd approach the bootstrap differently. Some specs were more detailed than they needed to be at that stage — over-specifying early can create false certainty before the product has been tested by real usage. There's a balance between enough specification to execute confidently and so much specification that you're designing for edge cases that may never matter.
+
+What this process taught me about working with AI as an executor is that the quality of the output is a direct function of the quality of the spec. Vague instructions produce vague results. Precise contracts produce precise behavior. The AI didn't surprise me — and that was the point.
+
+What Tracei revealed about where design really begins: not in Figma. Not in a component library. In the decision to understand the problem deeply enough that the solution has no unnecessary ambiguity before a single pixel is placed.

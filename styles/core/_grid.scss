@@ -1,0 +1,41 @@
+.wrapper{
+
+	margin: 0 auto;
+	padding: 0 80px;
+
+	@include display(huge) {
+
+		width: 100%;
+
+	}
+
+	@include display(desktop) {
+
+		max-width: 1400px;
+
+	}
+
+	@include display(laptop) {
+
+		max-width: 940px;
+		padding: 0;
+
+	}
+
+	@include display(tablet) {
+
+		max-width: 840px;
+		padding: 0;
+
+	}
+
+	@include display(phone) {
+
+		max-width: 100%;
+		width: auto;
+		padding: 0 25px;
+		min-width: 0px;
+
+	}
+
+}
