@@ -143,4 +143,61 @@ Good examples: `loginScreen`, `projectSelector`, `inputField`, `submitButton`, `
 
 ## Project overrides
 
-<!-- Add project-specific rules here. This section is never touched by scofield update. -->
+<!-- Project-specific rules. This section is never touched by scofield update. -->
+
+### Project stack
+
+- Next.js 14 (App Router) + TypeScript
+- MDX via `@next/mdx` + `next-mdx-remote`
+- SCSS legado (migrado do Gatsby, imutável) + CSS Modules para componentes novos
+- `@dnd-kit` para drag-and-drop (dev mode)
+- `@phosphor-icons/react` para ícones em componentes MDX
+- Embla Carousel para slideshows
+- CircularStd (fonte local via @font-face)
+- Deploy: Vercel
+
+---
+
+### Key constraints
+
+- O SCSS em `/styles/` é migrado do Gatsby e **imutável**. Nenhuma propriedade pode ser alterada, adicionada ou removida.
+- Componentes novos (que não existiam no Gatsby) usam CSS Modules (`.module.scss`).
+- SVG icons de layout (header, footer, cards) são inline e copiados do design system — não substituir por bibliotecas.
+- `@phosphor-icons/react` é usado apenas em componentes MDX (Highlight, ResearchBlock).
+- Imagens dos works ficam em `content/works/[slug]/` e são servidas via `/works-asset/` route handler — nunca copiadas para `public/`.
+- O middleware roda no Edge runtime. `lib/private-slugs.ts` não pode usar `fs`.
+- Dev mode (reorder, edição inline) só funciona em `NODE_ENV === 'development'`. APIs admin retornam 403 em produção.
+- Works com `published: false` só aparecem em development.
+
+---
+
+### Folder names (project addition)
+
+The content folder for works is `content/works/`. Never create or reference it under any other name.
+
+---
+
+### Legacy specs
+
+Existing project specs (pre-Scofield CLI) live in `specs/_legacy/`. They contain detailed project documentation that will be reorganized into the Scofield structure via `/mentor`. Until reorganization is complete, these files remain the authoritative reference for project-specific behavior:
+- `specs/_legacy/architecture.md` — stack, folder structure, technical decisions
+- `specs/_legacy/auth.md` — authentication flow for private posts
+- `specs/_legacy/components.md` — all components with props and CSS classes
+- `specs/_legacy/content-model.md` — MDX structure, frontmatter, dynamic home content
+- `specs/_legacy/design-system.md` — tokens, typography, breakpoints, SVG icons
+- `specs/_legacy/dev-mode.md` — local editing system (dev mode)
+
+---
+
+### CSS preservation rule
+
+All files in `/styles/` are migrated from Gatsby and represent the visual baseline.
+Do not modify any existing CSS rules in `/styles/` — ever.
+If a task requires new styles, use a CSS Module (`.module.scss`) co-located with the component.
+If a task appears to require changing legacy CSS, stop and report the conflict to the user.
+
+---
+
+### CSS Modules naming convention (project examples)
+
+Project-specific good examples: `highlight`, `ratingStars`, `hypothesis`, `dragHandle`.
