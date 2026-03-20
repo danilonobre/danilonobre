@@ -19,7 +19,9 @@ Termos usados no projeto e nas specs.
 | **Edge runtime** | Ambiente de execução do middleware (Vercel Edge). Não suporta `fs`, por isso `PRIVATE_SLUGS` é um arquivo estático. |
 | **Gallery** | Componente de galeria de imagens em linha. Pode ser normal, narrow (960px) ou slideshow (carrossel). |
 | **Phosphor Icons** | Biblioteca de ícones (`@phosphor-icons/react`) usada em componentes MDX (Highlight, ResearchBlock). Não usada nos ícones de layout. |
-| **SDD** | Spec-Driven Development — metodologia onde specs são escritas antes do código e mantidas em sincronia. Framework: Scofield. |
+| **SDD** | Spec-Driven Development — metodologia onde specs são escritas antes do código e mantidas em sincronia. Framework: Scofield (`@danilonobre/scofield` CLI). |
+| **Scofield CLI** | Pacote npm (`@danilonobre/scofield`) que gerencia o framework SDD: commands, base rules, spec templates. Instalado como devDependency, operado via `scofield init` e `scofield update`. |
+| **Mentor** | Consultor AI invocado via `/mentor`. Lê todos os specs, identifica gaps e perguntas, e escreve respostas diretamente nos spec files com confirmação do user. |
 | **Spec sync** | Processo de atualizar as specs para refletir o que foi implementado (step 4 do workflow SDD). |
 | **HomeContent** | Interface TypeScript e schema JSON para o conteúdo dinâmico do hero da home (name, description, role, company, companyUrl). |
 | **WorkItem** | Interface TypeScript que estende `WorkFrontmatter` com `pathSlug`. Tipo principal usado na listagem de works. |

@@ -151,3 +151,13 @@ Registro de decisões técnicas não-óbvias tomadas durante o desenvolvimento.
 **Decisão:** "Save changes" é a única tooltip que fica **sempre visível** (sem depender de hover) e **centrada** sob o botão. Todas as outras ("Edit", "Create case") mantêm o padrão on hover.
 
 **Motivo:** O user precisa de ver sempre que há uma ação pendente. Tooltips informativas (que apenas identificam o botão) devem aparecer apenas on hover para não poluir a UI.
+
+---
+
+## D016 — Migração para Scofield CLI
+
+**Contexto:** O SDD workflow estava hardcoded no `.cursorrules` sem separação entre regras do framework e regras do projeto. Commands não existiam como ficheiros — estavam embutidos nas cursor rules ou referenciados de ficheiros `.mdc` já removidos.
+
+**Decisão:** Migrar para `@danilonobre/scofield@1.0.0` (CLI). O framework agora é uma devDependency versionada. `.cursorrules` e `CLAUDE.md` usam markers (`<!-- scofield:base:start/end -->`) para separar base rules (atualizáveis via `scofield update`) de project overrides (nunca tocados pelo update). Specs existentes movidos para `specs/_legacy/` para reorganização futura via `/mentor`.
+
+**Motivo:** Atualizações de framework versionadas, separação clara framework vs projeto, suporte a Claude Code, e o comando `/mentor` para guiar o preenchimento de specs.
