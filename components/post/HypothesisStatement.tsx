@@ -19,7 +19,7 @@ export function HypothesisStatement({
   success,
 }: HypothesisStatementProps) {
   return (
-    <div className={styles.root}>
+    <div className={styles.hypothesisCard}>
       <p className={styles.text}>
         We believe that{' '}
         <span className={`${styles.highlight} ${styles.purple}`}>

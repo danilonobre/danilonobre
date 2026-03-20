@@ -1,6 +1,6 @@
-@import '../../styles/shared';
+@use '../../styles/shared' as *;
 
-.root {
+.highlightCard {
     display: flex;
     align-items: flex-start;
     gap: 24px;
@@ -24,7 +24,7 @@
     color: #D61408;
 }
 
-.content {
+.highlightBody {
     flex: 1;
 
     p:last-child {

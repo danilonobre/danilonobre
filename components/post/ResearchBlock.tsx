@@ -58,7 +58,7 @@ export function ResearchBlock({
   const maxRating = toNumber(maxRatingProp) ?? 7
 
   return (
-    <div className={styles.root}>
+    <div className={styles.researchBlock}>
       <div className={styles.header}>
         <i className={styles.icon} aria-hidden>
           {variant === 'quote'

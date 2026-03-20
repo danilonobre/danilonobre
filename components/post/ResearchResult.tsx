@@ -15,7 +15,7 @@ export function ResearchResult({ percentage, text }: { percentage: string; text:
           style={{ width: `${pct}%` }}
         />
       </div>
-      <div className={styles.wrapper}>
+      <div className={styles.resultValueGroup}>
         <span className={styles.value}>{pct}%</span>
         <span className={styles.text}>{text}</span>
       </div>

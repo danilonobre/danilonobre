@@ -143,6 +143,7 @@ Layout spacing (from legacy CSS):
 
 ```scss
 /* Minimal layering — no modals, no drawers */
+/* 100  — .block-figma (fullscreen Figma embed, legacy _works.scss) */
 /* 900  — .devToolbar (fixed top-right, dev mode only) */
 /* 901  — .formError (fixed bottom-center error toast, dev mode only) */
 ```

@@ -1,6 +1,6 @@
-@import '../../styles/shared';
+@use '../../styles/shared' as *;
 
-.root {
+.researchBlock {
     width: 100%;
     max-width: 680px;
     background-color: $bg-warm;

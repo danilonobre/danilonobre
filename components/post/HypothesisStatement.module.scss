@@ -1,6 +1,6 @@
-@import '../../styles/shared';
+@use '../../styles/shared' as *;
 
-.root {
+.hypothesisCard {
     width: 100%;
     max-width: 1064px;
     background: rgba($brand-red, 0.06);
