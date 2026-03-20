@@ -1,4 +1,8 @@
 node_modules/
-.cache/
-public
-*.mp4
+.next/
+.cursor/
+.DS_Store
+*.tsbuildinfo
+next-env.d.ts
+.env.local
+work/

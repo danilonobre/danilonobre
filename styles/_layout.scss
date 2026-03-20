@@ -1,0 +1,204 @@
+body{
+
+    &:before{
+
+        width: calc(100vw - 160px);
+        height: 100vh;
+        content: " ";
+        border-left: 1px solid $border-light;
+        border-right: 1px solid $border-light;
+        position: fixed;
+        left: 80px;
+        top: -1px;
+        pointer-events: none;
+        z-index: 1;
+
+        @include display(phone) {
+            width: calc(100vw - 40px);
+            left: 20px;
+            content: none;
+        }
+
+    }
+
+    &:after{
+
+        width: calc(100vw + 2px);
+        height: calc(100% - 160px);
+        content: " ";
+        border-top: 1px solid $border-light;
+        border-bottom: 1px solid $border-light;
+        position: absolute;
+        left: -1px;
+        top: 80px;
+        pointer-events: none;
+        z-index: 1;
+
+        @include display(phone) {
+            height: calc(100% - 40px);
+            top: 20px;
+            content: none;
+        }
+
+    }
+
+}
+
+.page-wrapper{
+
+    display: flex;
+    flex-direction: column;
+
+    > *{
+        display: flex;
+        flex-direction: column;
+        position: relative;
+        z-index: 2;
+    }
+
+}
+
+.page-header{
+    
+    padding: 80px 80px 40px 80px;
+    position: relative;
+    overflow: hidden;
+    z-index: 2;
+
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    @include display(phone) {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .page-logo{
+
+        border-radius: 4px;
+        overflow: hidden;
+
+        @include display(phone) {
+            width: 128px;
+            height: 128px;
+        }
+
+    }
+
+    @include display(phone) {
+        padding: 20px;
+    }
+
+}
+
+
+.page-intro{
+
+    max-width: 1000px;
+    padding: 0 80px;
+    margin: 0;
+
+    @include display(phone) {
+        text-align: center;
+        font-size: 28px;
+        padding: 20px;
+    }
+
+    h1{
+
+        font-size: 36px;
+        color: #444;
+        font-weight: 300;
+        line-height: 1.5;
+
+		@include display(phone) {
+			font-size: 32px;
+		}
+        
+        span{
+
+            color: $black;
+            border-bottom: 4px solid $black;
+
+            @include display(phone) {
+                border-width: 2px;
+            }
+
+        }
+
+    }
+
+    p{
+        font-size: 28px;
+        color: #555;
+        letter-spacing: -.05em;
+
+		@include display(phone) {
+			font-size: 20px;
+		}
+
+        .role{
+            color: $black;
+        }
+
+        .outsystems{
+            color: $brand-red-dark;
+        }
+    }
+    
+}
+
+.page-main{
+
+    margin-bottom: 80px;
+
+    @include display(phone) {
+        margin-bottom: 20px;
+    }
+
+    > *{
+        margin-bottom: 80px;
+
+        @include display(phone) {
+            margin-bottom: 20px;
+        }
+
+        &:last-child{
+            margin-bottom: 0;
+        }
+    }
+
+}
+
+.page-footer{
+    
+    text-align: center;
+    padding: 0 0 80px 0;
+
+    @include display(phone) {
+        padding: 20px;
+    }
+
+    .intro-text{
+        margin-bottom: 24px;
+        color: #666;
+    }
+
+    ul{
+        display: flex;
+        justify-content: center;
+        position: relative;
+        z-index: 2;
+        gap: 24px;
+
+        li{
+            font-size: 26px;
+            letter-spacing: -0.04em;
+            text-decoration-line: underline;
+            color: #484848;
+            font-weight: 700;
+        }
+
+    }
+
+}
