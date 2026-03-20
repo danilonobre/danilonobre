@@ -1,20 +1,11 @@
 <!-- mentor:file
-The non-negotiables. Rules that cannot be violated under any circumstance during development, regardless of what a feature spec says. The Mentor treats this file as the final override — if a proposed feature or implementation contradicts the constitution, it must be flagged before proceeding. A constitution with no rules is not a constitution; a constitution with vague rules is worse than none.
+The non-negotiables. Rules that cannot be violated under any circumstance during development.
 priority: critical
 -->
 
 # Constitution
 
 ## Authority Hierarchy
-
-<!-- mentor
-Establishes which source of truth wins in case of conflict. This hierarchy must be explicit because the AI will encounter contradictions between Figma, specs, and code — and must know how to resolve them without asking.
-
-quality signals:
-- Behavioral authority is clearly assigned (specs win over Figma, not the other way around)
-- Visual authority is clearly assigned
-- Conflict resolution is stated as a rule, not a suggestion
--->
 
 - Behavioral authority: spec files in this repository.
 - Visual authority: `specs/ui/_tokens.md` and Figma (when available).
@@ -24,36 +15,42 @@ quality signals:
 
 ## Non-Negotiables
 
-<!-- mentor
-Rules that can never be broken. These are the load-bearing constraints of the product — violating them would fundamentally break the product's promise, security model, or user experience. Each rule should be specific enough to apply to a concrete implementation decision.
+### CSS Immutability
+- All files in `/styles/` are migrated from Gatsby and represent the visual baseline. **Never** modify any existing CSS rules in these files.
+- If a task requires new styles, use a CSS Module (`.module.scss`) co-located with the component.
+- If a task appears to require changing legacy CSS, stop and report the conflict to the user.
 
-quality signals:
-- Each rule is stated as an imperative, not a guideline ("Never expose API keys" not "API keys should not be exposed")
-- Rules are organized by category (Data, UI, Security, etc.)
-- Rules are specific enough that an AI could evaluate whether a given piece of code violates them
-- There are at least rules for: data handling, UI constraints, and security
+### Dev Mode Isolation
+- All dev mode components and APIs must be gated by `NODE_ENV === 'development'`.
+- API routes under `/api/admin/` must return 403 in production.
+- No dev mode code (editing UI, drag-and-drop, save actions) may be exposed to end users.
 
-extensions:
-- docguard: Enforces non-negotiable rules during code review with automated scoring and pre-commit hooks
--->
+### Edge Runtime Compatibility
+- The middleware runs in the Edge runtime. `lib/private-slugs.ts` must never use `fs`.
+- `PRIVATE_SLUGS` is a static file generated at build time — not computed at runtime.
+
+### Content Isolation
+- Images of works stay in `content/works/[slug]/` and are served via the `/works-asset/` route handler.
+- Never copy work images to `public/`.
+- MDX assets use relative paths resolved by `getMDXComponents(pathSlug)`.
+
+### Security
+- `PORTFOLIO_PASSWORD` environment variable is never committed to the repository.
+- The password is never exposed in the client bundle.
+- Cookie `portfolio_auth` is httpOnly, secure, sameSite strict.
+
+### Icon Separation
+- SVG icons for layout (header, footer, cards) are inline and copied from the design system. Never replace with icon libraries.
+- `@phosphor-icons/react` is used only in MDX components (Highlight, ResearchBlock).
 
 ---
 
 ## Definition of Done
-
-<!-- mentor
-A task or feature is complete only when these conditions are met. This section prevents partial implementations from being declared done. The AI uses this checklist at the end of every implementation step.
-
-quality signals:
-- Conditions are verifiable, not subjective
-- Spec conformance is a condition
-- Edge case handling is a condition
-- Design token usage is a condition
-- There are no conditions that require human judgment to evaluate (those belong in 3b-test)
--->
 
 A feature is complete only if:
 - Behavior matches specs.
 - Edge cases are handled as specified.
 - No regressions against the non-negotiables above.
 - UI uses correct design tokens from `specs/ui/_tokens.md`.
+- Legacy CSS in `/styles/` is untouched.
+- Dev mode features are properly gated by `NODE_ENV`.

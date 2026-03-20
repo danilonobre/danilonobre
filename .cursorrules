@@ -179,13 +179,16 @@ The content folder for works is `content/works/`. Never create or reference it u
 
 ### Legacy specs
 
-Existing project specs (pre-Scofield CLI) live in `specs/_legacy/`. They contain detailed project documentation that will be reorganized into the Scofield structure via `/mentor`. Until reorganization is complete, these files remain the authoritative reference for project-specific behavior:
-- `specs/_legacy/architecture.md` — stack, folder structure, technical decisions
-- `specs/_legacy/auth.md` — authentication flow for private posts
-- `specs/_legacy/components.md` — all components with props and CSS classes
-- `specs/_legacy/content-model.md` — MDX structure, frontmatter, dynamic home content
-- `specs/_legacy/design-system.md` — tokens, typography, breakpoints, SVG icons
-- `specs/_legacy/dev-mode.md` — local editing system (dev mode)
+`specs/_legacy/` contains the original flat spec files from before the Scofield CLI migration. All content has been reorganized into the Scofield structure. The legacy files are kept as reference only — the authoritative specs are now:
+- `specs/architecture/frontend.md` — stack, folder structure, technical decisions
+- `specs/ui/_tokens.md` — tokens, typography, breakpoints, legacy CSS classes
+- `specs/ui/icons/_map.md` — SVG icon inventory
+- `specs/ui/fonts/_map.md` — font definitions
+- `specs/ui/components/_map.md` — all components
+- `specs/ui/screens/_map.md` — screen inventory
+- `specs/domain/entities.md` — data model (Work, HomeContent, WorkOrder)
+- `specs/ux/flows/auth.md` — authentication flow
+- `specs/ux/flows/dev-mode.md` — dev mode system
 
 ---
 

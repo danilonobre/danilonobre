@@ -1,25 +1,26 @@
 <!-- mentor:file
-The font inventory. Documents the typefaces in use, their roles, and their sources. Keep in sync with Figma using /fonts-sync.
+The font inventory.
 priority: low
-
-extensions:
-- fonts-sync: Extracts font definitions from the Figma file and updates this map automatically.
 -->
 
 # Font Map
 
-<!-- mentor
-Document every font used in the product with its role and source.
-
-quality signals:
-- Every font in _tokens.md --font-* variables has an entry here
-- Role is specific
-- Source includes the full CDN URL or local file path
-- Loaded weights are listed
--->
-
-**Strategy:**
+**Strategy:** Local `@font-face` via `_fonts.scss`. No external font services.
 
 | Font | Role | Source |
 |------|------|--------|
-| | | |
+| CircularStd | Primary font — all text | `/public/fonts/circular/*.woff2` |
+
+## CircularStd
+
+**CSS name:** `'Circular DN'`
+**Fallback:** `Helvetica, Arial, sans-serif`
+
+| Weight | File |
+|--------|------|
+| 400 (Book) | CircularStd-Book.woff2 |
+| 500 (Medium) | CircularStd-Medium.woff2 |
+| 700 (Bold) | CircularStd-Bold.woff2 |
+| 900 (Black) | CircularStd-Black.woff2 |
+
+Files in `/public/fonts/circular/`, referenced in `_fonts.scss` via the `fontface` mixin.
