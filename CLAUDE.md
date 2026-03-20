@@ -177,21 +177,6 @@ The content folder for works is `content/works/`. Never create or reference it u
 
 ---
 
-### Legacy specs
-
-`specs/_legacy/` contains the original flat spec files from before the Scofield CLI migration. All content has been reorganized into the Scofield structure. The legacy files are kept as reference only — the authoritative specs are now:
-- `specs/architecture/frontend.md` — stack, folder structure, technical decisions
-- `specs/ui/_tokens.md` — tokens, typography, breakpoints, legacy CSS classes
-- `specs/ui/icons/_map.md` — SVG icon inventory
-- `specs/ui/fonts/_map.md` — font definitions
-- `specs/ui/components/_map.md` — all components
-- `specs/ui/screens/_map.md` — screen inventory
-- `specs/domain/entities.md` — data model (Work, HomeContent, WorkOrder)
-- `specs/ux/flows/auth.md` — authentication flow
-- `specs/ux/flows/dev-mode.md` — dev mode system
-
----
-
 ### CSS preservation rule
 
 All files in `/styles/` are migrated from Gatsby and represent the visual baseline.
