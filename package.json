@@ -1,45 +1,31 @@
 {
-  "name": "danilo-nobre",
-  "version": "1.0.0",
+  "name": "danilonobre-next",
+  "version": "0.1.0",
   "private": true,
-  "description": "Danilo Nobre",
-  "author": "Danilo Nobre",
-  "keywords": [
-    "gatsby"
-  ],
   "scripts": {
-    "develop": "gatsby develop",
-    "start": "gatsby develop",
-    "build": "gatsby build",
-    "serve": "gatsby serve",
-    "clean": "gatsby clean"
+    "dev": "next dev",
+    "build": "node scripts/generate-private-slugs.mjs && next build",
+    "start": "next start",
+    "lint": "next lint"
   },
   "dependencies": {
-    "@mdx-js/mdx": "^2.3.0",
-    "@mdx-js/react": "^2.3.0",
-    "embla-carousel": "^8.6.0",
-    "embla-carousel-react": "^8.6.0",
-    "gatsby": "^5.12.6",
-    "gatsby-plugin-gatsby-cloud": "^5.12.1",
-    "gatsby-plugin-google-tagmanager": "^5.12.1",
-    "gatsby-plugin-image": "^3.12.1",
-    "gatsby-plugin-manifest": "^5.12.1",
-    "gatsby-plugin-mdx": "^5.12.1",
-    "gatsby-plugin-react-helmet": "^6.12.0",
-    "gatsby-plugin-sass": "^6.12.1",
-    "gatsby-plugin-sharp": "^5.12.1",
-    "gatsby-plugin-sitemap": "^6.12.1",
-    "gatsby-remark-images": "^7.12.1",
-    "gatsby-source-filesystem": "^5.12.0",
-    "gatsby-transformer-remark": "^6.12.1",
-    "gatsby-transformer-sharp": "^5.12.1",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "react-helmet": "^6.1.0",
-    "sass": "^1.69.1"
+    "@dnd-kit/core": "^6.3.1",
+    "@dnd-kit/sortable": "^10.0.0",
+    "@dnd-kit/utilities": "^3.2.2",
+    "@next/mdx": "14.2.18",
+    "@phosphor-icons/react": "^2.1.10",
+    "embla-carousel-react": "^8.3.0",
+    "gray-matter": "^4.0.3",
+    "next": "14.2.18",
+    "next-mdx-remote": "^6.0.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
   },
   "devDependencies": {
-    "@contentful/rich-text-react-renderer": "^16.1.0",
-    "gatsby-source-contentful": "^8.15.0"
+    "@types/node": "^22.10.1",
+    "@types/react": "^18.3.12",
+    "@types/react-dom": "^18.3.1",
+    "sass": "^1.81.0",
+    "typescript": "^5.7.2"
   }
 }
